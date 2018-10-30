@@ -30,9 +30,15 @@
   },
   "homepage": "https://azu.github.io/parcel-typescript-example/",
   "devDependencies": {
+    "@types/three": "^0.93.3",
     "cross-env": "^5.2.0",
     "gh-pages": "^1.2.0",
     "parcel-bundler": "^1.9.7",
+    "redux": "^4.0.1",
+    "three": "^0.97.0",
     "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "react": "^16.7.0-alpha.0"
   }
 }
