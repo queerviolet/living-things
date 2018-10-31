@@ -124,14 +124,15 @@ const useChild = child => {
   return child
 }
 
-const useResource = (acquire, params=[], [value, set]=useState(), dispose=disposeThreeResource) => {
-  useGuardedEffect(() => {
+const useResource = (acquire, params=[], override=void 0, [value, set]=useState(), dispose=disposeThreeResource) => {
+  useGuardedEffect((override, ...params) => {
+    if (override !== None) return override
     console.log('acquire', acquire.name, ...params)
     const v = acquire(...params)
     console.log(' => ', v)
     set(v)
     return () => dispose(v)
-  }, params)
+  }, [Maybe(override), ...params])
   return value
 }
 
@@ -168,8 +169,8 @@ const XYZ_ZERO = {x: 0, y: 0, z: 0}
 const Thing = props => {
   const {type=THREE.Mesh, geometry, children} = props
   const material = useResource(
-    prop => prop === None ? new THREE.MeshBasicMaterial({color: 0xffff00, wireframe: true, side: THREE.DoubleSide}) : prop,
-    [Maybe(props.material)]
+    () => new THREE.MeshBasicMaterial({color: 0xffff00, wireframe: true, side: THREE.DoubleSide}),
+    [], props.material
   )
   const object = useResource((Type, g, m) => new Type(g, m), [type, geometry, material])
   useSceneObject(object, props)
@@ -192,7 +193,11 @@ const useRotation = (object, {rotation}) =>
   useGuardedEffect(() => {
     const {x=0, y=0, z=0} = rotation
     object.setRotationFromEuler(new THREE.Euler(x, y, z, 'XYZ'))
-  }, [object, rotation])  
+  }, [object, rotation])
+
+const useApplyProps = (object, props) =>
+  useGuardedEffect(() => Object.assign(object, props), [props])
+
 
 const val = Symbol('value of ref')
 const guard = Symbol('is ref in ok state?')
