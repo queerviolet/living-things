@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState, forwardRef, useContext, useMemo, useImperativeMethods, createContext} from 'react'
+import React, {useRef, useEffect, useState, forwardRef, useContext, useMemo, useImperativeMethods, createContext, cloneElement} from 'react'
 import {render} from 'react-dom'
 
 // export const Event = _type => {
@@ -18,6 +18,7 @@ import {render} from 'react-dom'
 // }
 
 import * as THREE from 'three'
+import { Color } from 'three';
 const ObjectContext = createContext(null)
 const ClockContext = createContext(null)
 const Renderer = ({ style=fullScreenFixed, useSize=useWindowSize, camera, children }) => {
@@ -124,10 +125,11 @@ const useChild = child => {
   return child
 }
 
-const useResource = (acquire, params=[], override=void 0, [value, set]=useState(), dispose=disposeThreeResource) => {
+const Empty = []
+const useResource = (acquire, params=Empty, override=void 0, [value, set]=useState(), dispose=disposeThreeResource) => {
   useGuardedEffect((override, ...params) => {
     if (override !== None) return override
-    console.log('acquire', acquire.name, ...params)
+    console.log('acquire', acquire._name || acquire.name, ...params)
     const v = acquire(...params)
     console.log(' => ', v)
     set(v)
@@ -136,7 +138,11 @@ const useResource = (acquire, params=[], override=void 0, [value, set]=useState(
   return value
 }
 
-const fromClass = Resource => (...params) => new Resource(...params)
+const fromClass = Resource => {
+  const create = (...params) => new Resource(...params)
+  create._name = Resource.name
+  return create
+}
 
 const useGuardedEffect = (effect, inputs=[]) =>
   useEffect(() => {
@@ -150,33 +156,85 @@ const disposeThreeResource = res => {
   res.dispose()
 }
 
-const Plane = props => {
-  const {width, height, widthSegments, heightSegments, children=null} = props
-  const plane = useResource(fromClass(THREE.PlaneBufferGeometry),
-    [width, height, widthSegments, heightSegments])  
-  return <ClockContext.Consumer>{
-    t => <Thing geometry={plane}
-      type={THREE.Mesh}
+const MaterialContext = createContext()
+const GeometryContext = createContext()
+
+const Plane = props =>
+  <Thing geometry={<PlaneBufferGeometry {...props} />}
       {...props}
-      // rotation={{z: t / 1000, y: t / 2000, x: t / 1000}}
-      // rotation={{}}
-      // material={material}
-      />  
-  }</ClockContext.Consumer>
+  />
+
+const Sphere = props =>
+  <Thing geometry={<SphereBufferGeometry {...props} />}
+      {...props}
+  />
+
+const PlaneBufferGeometry = ({width, height, widthSegments, heightSegments, children}) => {
+  const plane = useResource(fromClass(THREE.PlaneBufferGeometry),
+    [width, height, widthSegments, heightSegments])
+  return <GeometryContext.Provider value={plane}>{children}</GeometryContext.Provider>
 }
+
+const SphereBufferGeometry = ({radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength, children}) => {
+  const plane = useResource(fromClass(THREE.SphereBufferGeometry),
+    [radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength])
+  return <GeometryContext.Provider value={plane}>{children}</GeometryContext.Provider>
+}
+
+const MeshBasicMaterial = props => {
+  const material = useResource(fromClass(THREE.MeshBasicMaterial))
+  useColor(material, props)
+  useWireframe(material, props)
+  useSide(material, props)
+  return <MaterialContext.Provider value={material}>{props.children}</MaterialContext.Provider>
+}
+
+const MeshStandardMaterial = props => {
+  const material = useResource(fromClass(THREE.MeshStandardMaterial))
+  useColor(material, props)
+  useWireframe(material, props)
+  useSide(material, props)
+  useRoughness(material, props)
+  useMetalness(material, props)
+  return <MaterialContext.Provider value={material}>{props.children}</MaterialContext.Provider>
+}
+
 
 const XYZ_ZERO = {x: 0, y: 0, z: 0}
 const Thing = props => {
-  const {type=THREE.Mesh, geometry, children} = props
-  const material = useResource(
-    () => new THREE.MeshBasicMaterial({color: 0xffff00, wireframe: true, side: THREE.DoubleSide}),
-    [], props.material
-  )
+  const {
+    type=THREE.Mesh,
+    geometry,
+    material,
+  } = props
+  const x = pipe(geometry, material, <SceneObject type={type} {...props} />)
+  console.log(x)
+  return x
+}
+
+const SceneObject = props => {
+  const {type, children} = props
+  const material = useContext(MaterialContext)
+  const geometry = useContext(GeometryContext)
   const object = useResource((Type, g, m) => new Type(g, m), [type, geometry, material])
+  console.log('DRAW', type, object, material, geometry)
   useSceneObject(object, props)
   return children || null
 }
 
+const pipe = (first, ...rest) =>
+  !first
+    ? pipe(...rest)
+    :
+  !rest.length
+    ? first
+    :
+  cloneElement(first, {}, pipe(...rest))
+
+// const material = useResource(
+//   () => new THREE.MeshBasicMaterial({color: 0xffff00, wireframe: true, side: THREE.DoubleSide}),
+//   [], props.material
+// )
 const useSceneObject = (object, props) => {
   useChild(object)
   usePosition(object, props)
@@ -195,12 +253,48 @@ const useRotation = (object, {rotation}) =>
     object.setRotationFromEuler(new THREE.Euler(x, y, z, 'XYZ'))
   }, [object, rotation])
 
-const useApplyProps = (object, props) =>
-  useGuardedEffect(() => Object.assign(object, props), [props])
+// const useApplyProps = (object, props) =>
+//   useGuardedEffect(() => Object.assign(object, props, {color: new Color(props.color)}),
+//     [object, ...Object.values(props)])
 
 
-const val = Symbol('value of ref')
-const guard = Symbol('is ref in ok state?')
+const identity = _ => _
+const createPropertyHook = (property, convert=identity) => (object, props) =>
+  useGuardedEffect((object, value) => object[property] = convert(value), [object, props[property]])
+
+const useColor = createPropertyHook('color', c => new Color(c))
+const useWireframe = createPropertyHook('wireframe')
+const useIntensity = createPropertyHook('intensity')
+const useSide = createPropertyHook('side')
+const useGroundColor = createPropertyHook('groundColor')
+const useRoughness = createPropertyHook('roughness')
+const useMetalness = createPropertyHook('metalness')
+
+const AmbientLight = props => {
+  const light = useResource(fromClass(THREE.AmbientLight))
+  useColor(light, props)
+  useIntensity(light, props)
+  useSceneObject(light, props)
+  return props.children || null
+}
+
+const HemisphereLight = props => {
+  const light = useResource(fromClass(THREE.AmbientLight))
+  useColor(light, props)
+  useGroundColor(light, props)
+  useIntensity(light, props)
+  useSceneObject(light, props)
+  return props.children || null
+}
+
+const DirectionalLight = props => {
+  const light = useResource(fromClass(THREE.AmbientLight))
+  useColor(light, props)
+  useIntensity(light, props)
+  useSceneObject(light, props)
+  return props.children || null
+}
+
 const None = {}
 const Maybe = value => value === void 0
   ? None
@@ -214,8 +308,16 @@ const BasicScene = () => {
   return <Renderer camera={camera}>
     {/* <OrthoCamera ref={camera} top={-100} left={-100} bottom={100} right={100} near={0} far={1e6} /> */}
     <PerspectiveCamera ref={camera} fov={90} aspect={16/9} near={0.1} far={1e6} />
-    <Plane position={{z: -60}}
-      width={100} height={100} widthSegments={10} heightSegments={10} />
+    <AmbientLight color={0xff0000} intensity={1} position={{x: 0, y: 0, z: 0}} />
+    {/* <HemisphereLight color={0x0000ff} groundColor={0xff0000} intensity={1} /> */}
+    <DirectionalLight color={0xffffff} intensity={1.3} position={{x: 0, y: -30, z: 10}}/>
+    <MeshBasicMaterial color={0xffff00} wireframe side={THREE.DoubleSide}>    
+      <Plane position={{z: -60}}
+        width={100} height={100} widthSegments={10} heightSegments={10} />             
+    </MeshBasicMaterial>
+    <Sphere position={{z: -100, y: -30, z: -60}} rotation={{x: -Math.PI / 2}}
+        material={<MeshStandardMaterial side={THREE.DoubleSide} roughness={0.5} metalness={0.5} color={0xffffff} />}
+        radius={10} widthSegments={10} heightSegments={10} /> 
   </Renderer>
 }
 
