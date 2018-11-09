@@ -311,9 +311,9 @@ const BasicScene = () => {
     <AmbientLight color={0xff0000} intensity={1} position={{x: 0, y: 0, z: 0}} />
     {/* <HemisphereLight color={0x0000ff} groundColor={0xff0000} intensity={1} /> */}
     <DirectionalLight color={0xffffff} intensity={1.3} position={{x: 0, y: -30, z: 10}}/>
-    <MeshBasicMaterial color={0xffff00} wireframe side={THREE.DoubleSide}>    
+    <MeshBasicMaterial color={0xffff00} wireframe side={THREE.DoubleSide}>
       <Plane position={{z: -60}}
-        width={100} height={100} widthSegments={10} heightSegments={10} />             
+        width={100} height={100} widthSegments={10} heightSegments={10} />
     </MeshBasicMaterial>
     <Sphere position={{z: -100, y: -30, z: -60}} rotation={{x: -Math.PI / 2}}
         material={<MeshStandardMaterial side={THREE.DoubleSide} roughness={0.5} metalness={0.5} color={0xffffff} />}
