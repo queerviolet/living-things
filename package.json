@@ -30,18 +30,25 @@
   },
   "homepage": "https://azu.github.io/parcel-typescript-example/",
   "devDependencies": {
+    "@types/gsap": "^1.20.0",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "@types/three": "^0.93.3",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "cross-env": "^5.2.0",
     "gh-pages": "^1.2.0",
     "parcel-bundler": "^1.9.7",
+    "parcel-plugin-static-files-copy": "^1.2.4",
     "redux": "^4.0.1",
     "three": "^0.97.0",
     "typescript": "^2.9.2"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "gsap": "^2.0.2",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
     "selector-observer": "^2.1.3"

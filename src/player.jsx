@@ -152,7 +152,7 @@ const useHashNavigator = root => {
   useEffect(() => {
     addEventListener('keydown', onKey)
     return () => removeEventListener('keydown', onKey)
-    function onKey(e) {
+    function onKey(e) {      
       switch (e.key) {
       case 'ArrowRight':
       case 'ArrowDown':

@@ -1,11 +1,13 @@
-import {useResource} from './hooks'
+import {useResource, useGuardedEffect} from './hooks'
 import {useColor, useGroundColor, useIntensity} from './props'
-import {useAsSceneObject} from './objects'
+import {useChild, useAsSceneObject} from './objects'
 
 import {
   AmbientLight as Ambient,
   HemisphereLight as Hemisphere,
-  DirectionalLight as Directional
+  DirectionalLight as Directional,
+  DirectionalLightHelper,
+  HemisphereLightHelper,
 } from 'three'
 
 export const AmbientLight = props => {
@@ -22,6 +24,7 @@ export const HemisphereLight = props => {
   useGroundColor(light, props)
   useIntensity(light, props)
   useAsSceneObject(light, props)
+  useChild(useHelper(HemisphereLightHelper, props.helper && light))
   return props.children || null
 }
 
@@ -30,5 +33,8 @@ export const DirectionalLight = props => {
   useColor(light, props)
   useIntensity(light, props)
   useAsSceneObject(light, props)
+  useChild(useHelper(DirectionalLightHelper, props.helper && light))
   return props.children || null
 }
+
+const useHelper = (type, light) => useResource(type, [light])

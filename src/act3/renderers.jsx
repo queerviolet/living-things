@@ -1,4 +1,4 @@
-import React, {createContext, useRef, useState, useEffect} from 'react'
+import React, {createContext, useRef, useState, useEffect, forwardRef} from 'react'
 import {WebGLRenderer, Scene} from 'three'
 
 import {useResource} from './hooks'
@@ -7,10 +7,13 @@ import ObjectContext from './objects'
 const ClockContext = createContext(null)
 
 const webGLRenderer = canvas => canvas && new WebGLRenderer({canvas})
-export const Renderer = ({ style=fullScreenFixed, useSize=useWindowSize, camera, children }) => {
-  const canvas = useRef()
-  const renderer = useResource(webGLRenderer, [canvas.current])
-  useRendererSize(renderer, useSize)
+export const Renderer = forwardRef(({
+  style=fullScreenFixed,
+  camera,
+  children
+}, ref) => {
+  const renderer = useResource(webGLRenderer, [ref.current])
+  useRendererSize(renderer, useWindowSize)
   const scene = useResource(Scene, [])
   window.S = scene
   const [now, setNow] = useState(0)
@@ -25,11 +28,11 @@ export const Renderer = ({ style=fullScreenFixed, useSize=useWindowSize, camera,
   return (
     <ObjectContext.Provider value={scene}>
       <ClockContext.Provider value={now}>
-        <canvas ref={canvas} style={style}>{children}</canvas>
+        <canvas ref={ref} style={style}>{children}</canvas>
       </ClockContext.Provider>
     </ObjectContext.Provider>
   )
-}
+})
 
 export default Renderer
 

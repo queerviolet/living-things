@@ -1,31 +1,25 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import {Mesh} from 'three'
 
 import {SceneObject} from './objects'
 import {PlaneBufferGeometry, SphereBufferGeometry} from './geometries'
 import {pipe} from './pipe'
 
-export const Thing = props => {
+export const Thing = forwardRef((props, ref) => {
   const {
     type=Mesh,
     geometry,
     material,
   } = props
-  // console.log('---')
-  const output = pipe(geometry, material, <SceneObject type={type} {...props} />)
-  // console.log(props)
-  // console.log(output)
-  // console.log('type', type.name, 'geometry', geometry, 'material', material)
-  // console.log('---')
-  return output
-}
+  return pipe(geometry, material, <SceneObject ref={ref} type={type} {...props} />)
+})
 
-export const Plane = props =>
-  <Thing geometry={<PlaneBufferGeometry {...props} />}
+export const Plane = forwardRef((props, ref) =>
+  <Thing ref={ref} geometry={<PlaneBufferGeometry {...props} />}
     {...props}
-  />
+  />)
 
-export const Sphere = props =>
-  <Thing geometry={<SphereBufferGeometry {...props} />}
+export const Sphere = forwardRef((props, ref) =>
+  <Thing ref={ref} geometry={<SphereBufferGeometry {...props} />}
     {...props}
-  />
+  />)

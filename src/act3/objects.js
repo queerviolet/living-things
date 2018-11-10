@@ -1,5 +1,5 @@
 'use strict'
-import {createContext, useContext, useEffect, useImperativeMethods} from 'react'
+import {forwardRef, createContext, useContext, useEffect, useImperativeMethods} from 'react'
 import {Euler} from 'three'
 import {useResource, useGuardedEffect} from './hooks'
 
@@ -10,19 +10,19 @@ export const ObjectContext = createContext()
 export default ObjectContext
 
 function SceneObjectFactory(Type, geometry, material) {
-  console.log('CREATE')
   return new Type(geometry, material)
 }
 
-export const SceneObject = props => {
+export const SceneObject = forwardRef((props, ref) => {
   const {type, children} = props
   const material = useContext(MaterialContext)
   const geometry = useContext(GeometryContext)
   const object = useResource(SceneObjectFactory, [type, geometry, material])
-  console.log('in SceneObject', object, 'type=', type, 'material=', material, 'geometry=', geometry)
+  // console.log('in SceneObject', object, 'type=', type, 'material=', material, 'geometry=', geometry)
   useAsSceneObject(object, props)
-  return children || `Material: ${material && material.name}`
-}
+  if (ref) ref.current = object
+  return children || null
+})
 
 export const useAsSceneObject = (object, props) => {
   useChild(object)
