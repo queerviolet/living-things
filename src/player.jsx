@@ -35,10 +35,11 @@ import {join} from 'path'
 class Build {
   static scan(root) {
     if (!root) return
-    const builds = new Build(root)
-    ;[...root.getElementsByTagName(TAG)]
-      .forEach(chain())
-    return builds
+    const buildRoot = new Build(root)
+    const builds =[...root.getElementsByTagName(TAG)]
+    builds.forEach(chain())
+    localStorage.buildNotes = JSON.stringify(builds.map(b => b.build))
+    return buildRoot
   }
 
   constructor(element, parent) {
@@ -77,8 +78,14 @@ class Build {
     console.log('activating', this)
   }
 
-  buildOut() {
-
+  toJSON() {
+    return {
+      id: this.pathname,
+      url: this.pathname,
+      nextBuildId: this.next && this.next.pathname,
+      prevBuildId: this.prev && this.prev.pathname,
+      innerHTML: this.element.dataset.note || '',
+    }
   }
 }
 
@@ -158,16 +165,27 @@ const useHashNavigator = root => {
       case 'ArrowDown':
       case 'PageDown':
         location.hash = buildRef.current.next.pathname
+        localStorage.currentBuild = buildRef.current.next.pathname
         break
 
       case 'ArrowLeft':
       case 'ArrowUp':
       case 'PageUp':
         location.hash = buildRef.current.prev.pathname
+        localStorage.currentBuild = buildRef.current.prev.pathname
         break
       }
     }
   }, [])
+
+  useEffect(() => {
+    addEventListener('storage', onStorageChange)
+    return () => removeEventListener('storage', onStorageChange)
+
+    function onStorageChange() {
+      window.location.hash = localStorage.currentBuild
+    }
+  })
   return currentPath
 }
 

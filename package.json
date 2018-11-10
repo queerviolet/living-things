@@ -40,8 +40,8 @@
     "babel-preset-react": "^6.24.1",
     "cross-env": "^5.2.0",
     "gh-pages": "^1.2.0",
-    "parcel-bundler": "^1.9.7",
-    "parcel-plugin-static-files-copy": "^1.2.4",
+    "less": "^3.8.1",
+    "parcel-bundler": "^1.10.3",
     "redux": "^4.0.1",
     "three": "^0.97.0",
     "typescript": "^2.9.2"
@@ -49,6 +49,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "gsap": "^2.0.2",
+    "manyline": "0.0.1",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
     "selector-observer": "^2.1.3"

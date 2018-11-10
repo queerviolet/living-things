@@ -1,10 +1,12 @@
 import React from 'react'
 import {render} from 'react-dom'
 
-import Slide, {Slides} from './slide'
+import Slide, {Slides, note} from './slide'
 import Player from './player'
 
 import {MorphPath} from './greensock'
+
+import ml from 'manyline'
 
 import circle from './circle'
 import hippo from './hippo'
@@ -16,9 +18,17 @@ import tree from './tree'
 render(
   <Player>
     <Slides of={{
-      circle, hippo, elephant, star, heart, tree
+      circle: {
+        path: circle,
+        [note]: ml `Here's a circle, isn't it great?` .end
+      },
+      hippo: { path: hippo },
+      elephant: { path: elephant },
+      star: { path: star },
+      heart: { path: heart },
+      tree: { path: tree },
     }}>{
-      path =>
+      ({ path }) =>
         <svg x="0px" y="0px" viewBox="0 0 3840 2160"> 
           <MorphPath className="st2" style={{fill: path === circle ? 'red' : 'blue'}} d={path} />
         </svg>

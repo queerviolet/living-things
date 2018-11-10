@@ -28,9 +28,9 @@ export const useIsBuilt = () => {
   return isBuilt
 }
 
-export const Slide = ({url, children}) => {
+export const Slide = ({url, note, children}) => {
   const [slide, setSlide] = useState()
-  return <build-slide ref={setSlide} data-key={url}>
+  return <build-slide ref={setSlide} data-key={url} data-note={note}>
     <BuildContext.Provider value={slide}>{
       children
     }</BuildContext.Provider>
@@ -38,6 +38,8 @@ export const Slide = ({url, children}) => {
 }
 
 export default Slide
+
+export const note = Symbol('notes in markdown')
 
 export const Slides = ({of, children}) => {
   const states = useMemo(() => Object.entries(of), [of])
@@ -57,10 +59,10 @@ export const Slides = ({of, children}) => {
   return <React.Fragment>
     {children(state[1])}
     {states.map(([key, state]) =>
-      <Slide key={key} url={key}>
+      <Slide key={key} url={key} note={state[note]}>
         <BuildIn>{() => rafState([key, state])}</BuildIn>
         <BuildOut>{() => rafState(initial)}</BuildOut>
-      </Slide>  
+      </Slide>
     )}
   </React.Fragment>
 }
