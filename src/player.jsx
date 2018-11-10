@@ -107,16 +107,17 @@ const buildDelta = (buildIn, buildOut={}) => {
   return {outs, ins}
 }
 
-const buildEventDispatcher = (type, bubbles=false) => (build, detail=build) => {
-  console.log(`[${type}]`, build.pathname)    
-  const event = new CustomEvent(type, { detail, bubbles })
+const buildEventDispatcher = (type, finalActiveState, bubbles=false) => build => {
+  console.log(`[${type}]`, build.pathname)
+  const event = new CustomEvent(type, { detail: build, bubbles })
+  build.isActive = finalActiveState
   build.element.dispatchEvent(event)
 }
 
-const fireBuildIn = buildEventDispatcher('build-in')
+const fireBuildIn = buildEventDispatcher('build-in', true)
 const fireBuildOut = buildEventDispatcher('build-out')
 
-const applyDelta = ({outs, ins}) => {  
+const applyDelta = ({outs, ins}) => {
   outs.forEach(fireBuildOut)
   ins.forEach(fireBuildIn)
 }
