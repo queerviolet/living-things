@@ -1,5 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react'
 import 'babel-polyfill'
+
+import AnimProvider from './anim'
+
 const TAG = 'BUILD-SLIDE'
 
 const addChildToKeys = (keys, build, i) => {
@@ -198,9 +201,11 @@ export default ({children}) => {
     window.builds = nextRoot
   }, [container.current])
   const path = useHashNavigator(root)
-  return <div ref={container}>
-    <h1>{path}</h1>
-    {ls(root, path)}
-    {children}
-  </div>
+  return <AnimProvider>
+    <div ref={container}>
+      <h1>{path}</h1>
+      {ls(root, path)}
+      {children}
+    </div>
+  </AnimProvider>
 }

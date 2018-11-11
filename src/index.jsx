@@ -15,8 +15,13 @@ import star from './star'
 import heart from './heart'
 import tree from './tree'
 
+import './type-writer'
+
 render(
   <Player>
+    <Slides of={['', 'hello', 'world']}>{txt =>
+      <type-writer text={txt} />
+    }</Slides>
     <Slides reduce={merge({text: append})} of={{
       circle: {
         path: circle,
@@ -39,9 +44,6 @@ render(
         <svg x="0px" y="0px" viewBox="0 0 3840 2160"> 
           <MorphPath className="st2" style={{fill: path === circle ? 'red' : 'blue'}} d={path} />          
         </svg>
-        <ul>{
-          text.map(t => <li>{t}</li>)
-        }</ul>
       </div>
     }</Slides>
 </Player>
