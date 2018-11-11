@@ -44,7 +44,6 @@ export const note = Symbol('notes in markdown')
 export const Slides = ({of, reduce=replace, children}) => {
   const states = useMemo(() => {
     const entries = Object.entries(of)
-    console.log(entries)
     return entries.reduce(
       (entries, [key, value]) => {
         const [_, lastState] = entries[entries.length - 1] || []
@@ -70,8 +69,8 @@ export const Slides = ({of, reduce=replace, children}) => {
     {children(state[1])}
     {states.map(([key, state]) =>
       <Slide key={key} url={key} note={state[note]}>
-        <BuildIn>{() => rafState([key, state])}</BuildIn>
-        <BuildOut>{() => rafState(initial)}</BuildOut>
+        <BuildIn>{() => setState([key, state])}</BuildIn>
+        <BuildOut>{() => setState(initial)}</BuildOut>
       </Slide>
     )}
   </React.Fragment>

@@ -21,10 +21,10 @@ class TypeWriter extends HTMLElement {
     this.currentTargetText = ''
   }
 
-  type(input, rate=this.typingRate) {
+  async type(input, rate=this.typingRate) {
     const {textNode: text} = this
     const startText = text.textContent
-    if (this.anim) this.anim.remove()
+    if (this.anim) await this.anim.done
     return this.anim =
       For(input.length [sec] / rate)
         .withName('typing')
@@ -38,11 +38,11 @@ class TypeWriter extends HTMLElement {
         })
   }
 
-  erase(count=this.textNode.textContent.length, rate=this.erasingRate) {
+  async erase(count=this.textNode.textContent.length, rate=this.erasingRate) {
     const {textNode: text} = this
     const startText = text.textContent
     const length = lerp(startText.length, startText.length - count)
-    if (this.anim) this.anim.remove()
+    if (this.anim) await this.anim.done
     return this.anim =
       For(count [sec] / rate)
         .withName('erasing')
@@ -69,13 +69,14 @@ class TypeWriter extends HTMLElement {
   }
 
   async setText(newText) {
-    const {textNode} = this
     if (this.currentTargetText === newText) return
     this.currentTargetText = newText
     const currentText = this.text
     const prefixLength = commonPrefix(currentText, newText)
     const delta = currentText.length - prefixLength
-    if (delta) await this.erase(delta).done
+    if (delta) {
+      await this.erase(delta).done
+    }
     this.type(newText.substr(prefixLength))
   }
 

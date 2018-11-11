@@ -78,7 +78,7 @@ When.prototype.step = function(ts, currentBuild, lastBuild) {
 }
 
 export const For = (duration, ctx=defaultContext) => {
-  let endTime  
+  let endTime
   const anim =
     When(ts => !anim.running || ts < endTime, ctx).withDuration(duration)
       .start(ts => endTime = ts + duration)

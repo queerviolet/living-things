@@ -17,10 +17,12 @@ import tree from './tree'
 
 import './type-writer'
 
+import './typography.less'
+
 render(
   <Player>
     <Slides of={['', 'hello', 'world']}>{txt =>
-      <type-writer text={txt} />
+      <type-writer className='typewriter' text={txt} />
     }</Slides>
     <Slides reduce={merge({text: append})} of={{
       circle: {
