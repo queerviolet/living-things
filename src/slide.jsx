@@ -41,8 +41,18 @@ export default Slide
 
 export const note = Symbol('notes in markdown')
 
-export const Slides = ({of, children}) => {
-  const states = useMemo(() => Object.entries(of), [of])
+export const Slides = ({of, reduce=replace, children}) => {
+  const states = useMemo(() => {
+    const entries = Object.entries(of)
+    console.log(entries)
+    return entries.reduce(
+      (entries, [key, value]) => {
+        const [_, lastState] = entries[entries.length - 1] || []
+        return [...entries, [key, reduce(lastState, value, key)]]
+      },
+      []
+    )
+  }, [of, reduce])
   const initial = states[0]
   const [state, setState] = useState(initial)
   const currentState = useRef(initial)
@@ -66,6 +76,21 @@ export const Slides = ({of, children}) => {
     )}
   </React.Fragment>
 }
+
+export const merge = (template={}) => {
+  const reducers = Object.entries(template)  
+  return (state, next) => {
+    const mask = {}
+    let i = reducers.length; while (i --> 0) {
+      const [key, reducer] = reducers[i]
+      mask[key] = reducer(state && state[key], next && next[key])
+    }
+    return Object.assign({}, state, next, mask)
+  } 
+}
+
+export const append = (state=[], next) => [...state, next]
+export const replace = (_, next) => next
 
 export const BuildIn = ({children}) => {
   useBuildIn(children)
