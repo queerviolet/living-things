@@ -192,7 +192,7 @@ const useHashNavigator = root => {
   return currentPath
 }
 
-export default ({children}) => {
+export default ({toc=null, children}) => {
   const container = useRef()
   const [root, setRoot] = useState()
   useEffect(() => {
@@ -203,10 +203,10 @@ export default ({children}) => {
   const path = useHashNavigator(root)
   return <AnimProvider>
     <div ref={container}>
-      <div style={navigatorStyle}>
+      {toc && <div style={navigatorStyle}>
         <b>{path}</b>
         {ls(root, path)}
-      </div>
+      </div>}
       {children}
     </div>
   </AnimProvider>

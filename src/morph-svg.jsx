@@ -28,13 +28,13 @@ const loadSvgPaths = async src => {
   }
 }
 
-export const MorphSVG = ({src}) => {
+export const MorphSVG = ({className, src}) => {
   const [frame, setFrame] = useState()
   useEffect(async () =>
     setFrame(await loadSvgPaths(src)),
     [src])
   if (!frame) return null
-  return <svg viewBox={frame.viewBox}>{
+  return <svg className={className} viewBox={frame.viewBox}>{
     Object.entries(frame.paths)
       .map(([key, path]) =>
         <MorphPath key={key} d={path.d} style={path.style} />

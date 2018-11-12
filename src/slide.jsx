@@ -101,6 +101,7 @@ export const Slides = ({of, reduce=replace, children}) => {
   return <React.Fragment>
     {React.cloneElement(children(state[1]), {'data-is-active': isActive || undefined})}
     <Slide url={initial[0]}
+      note={initial[1][note]}
       onBuildIn={onRootBuildIn}
       onBuildOut={onRootBuildOut}>{
       states.slice(1).map(([key, state]) =>
