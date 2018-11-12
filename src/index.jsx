@@ -5,7 +5,7 @@ import Slide, {Slides, note, merge, append} from './slide'
 import Player from './player'
 
 import {MorphPath} from './greensock'
-import MorphSVG from './morph-svg'
+import {MorphSVG, loadAnimation} from './morph-svg'
 
 import ml from 'manyline'
 
@@ -59,14 +59,18 @@ render(
           
           So it's true, which is on brand.
 
-          But it's not really... I just think it's not quite the right direction.          
+          But it's not really... I just think it's not quite the right direction.
+          
+          I think we can do better.
           `
         },
         do_better: {
           txt: '',
-          [note]: `We can do better, certainly.`,
+          [note]: `Let's revise...`,
         },
-        you: {txt: 'You'},
+        you: {
+          txt: 'You',
+        },
         you_and_everyone: {txt: 'You and everyone you love'},
         you_die: {
           txt: 'You and everyone you love are going to die.',
@@ -74,43 +78,35 @@ render(
 
           Now it's threatening.
 
+          We can't have that.
           I can't lead with that. I'm from the US. Everyone already thinks we're
-          violent.`          
+          violent.`     
         },
+        the_problem: {
+          txt: '',
+          [note]: `I think the problem is that the world of now keeps bubbling out.
+
+          And the world of now is... well, it's definitely going somewhere, you can
+          say that much. Some very exciting things are happening. It feels like
+          we're on the cusp of something, and that something might very well be
+          The End.
+
+          And that's quite stressful.
+
+          So let's step away from the now, and go back.`
+        }
       }}    
     >{({ txt }) =>
-      <div className='white slide'>
+      <div className='slide'>
         <type-writer className='typewriter' text={txt} />
       </div>
     }</Slides>
+    <Slide></Slide>
+
     <Slides of={[spring0, spring1]}>{src =>
-      <div className='slide'>
-        <MorphSVG className='slide' src={src} />
+      <div className='white slide'>
+        <MorphSVG src={src} />
       </div>
-    }</Slides>
-    <Slides reduce={merge({text: append})} of={{
-      circle: {
-        path: circle,
-        text: ['thing'],
-        [note]: ml `Here's a circle, isn't it great?` .end
-      },
-      hippo: {
-        text: 'boo',
-        path: hippo
-      },
-      elephant: {
-        text: 'elephantey',
-        path: elephant
-      },
-      star: { path: star },
-      heart: { path: heart },
-      tree: { path: tree },
-    }}>{
-      ({ path, text }) =>
-        <svg className="slide" x="0px" y="0px" viewBox="0 0 3840 2160"> 
-          <rect width="100%" height="100%" fill="red"/>        
-          <MorphPath className="st2" style={{fill: path === circle ? 'red' : 'blue'}} d={path} />          
-        </svg>
     }</Slides>
 </Player>
 , main)

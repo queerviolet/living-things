@@ -1,8 +1,11 @@
-@import "./transitions.less";
-
 body, html {
   margin: 0; padding: 0;
   background: black;
+}
+
+type-writer {
+  font-size: 72px;
+  --typewriter-cursor-blink-rate: 1s;
 }
 
 .slide {
@@ -13,13 +16,38 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.white {
-  background: white;
+  type-writer {
+    color: white;
+    --typewriter-cursor-color: white;
+  }  
+
+  &.white {
+    background: white;
+
+    type-writer {
+      color: black;
+      --typewriter-cursor-color: black;
+    }
+  }
 }
 
 svg {
   width: 100%;
   height: 100%;
+}
+
+build-slide { display: block; }
+
+path {
+  transition: fill 2s, stroke 0.5s;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 1s;
+  
+  &[data-is-active] {
+    opacity: 1;
+  }
 }
