@@ -7,12 +7,13 @@ const loadSvgPaths = async (src, id=src) => {
   const svg = parser.parseFromString(await rsp.text(), 'image/svg+xml')
   const paths = Object.assign(
     ...[...svg.querySelectorAll('g')]
-      .map((g, _i) => {
+      .map((g, zIndex) => {
         const path = g.querySelector('path')
         if (!path) return
         return {
           [g.id]: {
             id: g.id,
+            zIndex,
             d: path.getAttribute('d'),
             style: {
               fill: path.getAttribute('fill'),
@@ -31,21 +32,21 @@ const loadSvgPaths = async (src, id=src) => {
   }
 }
 
-export const MorphSVG = ({className, src}) => {
+export const MorphSVG = ({className, morph={}, src}) => {
   const [frame, setFrame] = useState()
   useEffect(async () =>
     setFrame(await loadSvgPaths(src)),
     [src])
   if (!frame) return null
-  return <Cell viewBox={frame.viewBox} paths={frame.paths} />
+  return <Cell className={className} viewBox={frame.viewBox} paths={frame.paths} {...morph} />
 }
 export default MorphSVG
 
-export const Cell = ({className, viewBox, paths}) => {
+export const Cell = ({className, morph={}, viewBox, paths}) => {
   return <svg className={className} viewBox={viewBox}>{
-    Object.entries(paths)
+    zSortEntries(Object.entries(paths))
       .map(([key, path]) =>
-        <MorphPath key={key} d={path.d} style={path.style} />)
+        <MorphPath key={key} d={path.d} style={path.style} {...morph} />)
   }</svg>
 }
 
@@ -61,14 +62,18 @@ const CIRCLE = {
 const getPaths = (anim, frame, defaultPath) =>
   anim.frames[frame].paths.map(path => path || defaultPath)
 
-export const Animation = ({srcs, frame, className, defaultPath=CIRCLE}) => {
+export const Animation = ({srcs, frame, morph={}, className, defaultPath=CIRCLE}) => {
   const [anim, setAnim] = useState()
+  const set = anim => {
+    console.log(anim)
+    setAnim(anim)
+  }
   useEffect(() =>
-    loadAnimation(srcs).then(setAnim),
+    loadAnimation(srcs).then(set),
     [srcs])
   if (!anim) return null
-  console.log(anim.frames, frame)
   return <Cell className={className}
+    morph={morph}
     viewBox={anim.frames[frame].viewBox}
     paths={getPaths(anim, frame, defaultPath)} />
 }
@@ -98,6 +103,7 @@ const toSequence = (anim, frame) => {
   const nextTracks = lastTracks.map(
     path => {
       const match = incoming[path.id]
+      console.log('matching', path.id, 'to', match && match.id)
       if (!match) return Unmatched
       delete incoming[path.id]
       return match
@@ -107,7 +113,8 @@ const toSequence = (anim, frame) => {
   // Incoming only has unmatched paths now.
   const unmatchedIncoming = Object.values(incoming)
 
-  const paths = nextTracks
+  const paths =
+    nextTracks
     // Find all nextTracks that are unmatched
     // and match them to incoming tracks, sequentially
     .map(
@@ -132,3 +139,9 @@ const toSequence = (anim, frame) => {
     )
   }
 }
+
+const zSortEntries = paths => paths.sort(
+  ([_aKey, a], [_bKey, b]) =>
+    (a ? a.zIndex : 0) -
+    (b ? b.zIndex : 0)
+)

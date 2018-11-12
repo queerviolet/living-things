@@ -7,8 +7,6 @@ import Player from './player'
 import {MorphPath} from './greensock'
 import {Animation, MorphSVG, loadAnimation} from './morph-svg'
 
-import ml from 'manyline'
-
 import circle from './circle'
 import hippo from './hippo'
 import elephant from './elephant'
@@ -18,6 +16,9 @@ import tree from './tree'
 
 import spring0 from './spring0.svg'
 import spring1 from './spring1.svg'
+import news0 from './news0.svg'
+import news1 from './news1.svg'
+const frames = {spring0, spring1, news0, news1}
 
 import './type-writer'
 render(
@@ -101,9 +102,9 @@ render(
         <type-writer className='typewriter' text={txt} />
       </div>
     }</Slides>
-    <Slides of={['spring0', 'spring1']}>{frame =>
+    <Slides of={['spring0', 'spring1', 'news0', 'news1']}>{frame =>
       <div className='white slide'>
-        <Animation srcs={{spring0, spring1}} frame={frame} />
+        <Animation srcs={frames} sec={1} frame={frame} />
       </div>        
     }</Slides>
 </Player>

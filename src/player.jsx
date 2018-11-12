@@ -167,6 +167,10 @@ const useHashNavigator = root => {
       case 'ArrowRight':
       case 'ArrowDown':
       case 'PageDown':
+        if (!buildRef.current.next) {
+          console.log('already at end of presentation')
+          return
+        }
         location.hash = buildRef.current.next.pathname
         localStorage.currentBuild = buildRef.current.next.pathname
         break
@@ -174,6 +178,10 @@ const useHashNavigator = root => {
       case 'ArrowLeft':
       case 'ArrowUp':
       case 'PageUp':
+        if (!buildRef.current.prev) {
+          console.log('already at start of presentation')
+          return
+        }
         location.hash = buildRef.current.prev.pathname
         localStorage.currentBuild = buildRef.current.prev.pathname
         break
