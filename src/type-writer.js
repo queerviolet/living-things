@@ -21,10 +21,9 @@ class TypeWriter extends HTMLElement {
     this.currentTargetText = ''
   }
 
-  async type(input, rate=this.typingRate) {
+  type(input, rate=this.typingRate) {
     const {textNode: text} = this
     const startText = text.textContent
-    if (this.anim) await this.anim.done
     return this.anim =
       For(input.length [sec] / rate)
         .withName('typing')
@@ -35,14 +34,16 @@ class TypeWriter extends HTMLElement {
         .end(() => {
           this.cursor.classList.add('blinking')
           text.textContent = startText + input
+          this.anim = null
         })
   }
 
-  async erase(count=this.textNode.textContent.length, rate=this.erasingRate) {
+  erase(count=this.textNode.textContent.length, rate=this.erasingRate) {
     const {textNode: text} = this
     const startText = text.textContent
     const length = lerp(startText.length, startText.length - count)
-    if (this.anim) await this.anim.done
+
+    if (this.anim) this.anim.remove()
     return this.anim =
       For(count [sec] / rate)
         .withName('erasing')
@@ -53,6 +54,7 @@ class TypeWriter extends HTMLElement {
         .end(() => {
           text.textContent = startText.substr(0, startText.length - count)
           this.cursor.classList.add('blinking')
+          this.anim = null
         })
   }
 

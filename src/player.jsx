@@ -203,9 +203,19 @@ export default ({children}) => {
   const path = useHashNavigator(root)
   return <AnimProvider>
     <div ref={container}>
-      <h1>{path}</h1>
-      {ls(root, path)}
+      <div style={navigatorStyle}>
+        <b>{path}</b>
+        {ls(root, path)}
+      </div>
       {children}
     </div>
   </AnimProvider>
+}
+
+const navigatorStyle = {
+  position: 'fixed',
+  top: '10px', left: '10px',
+  border: 'thin solid black',
+  padding: '10px',
+  fontFamily: 'monospace',
 }

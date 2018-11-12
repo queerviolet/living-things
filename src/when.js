@@ -62,7 +62,7 @@ When.prototype.step = function(ts, currentBuild, lastBuild) {
   if (!shouldRun && this.running) {
     this._fire_end(ts, currentBuild, lastBuild)
     this.endedAt = ts
-    this.running = false
+    this.running = false    
     this._resolveDone(this)
     this._resetDone()
   }
@@ -81,8 +81,14 @@ export const For = (duration, ctx=defaultContext) => {
   let endTime
   const anim =
     When(ts => !anim.running || ts < endTime, ctx).withDuration(duration)
-      .start(ts => endTime = ts + duration)
-      .end(() => ctx.remove(anim))
+      .start(ts => {
+        // console.log('starting', anim.name, 'at', ts, 'endTime=', endTime)
+        endTime = ts + duration
+      })
+      .end((ts) => {
+        // console.log('removing', anim.name, 'at', ts)
+        ctx.remove(anim)
+      })
   return anim
 }
 
@@ -129,11 +135,13 @@ export function addAnimator(animator) {
   log.table(global.__animators)
 }
 export function removeAnimator(animator) {
+  // console.log('removeAnimator::removing', animator.name)
   const animators = global.__animators
   const idx = animators.indexOf(animator)
   if (idx >= 0)
     animators.splice(idx, 1)
-  animator._resolveDone()
+  animator._resolveDone({animator, removed: true})
+  // console.log('resolved promise for', animator.name)
 }
 export const runAnimatorStep = (ts, currentBuild, prevBuild) => {
   const animators = global.__animators

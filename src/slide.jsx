@@ -1,41 +1,66 @@
-import React, {createContext, useMemo, useRef, useContext, useState, useEffect} from 'react'
+import React, {forwardRef, createContext, useMemo, useRef, useContext, useState, useEffect} from 'react'
 
 const BuildContext = createContext()
 
-export const useBuildIn = effect => {
-  const element = useContext(BuildContext)
+const useListener = (element, event, effect) =>
   useEffect(() => {
-    if (!element) return
-    element.addEventListener('build-in', effect)
-    return () => element.removeEventListener('build-in', effect)
-  }, [element])
+    if (!element || !effect) return
+    element.addEventListener(event, effect)
+    return () => element.removeEventListener(event, effect)
+  }, [element, event, effect])
+
+export const useBuildIn = (effect, element) => {
+  const ctx = useContext(BuildContext)
+  useListener(element || ctx, 'build-in', effect)
 }
 
-export const useBuildOut = effect => {
-  const element = useContext(BuildContext)
-  useEffect(() => {
-    if (!element) return
-    element.addEventListener('build-out', effect)
-    return () => element.removeEventListener('build-out', effect)
-  }, [element])
+export const useBuildOut = (effect, element) => {
+  const ctx = useContext(BuildContext)
+  useListener(element || ctx, 'build-out', effect)
 }
 
-export const useIsBuilt = () => {
+export const useIsBuilt = element => {
   const [isBuilt, setIsBuilt] = useState()
   const onChange = ({ detail }) => setIsBuilt(detail.isActive)
-  useBuildIn(onChange)
-  useBuildOut(onChange)
+  useBuildIn(onChange, element)
+  useBuildOut(onChange, element)
   return isBuilt
 }
 
-export const Slide = ({url, note, children}) => {
-  const [slide, setSlide] = useState()
-  return <build-slide ref={setSlide} data-key={url} data-note={note}>
-    <BuildContext.Provider value={slide}>{
-      children
-    }</BuildContext.Provider>
-  </build-slide>
+export const useBuildEffect = (effect, element) => {
+  const dispose = useRef()
+  useBuildIn(() => {
+    if (dispose.current instanceof Function) {
+      dispose.current()
+    }
+    dispose.current = effect instanceof Function
+      ? effect()
+      : null
+  }, element)
+  useBuildOut(() => {
+    if (dispose.current instanceof Function)
+      dispose.current()
+  })
 }
+
+export const Slide = forwardRef(
+  ({url, note, onBuildIn, onBuildOut, effect, children}, ref) => {
+    const [slide, setSlide] = useState()
+    useBuildIn(onBuildIn, slide)
+    useBuildOut(onBuildOut, slide)
+    useBuildEffect(effect, slide)
+    const setSlideAndRef = useMemo(() =>
+      slide => {
+        setSlide(slide)
+        ref && (ref.current = slide)
+      }, [setSlide, ref])
+    return <build-slide ref={setSlideAndRef} data-key={url} data-note={note}>
+      <BuildContext.Provider value={slide}>{
+        children
+      }</BuildContext.Provider>
+    </build-slide>
+  }
+)
 
 export default Slide
 
@@ -56,7 +81,7 @@ export const Slides = ({of, reduce=replace, children}) => {
   const [state, setState] = useState(initial)
   const currentState = useRef(initial)
   const raf = useRef()
-  const rafState = state => {
+  const rafState = useMemo(() => state => {
     currentState.current = state
     raf.current || (raf.current = requestAnimationFrame(
       () => {
@@ -64,15 +89,29 @@ export const Slides = ({of, reduce=replace, children}) => {
         raf.current = null
       }
     ))
-  }
+  }, [setState])
+
+  const [isActive, setIsActive] = useState()
+
+  const onRootBuildIn = useMemo(() => () => { setIsActive(true); rafState(initial) },
+    [setIsActive])
+  const onRootBuildOut = useMemo(() => () => { setIsActive(false) },
+    [setIsActive])
+
   return <React.Fragment>
-    {children(state[1])}
-    {states.map(([key, state]) =>
-      <Slide key={key} url={key} note={state[note]}>
-        <BuildIn>{() => setState([key, state])}</BuildIn>
-        <BuildOut>{() => setState(initial)}</BuildOut>
-      </Slide>
-    )}
+    {React.cloneElement(children(state[1]), {'data-is-active': isActive || undefined})}
+    <Slide url={initial[0]}
+      onBuildIn={onRootBuildIn}
+      onBuildOut={onRootBuildOut}>{
+      states.slice(1).map(([key, state]) =>
+        <Slide
+          onBuildIn={() => rafState([key, state])}
+          onBuildOut={() => rafState(initial)}
+          key={key}
+          url={key}
+          note={state[note]} />
+      )
+    }</Slide>
   </React.Fragment>
 }
 

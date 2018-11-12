@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import {TweenLite} from 'gsap'
 import MorphSVG from './gsap-plugins/MorphSVGPlugin'
-console.log(MorphSVG)
+console.log('Loaded', MorphSVG)
 
 export const MorphPath = ({d: morphSVG, className, style}) => {
   const initialPath = useRef()
