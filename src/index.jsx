@@ -5,7 +5,7 @@ import Slide, {Slides, note, merge, append} from './slide'
 import Player from './player'
 
 import {MorphPath} from './greensock'
-import {MorphSVG, loadAnimation} from './morph-svg'
+import {Animation, MorphSVG, loadAnimation} from './morph-svg'
 
 import ml from 'manyline'
 
@@ -101,12 +101,10 @@ render(
         <type-writer className='typewriter' text={txt} />
       </div>
     }</Slides>
-    <Slide></Slide>
-
-    <Slides of={[spring0, spring1]}>{src =>
+    <Slides of={['spring0', 'spring1']}>{frame =>
       <div className='white slide'>
-        <MorphSVG src={src} />
-      </div>
+        <Animation srcs={{spring0, spring1}} frame={frame} />
+      </div>        
     }</Slides>
 </Player>
 , main)

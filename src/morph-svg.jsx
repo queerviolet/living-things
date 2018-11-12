@@ -49,7 +49,29 @@ export const Cell = ({className, viewBox, paths}) => {
   }</svg>
 }
 
-const compact = _ => _
+import circleData from './circle'
+const CIRCLE = {
+  d: circleData,
+  style: {
+    fill: 'rgba(255, 255, 255, 0)',
+    stroke: 'rgba(255, 255, 255, 0)',
+  }
+}
+
+const getPaths = (anim, frame, defaultPath) =>
+  anim.frames[frame].paths.map(path => path || defaultPath)
+
+export const Animation = ({srcs, frame, className, defaultPath=CIRCLE}) => {
+  const [anim, setAnim] = useState()
+  useEffect(() =>
+    loadAnimation(srcs).then(setAnim),
+    [srcs])
+  if (!anim) return null
+  console.log(anim.frames, frame)
+  return <Cell className={className}
+    viewBox={anim.frames[frame].viewBox}
+    paths={getPaths(anim, frame, defaultPath)} />
+}
 
 export const loadAnimation = srcs => Promise.all(
     Object.entries(srcs)
