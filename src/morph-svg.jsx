@@ -15,6 +15,7 @@ const loadSvgPaths = async (src, id=src) => {
             id: g.id,
             zIndex,
             d: path.getAttribute('d'),
+            class: path.getAttribute('class'),
             style: {
               fill: path.getAttribute('fill'),
               stroke: path.getAttribute('stroke'),
@@ -46,13 +47,13 @@ export const Cell = ({className, morph={}, viewBox, paths}) => {
   return <svg className={className} viewBox={viewBox}>{
     zSortEntries(Object.entries(paths))
       .map(([key, path]) =>
-        <MorphPath key={key} d={path.d} style={path.style} {...morph} />)
+        <MorphPath className={path.class} key={key} d={path.d} style={path.style} {...morph} />)
   }</svg>
 }
 
 import circleData from './circle'
 const CIRCLE = {
-  d: circleData,
+  d: `M 1920,1080 L1920,1079 L1921,1079 L1921,1081 Z`,
   style: {
     fill: 'rgba(255, 255, 255, 0)',
     stroke: 'rgba(255, 255, 255, 0)',
@@ -102,6 +103,7 @@ const toSequence = (anim, frame) => {
   // Map all existing paths to an incoming path
   const nextTracks = lastTracks.map(
     path => {
+      if (!path) return Unmatched
       const match = incoming[path.id]
       console.log('matching', path.id, 'to', match && match.id)
       if (!match) return Unmatched

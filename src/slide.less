@@ -45,9 +45,31 @@ path {
 
 .fade {
   opacity: 0;
-  transition: opacity 1s;
+transition: opacity 1s;
   
   &[data-is-active] {
     opacity: 1;
   }
+}
+
+.color-cycle-pink {
+  animation: color-cycle-pink 10s infinite;
+}
+
+.color-cycle-purple {
+  animation: color-cycle-purple 10s infinite;
+}
+
+@keyframes color-cycle-pink {
+  0% { fill: #ff0066; }
+  25% { fill: #c800ff; }
+  75% { fill: #00c3ff;  }
+  100% { fill: #ff0066; }
+}
+
+@keyframes color-cycle-purple {
+  0% { fill: #8b00ff }
+  25% { fill: #00a6ff }
+  75% { fill: #f7d722 }
+  100% { fill: #8b00ff }
 }

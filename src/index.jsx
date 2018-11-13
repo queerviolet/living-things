@@ -18,7 +18,10 @@ import spring0 from './spring0.svg'
 import spring1 from './spring1.svg'
 import news0 from './news0.svg'
 import news1 from './news1.svg'
-const frames = {spring0, spring1, news0, news1}
+import distributed from './distributed.svg'
+import networked from './networked.svg'
+import sociallyNetworked from './socially-networked.svg'
+const frames = {news0, news1, distributed, networked, sociallyNetworked}
 
 import './type-writer'
 render(
@@ -102,10 +105,40 @@ render(
         <type-writer className='typewriter' text={txt} />
       </div>
     }</Slides>
-    <Slides of={['spring0', 'spring1', 'news0', 'news1']}>{frame =>
-      <div className='white slide'>
-        <Animation srcs={frames} sec={1} frame={frame} />
-      </div>        
+    <Slides of={{
+      remember: {
+        [note]: `Remember ten years ago?`,
+        frame: 'news0'
+      },
+      talking: {
+        [note]: `We were create a new kind of media.`,
+        frame: 'news1',
+      },
+      distributed: {
+        [note]: `Distributed, disintermediated`,
+        frame: 'distributed',
+      },
+      networked: {
+        [note]: `networked`,
+        frame: 'networked',
+      },
+      socially_networked: {
+        [note]: `*socially* networked, made by us, consumed by us.
+        Bloggers and tweeters sharing their worlds with each other.
+        
+        All of us creators, all of us consumers.
+
+        No longer would we be beholden to newspapers, to reporters. No longer would
+        we get our stories filtered through layers of intermediaries,
+        each one spinning and slanting. No, we would just get the truth.
+        The truth would win.`,
+        frame: 'sociallyNetworked'
+      },
+    }}>{
+      ({frame}) =>
+        <div className='white slide'>
+          {frame && <Animation srcs={frames} sec={1} frame={frame} />}
+        </div>
     }</Slides>
 </Player>
 , main)
