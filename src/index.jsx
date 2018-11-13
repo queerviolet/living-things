@@ -1,29 +1,54 @@
 import React from 'react'
+import 'babel-polyfill'
 import {render} from 'react-dom'
+
+import './type-writer'
 
 import Slide, {Slides, note, merge, append} from './slide'
 import Player from './player'
 
-import {MorphPath} from './greensock'
-import {Animation, MorphSVG, loadAnimation} from './morph-svg'
+import {Animation} from './morph-svg'
 
-import circle from './circle'
-import hippo from './hippo'
-import elephant from './elephant'
-import star from './star'
-import heart from './heart'
-import tree from './tree'
-
-import spring0 from './spring0.svg'
-import spring1 from './spring1.svg'
+import { Linear, Power3 } from 'gsap/TweenLite';
+import { Elastic, Back } from 'gsap/TweenMax';
 import news0 from './news0.svg'
 import news1 from './news1.svg'
 import distributed from './distributed.svg'
 import networked from './networked.svg'
 import sociallyNetworked from './socially-networked.svg'
-const frames = {news0, news1, distributed, networked, sociallyNetworked}
+import spring0 from './spring0.svg'
+import spring1 from './spring1.svg'
+import springCatalyzed from './spring-catalyzed.svg'
+import obamas from './obamas.svg'
+import fist from './fist.svg'
+import fist2 from './fist2.svg'
+import anonymous from './anonymous.svg'
+import kekistan from './kekistan.svg'
+import eye0 from './eye0.svg'
+import eye1 from './eye1.svg'
+import eyeTeeth from './eye-teeth.svg'
+import eyeTeethShut from './eye-teeth-shut.svg'
 
-import './type-writer'
+const frames = {
+  news0,
+  news1,
+  distributed,
+  networked,
+  sociallyNetworked,
+  spring0,
+  spring1,  
+  springCatalyzed,
+  obamas,
+  fist,
+  fist2,
+  anonymous: {ungrouped: anonymous},
+  kekistan: {ungrouped: kekistan},
+  eye0,
+  eye1,
+  eyeTeeth,
+  eyeTeethShut
+}
+
 render(
   <Player>
     <Slides
@@ -88,16 +113,18 @@ render(
         },
         the_problem: {
           txt: '',
-          [note]: `I think the problem is that the world of now keeps bubbling out.
+          [note]: `I think the problem here—apart from the inevitable mortality
+          of every living thing—is that the world of now keeps bubbling out.
 
           And the world of now is... well, it's definitely going somewhere, you can
           say that much. Some very exciting things are happening. It feels like
-          we're on the cusp of something, and that something might very well be
-          The End.
+          we're really on the cusp of something. But it's not really clear what.
+          Or if we're going to like it. Kindof seems like we might not like it,
+          actually.
 
           And that's quite stressful.
 
-          So let's step away from the now, and go back.`
+          So let's step away from all that. And go back.`
         }
       }}    
     >{({ txt }) =>
@@ -131,13 +158,113 @@ render(
         No longer would we be beholden to newspapers, to reporters. No longer would
         we get our stories filtered through layers of intermediaries,
         each one spinning and slanting. No, we would just get the truth.
-        The truth would win.`,
+        The truth would win.
+        
+        Even at the time, there were people—journalists, primarily—saying,
+        okay, well, how? How, exactly? How do you know people are who they
+        say they are? How can you trust these faceless barely-people,
+        veiled by layers of cable and protocol?
+
+        And our response—my response, certainly, the one I said on the
+        inside—was that it’ll... work out... somehow. Something something
+        web of trust. Wisdom of crowds. 
+        `,
         frame: 'sociallyNetworked'
       },
+      look: {
+        [note]: `Look:`,
+        frame: 'spring0'
+      },
+      arab_spring: {
+        [note]: `This is the time of the Arab Spring!`,
+        frame: 'spring1',
+        duration: 2,
+      },
+      catalyzed: {
+        [note]: `Of social media catalyzed revolutions!`,
+        frame: 'springCatalyzed',
+        ease: Elastic.easeOut,
+      },
+      obamas: {
+        [note]: `Barack Hussein Obama has just been elected because of us.
+        Global warming: definitely happening, very bad,
+        but we’re *going to fix it*. See, we are powerful.`,
+        frame: 'obamas'
+      },
+      a_new_culture: {
+        [note]: `We have been weaving ourselves a new culture.
+        Connecting ourselves in a new way.`,
+        frame: 'fist',
+      },
+      without_nations_and_borders: {
+        [note]: `Richer. More direct.
+        Organic. We are becoming something, all of us together
+        becoming something greater than any of us. It seemed,
+        then, that we were struck by lightning, and far from
+        killing us, it gave us life, and our mycelium was bearing fruit.
+        
+        This is why we built everything. Remember that feeling?
+        The promise of the Internet, of cyberspace, this new kind
+        of a place without nations and borders, a place where
+        authoritarians fear to tread.`,
+        frame: 'fist2',
+        duration: 30,
+        ease: Linear.easeNone,
+      },
+      punch_only_masks: {
+        [note]: `A place where their iron fists can punch only masks;
+        where their walls cannot be built because the network perceives
+        their censorship as damage and routes around it. Where we rely
+        on each other. On consensus. On the wisdom of the mob.
+        A place where every story can be told, true or not.`,
+        frame: 'anonymous',
+        bgClass: 'transition-bg-30 black',
+        // className: 'zoom-30',
+        duration: 10,
+        ease: Linear.easeNone,
+      },
+      racism: {
+        [note]: `A place where
+        your footprints can follow you forever. A place where you can
+        be yourself and so can anyone else; a place where everyone can
+        find their people and dance in 14/88 time;`,
+        duration: 30,
+        frame: 'kekistan',
+        bgClass: 'black',
+      },
+      new_minds: {
+        [note]: `a place where new minds
+        are growing, and they’re sprouting eyes everywhere, and their
+        hands are everywhere, and they are learning from us how to be
+        human and so far they can reliably emulate three things:`,
+        duration: 5,
+        frame: 'eye0',
+        bgClass: 'black',
+      },
+      how_to_see: {
+        [note]: `how to see`,
+        frame: 'eye1',
+        bgClass: 'black',
+        duration: 0.5,
+      },
+      how_to_want: {
+        [note]: `how to want`,
+        frame: 'eyeTeeth',
+        bgClass: 'black',
+        duration: 0.5,
+      },
+      how_to_lie: {
+        [note]: 'and how to lie.',
+        frame: 'eyeTeethShut',
+        bgClass: 'black',
+        duration: 0.5,
+        ease: Back.easeIn.config(2),
+        className: 'zoom-5 fade-out-5',
+      }
     }}>{
-      ({frame}) =>
-        <div className='white slide'>
-          {frame && <Animation srcs={frames} sec={1} frame={frame} />}
+      ({bgClass='white', className, frame, duration=1, ease=Power3.easeInOut}) =>
+        <div className={`${bgClass} slide`}>
+          {frame && <Animation className={className} morph={{ease, duration}} srcs={frames} sec={1} frame={frame} />}
         </div>
     }</Slides>
 </Player>

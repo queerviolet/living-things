@@ -33,13 +33,45 @@ const loadSvgPaths = async (src, id=src) => {
   }
 }
 
+const loadUngroupedSvgPaths = async (src, id=src) => {
+  const parser = new DOMParser
+  const rsp = await fetch(src)
+  const svg = parser.parseFromString(await rsp.text(), 'image/svg+xml')
+  const paths = Object.assign(
+    ...[...svg.querySelectorAll('path')]
+      .map((path, zIndex) => {
+        const id = path.id || zIndex
+        return {
+          [id]: {
+            id,
+            zIndex,
+            d: path.getAttribute('d'),
+            class: path.getAttribute('class'),
+            style: {
+              fill: path.getAttribute('fill'),
+              stroke: path.getAttribute('stroke'),
+              strokeWidth: path.getAttribute('strokewidth'),
+            }
+          }
+        }
+      }).filter(_ => _)
+  )
+
+  return {
+    id,
+    viewBox: svg.documentElement.getAttribute('viewBox'),
+    paths
+  }
+}
+
+
 export const MorphSVG = ({className, morph={}, src}) => {
   const [frame, setFrame] = useState()
   useEffect(async () =>
     setFrame(await loadSvgPaths(src)),
     [src])
   if (!frame) return null
-  return <Cell className={className} viewBox={frame.viewBox} paths={frame.paths} {...morph} />
+  return <Cell className={className || undefined} viewBox={frame.viewBox} paths={frame.paths} {...morph} />
 }
 export default MorphSVG
 
@@ -47,7 +79,7 @@ export const Cell = ({className, morph={}, viewBox, paths}) => {
   return <svg className={className} viewBox={viewBox}>{
     zSortEntries(Object.entries(paths))
       .map(([key, path]) =>
-        <MorphPath className={path.class} key={key} d={path.d} style={path.style} {...morph} />)
+        <MorphPath className={path.class || undefined} key={key} d={path.d} style={path.style} {...morph} />)
   }</svg>
 }
 
@@ -60,8 +92,14 @@ const CIRCLE = {
   }
 }
 
-const getPaths = (anim, frame, defaultPath) =>
-  anim.frames[frame].paths.map(path => path || defaultPath)
+const getPaths = (anim, frame, defaultPath) => {
+  const pathsForFrame = anim.frames[frame].paths
+  const outputPaths = new Array(anim.numTracks)
+  let i = anim.numTracks; while (i --> 0) {
+    outputPaths[i] = pathsForFrame[i] || defaultPath
+  }
+  return outputPaths
+}
 
 export const Animation = ({srcs, frame, morph={}, className, defaultPath=CIRCLE}) => {
   const [anim, setAnim] = useState()
@@ -81,7 +119,11 @@ export const Animation = ({srcs, frame, morph={}, className, defaultPath=CIRCLE}
 
 export const loadAnimation = srcs => Promise.all(
     Object.entries(srcs)
-      .map(([id, src]) => loadSvgPaths(src, id))
+      .map(([id, src]) =>
+        typeof src === 'object'
+          ? loadUngroupedSvgPaths(src.ungrouped, id)
+          : loadSvgPaths(src, id)
+      )
   )
   .then(frames => frames.reduce(toSequence, {}))
 
@@ -93,6 +135,7 @@ const Unmatched = {}
  * @param {{ viewBox, paths: { [id: string]: {id: string, d: string, style: any} } }} frame 
  */
 const toSequence = (anim, frame) => {
+  console.log('---', frame.id, '---')
   const incoming = Object.assign({}, frame.paths)
 
   const frames = Object.values(anim.frames || [])
@@ -105,7 +148,7 @@ const toSequence = (anim, frame) => {
     path => {
       if (!path) return Unmatched
       const match = incoming[path.id]
-      console.log('matching', path.id, 'to', match && match.id)
+      // console.log('matching', path.id, 'to', match && match.id)
       if (!match) return Unmatched
       delete incoming[path.id]
       return match
@@ -127,6 +170,9 @@ const toSequence = (anim, frame) => {
     // And then attach any remaining unmatched incoming tracks
     .concat(unmatchedIncoming)
 
+  paths.forEach((p, i) => {
+    console.log(`track ${i}:`, p && p.id)
+  })
   const numTracks = Math.max(anim.numTracks || 0, paths.length)
   return {
     numTracks,

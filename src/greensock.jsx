@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import {TweenLite} from 'gsap'
 import MorphSVG from './gsap-plugins/MorphSVGPlugin'
-import { Power3 } from 'gsap/TweenLite';
+import {Power3} from 'gsap/TweenLite';
 console.log('Loaded', MorphSVG)
 
 export const MorphPath = props => {
