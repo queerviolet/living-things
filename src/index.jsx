@@ -49,6 +49,8 @@ const frames = {
   eyeTeethShut
 }
 
+import grandPartition from './grand-partition.svg'
+
 render(
   <Player>
     <Slides
@@ -260,12 +262,193 @@ render(
         duration: 0.5,
         ease: Back.easeIn.config(2),
         className: 'zoom-5 fade-out-5',
-      }
+      },
+      in_retrospect: {
+        [note]: `In retrospect, those journalists, those researchers,
+        everyone concerned, perhaps even alarmed about how we would
+        be able to trust anything in a world with amplification and
+        no accountability? They had a really solid point. Just...very solid.
+        Good job, Cassandra. We probably should have listened.
+
+        Yeah. But we didn’t.
+        
+        And now, we’re all... completely fucked.`,
+        bgClass: 'black',
+      },
+      this_last_week: {
+        [note]: `Just in this last week, California is on fire again, the worst
+        fires in the recorded history of the state. Seems to be rather hot and dry
+        there, for some reason.
+        
+        Israeli forces are bombing Gaza again, the worst violence there since 2014.
+
+        And of course, mass shootings, always popular in the U.S., are now basically
+        happening every day.
+        
+        Those were fill-in-the-blank traumas, by the way. I knew when I wrote
+        this talk that three terrible things would have happened in the week
+        before I gave it, and so I just left some space for fresh horrors.`,
+        bgClass: 'black',
+      },
+      on_twitter: {
+        [note]: `Which of course, I found out about on Twitter, so I’m only
+        kindof sure they happened.
+
+        What’s the saying? Falsehood flies, truth comes limping after. It
+        makes sense, really, even in the maths.`, 
+        bgClass: 'black',
+      },
+      hundred_forty_chars: {
+        [note]: `Say you have a string that’s, I dunno, 140 characters long.
+        Ignoring as we do capitalization and punctuation, there are 10^200
+        possible arrangements of twenty-seven symbols—26 letters, one space—within
+        140 characters.`,
+        bgClass: 'black',
+      },
+      far_larger: {
+        [note]: `That’s far, far larger than the number of atoms in the
+        universe. Most of those strings are gibberish, of course.`,
+        bgClass: 'black',
+      },
+      english_words: {
+        [note]: `But within that vast sea of gibberish are strings made of English words.`,
+        bgClass: 'black',
+      },
+      sentences: {
+        [note]: `Within that set are sentences, and finally within *that*`,
+        bgClass: 'black',
+      },
+      sentences: {
+        [note]: `are sentences that are actually true.`,
+        bgClass: 'black',
+      },
+      infinitesimal: {
+        [note]: `How were infinitesimal grains of truth ever going to win
+        when set against all the beaches of the world, covered
+        in nonsense and lies? I don’t have a proof for this, but
+        based on scale alone, I strongly suspect that finding
+        truth is *extremely* NP-hard.
+        
+        It’s the kind of very hard problem where to even begin to attack
+        it, you run a powerful learning system on dedicated hardware
+        and train it over many years. In journalism school.
+
+        It turns out there *was* some reason to get your narratives
+        filtered after all, and it’s the same reason you get your
+        cigarettes filtered, because otherwise all manner of crap
+        gets in. Our bodies have whole networks of complex systems
+        deciding what cells are a part of us and what cells aren’t.
+        There’s a whole filtration system of tight junctions in the
+        tiniest of our blood vessels keeping random crap out of our
+        brain. These mechanisms have evolved over billions of years,
+        a program running on the most powerful parallel computer on
+        Earth—namely, the Earth.`,
+      },
     }}>{
       ({bgClass='white', className, frame, duration=1, ease=Power3.easeInOut}) =>
         <div className={`${bgClass} slide`}>
           {frame && <Animation className={className} morph={{ease, duration}} srcs={frames} sec={1} frame={frame} />}
         </div>
     }</Slides>
+
+    <Slides of={{
+      on_words: {
+        [note]: `Those processes don't work on words. Words are a much,
+        much newer development. Living things have long been honing the ability to
+        refine hypotheses about the world from data. That's not new. That's nearly
+        definitional; it's why we have sensory organs.`
+      },
+      warm_beach: {
+        [note]: `But symbolic manipulation—the ability to assign fragments
+        of our cognitive processes to symbols? That does seem to be new.`,
+        txt: 'A warm beach on a sunny day.'
+      },
+      quite_powerful: {
+        [note]: `And the ability is quite powerful! It allows us to operate on
+        the hypotheses using the the tools of physical manipulation.`,
+        txt: 'A crackling campfire on an ice cold night.'
+      },
+      as_creators: {
+        [note]: `As creators, and particularly as coders, I think we develop
+        an intuitive grasp of this. All of us, I think, have physicalized inner
+        worlds that represent the abstract things we work with every day.
+
+        I see this, the triangle pops into my head`,
+        txt: 'c² = a² + b²'
+      },
+      reducer: {
+        [note]: `And this conjurs a machine, something almost like a ribosome
+        walking along a chain of RNA, assembling the state of a protein from
+        a sequence of instructions`,
+        txt: `<S, A>(state: S, action: A) => S`
+      },
+      speculative_exec: {
+        [note]: `This faculty is incredibly powerful. A kind of magic, operating
+        on the space of cognitive experiences. We can conjure anything
+        from breath.`,
+        txt: 'A city grown from a tree'
+      },
+      bugs: {
+        [note]: `Anything..`,
+        txt: 'Bugs, bugs everywhere.'
+      },
+      parents_having_sex: {
+        [note]: `Anything.`,
+        txt: 'Your parents having sex.'
+      },
+      security_flaw: {
+        [note]: `So, uh, there's a bit of a security flaw here. A couple of quirks.
+        Language introduces a kind of speculative execution. We can process
+        linguistic input incredibly fast, but in order to do that, we have
+        to execute it.`,
+      },
+      structure: {
+        [note]: `In part, this is because there are sentences that cannot
+        be parsed without an understanding of their meaning. We have to load
+        the semantics in order to generate a correct parse tree.`,
+        txt: '“I see,” said the blind man as he picked up the hammer and saw.'
+      },
+      sandboxing: {
+        [note]: `Language is such a fundamental part of our experience that
+        I think it's difficult to imagine how it might feel different if it
+        were implemented differently. In this case, I think it's relatively
+        accessible, if you imagine looking at a foreign language that you
+        kindof know.`
+      },
+    }}>{
+      ({txt}) =>
+        <div className='white slide'>
+          <type-writer text={txt || ''} />
+        </div>
+    }</Slides>
+    <Slide
+      url='partition'
+      note={
+        `So, here's a foreign language that I kindof know. When I look
+        at this, I do not immediately understand it. But I *could*.`
+      }>
+      <div className='white slide'>
+        <img style={{transform: `scale(3)`}} src={grandPartition} />
+      </div>
+    </Slide>
+    <Slides of={{
+      run: {
+        [note]: `But there are also performance considerations. Sandboxing
+        language would decrease its performance, just as properly-isolated
+        processes and virtual machines introduce a drop in performance.`
+      }      
+    }}>{
+      ({txt}) =>
+        <div className='white slide'>
+          <type-writer text={txt || ''} />
+        </div>
+    }</Slides>
 </Player>
 , main)
+        
+        
+// We have
+// different mechanisms for that. They’re newer, less tested.
+// Our whole frontal cortex? It’s still in beta. It’s got some
+// bugs. And there are some security vulnerabilities that have
+// yet to be addressed.`,

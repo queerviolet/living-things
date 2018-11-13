@@ -54,11 +54,14 @@ export const Slide = forwardRef(
         setSlide(slide)
         ref && (ref.current = slide)
       }, [setSlide, ref])
+    const isActive = useIsBuilt(slide)
     return <build-slide ref={setSlideAndRef} data-key={url} data-note={note}>
       <BuildContext.Provider value={slide}>{
-        children
+        React.Children.map(children, child => React.cloneElement(child, {
+          'data-is-active': isActive || undefined
+        }))
       }</BuildContext.Provider>
-    </build-slide>
+    </build-slide>      
   }
 )
 
