@@ -512,9 +512,9 @@ render(
         
         We just need to figure out what we’re going to become.
         
-        Let’s start our journey in the desert.
-        
-        In a pit of radioactive waste.`} />
+        To look towards that future, let's go to the desert, where
+        two of the longest-term engineering projects in the history of
+        humanity are being built.`} />
     </Slide>
 </Player>
 , main)
