@@ -130,7 +130,10 @@ const fireBuildOut = buildEventDispatcher('build-out')
 const applyDelta = ({outs, ins}) => {
   outs.forEach(fireBuildOut)
   ins.forEach(fireBuildIn)
-  requestAnimationFrame(updateBackground)
+  const leaf = ins[ins.length - 1]
+  if (leaf) {
+    document.documentElement.dataset.currentBuild = leaf.pathname    
+  }
 }
 
 const useHashNavigator = root => {
@@ -227,10 +230,4 @@ const navigatorStyle = {
   border: 'thin solid black',
   padding: '10px',
   fontFamily: 'monospace',
-}
-
-function updateBackground() {
-  const style = getComputedStyle(document.querySelector('[data-is-active]'))
-  console.log(style.backgroundColor)
-  document.documentElement.style.backgroundColor = style.backgroundColor
 }

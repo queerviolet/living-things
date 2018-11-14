@@ -71,6 +71,7 @@ class TypeWriter extends HTMLElement {
   }
 
   async setText(newText) {
+    newText = newText.split(/[\s\n]+/).join(' ')
     if (this.currentTargetText === newText) return
     this.currentTargetText = newText
     const currentText = this.text

@@ -4,7 +4,7 @@ import {render} from 'react-dom'
 
 import './type-writer'
 
-import Slide, {Slides, note, merge, append} from './slide'
+import Slide, {Slides, note} from './slide'
 import Player from './player'
 
 import {Animation} from './morph-svg'
@@ -136,11 +136,14 @@ render(
     }</Slides>
     <Slides of={{
       remember: {
-        [note]: `Remember ten years ago?`,
-        frame: 'news0'
+        [note]: `Remember ten years ago?`,        
+      },
+      we_were_creating: {
+        [note]: `We were creating`,
+        frame: 'news0',
       },
       talking: {
-        [note]: `We were create a new kind of media.`,
+        [note]: `a new kind of media.`,
         frame: 'news1',
       },
       distributed: {
@@ -350,99 +353,169 @@ render(
           {frame && <Animation className={className} morph={{ease, duration}} srcs={frames} sec={1} frame={frame} />}
         </div>
     }</Slides>
+    <Slide
+      url='words'
+      note={`Those processes don't work on words. Words are a much,
+          much newer development. Living things have long been honing the ability to
+          refine hypotheses about the world from data. That's not new. That's nearly
+          definitional; it's why we have sensory organs.
+          
+          But symbolic manipulation—the ability to assign fragments
+          of our cognitive processes to symbols? That does seem new.`}>
+      <Slide url='warm_beach'
+          note={`It's quite cool, really. Merely from seeing these words on the screen,
+          you go somewhere quite nice.`}>
+          <div className='white slide'>A warm beach on a sunny day.</div>
+      </Slide>
 
-    <Slides of={{
-      on_words: {
-        [note]: `Those processes don't work on words. Words are a much,
-        much newer development. Living things have long been honing the ability to
-        refine hypotheses about the world from data. That's not new. That's nearly
-        definitional; it's why we have sensory organs.`
-      },
-      warm_beach: {
-        [note]: `But symbolic manipulation—the ability to assign fragments
-        of our cognitive processes to symbols? That does seem to be new.`,
-        txt: 'A warm beach on a sunny day.'
-      },
-      quite_powerful: {
-        [note]: `And the ability is quite powerful! It allows us to operate on
-        the hypotheses using the the tools of physical manipulation.`,
-        txt: 'A crackling campfire on an ice cold night.'
-      },
-      as_creators: {
-        [note]: `As creators, and particularly as coders, I think we develop
-        an intuitive grasp of this. All of us, I think, have physicalized inner
-        worlds that represent the abstract things we work with every day.
+      <Slide url='quite_powerful'
+          note={`And the ability is quite powerful! It allows us to operate on
+          the hypotheses using the the tools of physical manipulation.`}>
+          <div className='white slide'>A crackling campfire on an ice cold night.</div>
+      </Slide>
 
-        I see this, the triangle pops into my head`,
-        txt: 'c² = a² + b²'
-      },
-      reducer: {
-        [note]: `And this conjurs a machine, something almost like a ribosome
-        walking along a chain of RNA, assembling the state of a protein from
-        a sequence of instructions`,
-        txt: `<S, A>(state: S, action: A) => S`
-      },
-      speculative_exec: {
-        [note]: `This faculty is incredibly powerful. A kind of magic, operating
-        on the space of cognitive experiences. We can conjure anything
-        from breath.`,
-        txt: 'A city grown from a tree'
-      },
-      bugs: {
-        [note]: `Anything..`,
-        txt: 'Bugs, bugs everywhere.'
-      },
-      parents_having_sex: {
-        [note]: `Anything.`,
-        txt: 'Your parents having sex.'
-      },
-      security_flaw: {
-        [note]: `So, uh, there's a bit of a security flaw here. A couple of quirks.
-        Language introduces a kind of speculative execution. We can process
-        linguistic input incredibly fast, but in order to do that, we have
-        to execute it.`,
-      },
-      structure: {
-        [note]: `In part, this is because there are sentences that cannot
+      <Slide url='as_creators'
+          note={`As creators, and particularly as coders, I think we develop
+          an intuitive grasp of this. All of us, I think, have physicalized inner
+          worlds that represent the abstract things we work with every day.
+
+          I see this, the triangle pops into my head`}>
+          <div className='white slide'>c² = a² + b²</div>
+      </Slide>
+
+      <Slide url='reducer'
+          note={`And this conjurs a machine, something almost like a ribosome
+          walking along a chain of RNA, assembling the state of a protein from
+          a sequence of instructions`}>
+          <div className='white slide'>{`<S, A>(state: S, action: A) => S`}</div>
+      </Slide>
+
+      <Slide url='speculative_exec'
+          note={`This faculty is incredibly powerful. A kind of magic, operating
+          on the space of cognitive experiences. This is the incredible power of
+          language: I can make you conjure anything, merely by speaking of it.`}>          
+          <div className='white slide'>A city grown from a tree.</div>
+      </Slide>
+
+      <Slide url='bugs' note={`Anything..`}>
+        <div className='white slide'>Bugs, bugs everywhere.</div>
+      </Slide>
+
+      <Slide url='parents_having_sex' note='ANYTHING'>
+        <div className='white slide'>Your parents having sex.</div>
+      </Slide>          
+      <Slide url='security_flaw'
+          note={`So, uh, there's a bit of a security flaw here. A couple of quirks.
+          Language introduces a kind of speculative execution. We can process
+          linguistic input incredibly fast, but in order to do that, we have
+          to execute it.`} />
+      <Slide url='structure'
+        note={`In part, this is because there are sentences that cannot
         be parsed without an understanding of their meaning. We have to load
-        the semantics in order to generate a correct parse tree.`,
-        txt: '“I see,” said the blind man as he picked up the hammer and saw.'
-      },
-      sandboxing: {
-        [note]: `Language is such a fundamental part of our experience that
+        the semantics in order to generate a correct parse tree.`}>
+          <div className='white slide'>“I see,” said the blind man as he picked up the hammer and saw.</div>     
+      </Slide>
+      <Slide url='sandboxing'
+        note={`Language is such a fundamental part of our experience that
         I think it's difficult to imagine how it might feel different if it
         were implemented differently. In this case, I think it's relatively
         accessible, if you imagine looking at a foreign language that you
-        kindof know.`
-      },
-    }}>{
-      ({txt}) =>
+        kindof know.`} />
+      <Slide
+        url='partition'
+        note={
+          `So, here's a foreign language that you might kindof know.
+                  
+          When I look at this, I do not immediately understand it. But I recognize that
+          I could, if I decided to. Every sentence could be like that, our
+          understanding measured out in gradations, our brains carefully
+          unpacking successive layers of meaning.
+          
+          That would be nice as a protective measure against inflammatory
+          rhetoric— an interesting turn of phrase, incidentally, words provoking
+          an immune response.`
+        }>
         <div className='white slide'>
-          <type-writer text={txt || ''} />
+          <img style={{transform: `scale(3)`}} src={grandPartition} />
         </div>
-    }</Slides>
-    <Slide
-      url='partition'
-      note={
-        `So, here's a foreign language that I kindof know. When I look
-        at this, I do not immediately understand it. But I *could*.`
-      }>
-      <div className='white slide'>
-        <img style={{transform: `scale(3)`}} src={grandPartition} />
-      </div>
+      </Slide>
+
+      <Slide url='performance_considerations'
+          note={`But there are also performance considerations. Sandboxing
+          language would decrease its performance, just as properly-isolated
+          processes and virtual machines introduce a drop in performance.
+          
+          And that could be bad!`} />
+      <Slide url='run'
+          note={`There are important use cases for language that require
+          real-time performance.`}>
+        <div className='white slide'>Tiger! Run!</div>
+      </Slide>
+      <Slide url='like_cockroaches'
+        note={`But our current design opens us to other attacks.
+        
+        This rhetoric taps into purity. It references—and, inescapably,
+        evokes—a compromise of bodily integrity. The feeling of tiny creatures
+        crawling beneath your skin, each one a violation.`}>
+        <div className='white slide'>“These migrants are like cockroaches.” — Katie Hopkins</div>
+      </Slide>        
+      <Slide url='not_people'
+        note={`It is important to understand this rhetoric as technology.
+        The discovery of a exploit that leverages forced speculative execution
+        and our disgust subsystems to create associations.
+
+        Of course, a single utterance is not enough. The message will be repeated,
+        again and again.`}>
+        <div className='white slide'>
+          “They don’t care about crime and want illegal immigrants,
+          no matter how bad they may be, to pour into and infest our Country.” — Donald Trump
+        </div>    
+      </Slide>
+      <Slide url='bolsonaro'
+        note={`It must replicate itself. It must come alive.
+        It must mutate to escape detection and increase efficacy.
+        One fundamental message blooms like algae in the minds of millions.`}>
+        <div className='white slide'>“The only mistake of the dictatorship was torturing and not killing.” — Jair Bolsonaro</div>
+      </Slide>        
+      <Slide url='mein_kampf'
+        note={`What can you do with that kind of power?
+        
+        And what can that kind of power do, as it's amplified by new technology,
+        as it discovers new vectors to spread.`}>
+        <div className='white slide'>“Whenever Aryans have mingled their blood with that of an inferior
+        race the result has been the downfall of the people who were
+        the standard-bearers of a higher culture.” — Adolf Hitler</div>
+      </Slide>        
+      <Slide url='fascist_structures'
+        note={`The organic structures of fascism have learned how to tap into
+        the power of distributed communication systems in precisely the way
+        that we on some deep level believed that they couldn’t.
+
+        That’s what all the optimism earlier was, after all: Faith. Faith that
+        if we were more connected, then we would be more loving. Faith that
+        if everyone just *understood us*, they would be *with us*. Faith
+        that if we knew the truth, we’d do the right thing.`} />
+      <Slide url='the_faith'
+        note={`I still have that faith. It’s in a different shape now. Been blasted
+        and cleaved, and now it shines in other hues.
+        
+        I do tend to get drawn into the cynical. Can you tell?
+        
+        But truly, I think we can pull through our current struggles.
+        
+        I think every living thing has an awkward phase as it grows, and
+        I think that we are growing—us, the thing that is all of us, the
+        creature of a billion eyes. Our tissues are reshaping. We are
+        rupturing, feverish, perhaps infected, perhaps metamorphosing.
+        
+        There are incredible futures open to us.
+        
+        We just need to figure out what we’re going to become.
+        
+        Let’s start our journey in the desert.
+        
+        In a pit of radioactive waste.`} />
     </Slide>
-    <Slides of={{
-      run: {
-        [note]: `But there are also performance considerations. Sandboxing
-        language would decrease its performance, just as properly-isolated
-        processes and virtual machines introduce a drop in performance.`
-      }      
-    }}>{
-      ({txt}) =>
-        <div className='white slide'>
-          <type-writer text={txt || ''} />
-        </div>
-    }</Slides>
 </Player>
 , main)
         

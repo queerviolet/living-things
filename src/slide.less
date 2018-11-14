@@ -1,15 +1,26 @@
-body, html {
+html {
   margin: 0; padding: 0;
   background: black;
+  transition: background-color 2s;
+  text-align: center;
+
+  &[data-current-build^="performance_considerations"],
+  &[data-current-build="remember/infinitesimal"],
+  &[data-current-build="fascist_structures"],
+  &[data-current-build^="words"] {
+    background: white;
+  }
 }
 
 type-writer {
   font-size: 72px;
   --typewriter-cursor-blink-rate: 1s;
+  text-align: center;
 }
 
 .slide {
   .fade();
+  font-size: 72px;
   width: 100vw; height: 100vh;
   position: absolute;
   top: 0; left: 0;
