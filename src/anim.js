@@ -33,8 +33,16 @@ export const useAnimator = anim => {
 }
 
 const passthrough = _ => _
-export const every = (interval, f=passthrough) => (t, t0) =>
-  f(Math.floor((t - t0) / interval), t)
+export const every = (interval, f=passthrough) => {
+  let lastTick = null, lastVal = null
+  return (t, t0) => {
+    const tick = Math.floor((t - t0) / interval)
+    if (lastTick === tick) return lastVal
+    lastVal = f(tick, t)
+    lastTick = tick
+    return lastVal
+  }
+}
 
 export const sec = seconds => 1000 * seconds
 sec.symbol = Symbol('seconds')

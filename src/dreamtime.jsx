@@ -6,14 +6,12 @@ import {MorphPath} from './greensock'
 import Anim, {every, sec} from './anim'
 import {Animation} from './morph-svg'
 
-import fire0 from './fire/Fire0.svg'
-import fire1 from './fire/Fire1.svg'
-import fire2 from './fire/Fire2.svg'
+import fire from './fire/*.svg'
 import { Linear } from 'gsap/EasePack';
-const fire = {fire0, fire1, fire2}
 const fireKeys = Object.keys(fire)
 
-const fireAnimation = every(0.3[sec], i => fireKeys[i % fireKeys.length])
+const fireAnimation = every(0.3[sec], () =>
+  fireKeys[Math.floor(Math.random() * fireKeys.length)])
 
 export default () =>
 <Slides of={{
