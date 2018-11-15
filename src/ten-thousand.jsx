@@ -261,8 +261,6 @@ const timeline = {
 
 const timelineEntries = Object.entries(timeline)
 
-const None = {}
-
 const getPath = (key, {start=0, width}, y, win) =>
   <MorphPath key={key} d={
     every(0.1[sec], t => t
@@ -286,7 +284,7 @@ const getLabel = (key, label='', y, win) =>
 
 const renderTimeline = proj => {
   const now = timeline[proj]
-  if (!now) return None
+  if (!now) return null
   let index = timelineEntries.findIndex(([_k, v]) => v === now)
   const scale = 0.9 * PRESENTATION_LENGTH / now.win
   const transform = `scale(${scale || 1})`
@@ -306,7 +304,8 @@ const renderTimeline = proj => {
       transition: 'transform 1s',
       transform,
     },   
-    paths 
+    paths,
+    now,
   }
 }
 
@@ -316,8 +315,7 @@ export default () => {
   const timeline = renderTimeline(proj)
 
   return <React.Fragment>
-  { timeline === None ? null :
-    <svg style={{
+  { timeline && <svg style={{
       // width: '131487192vw',
       // height: '1314871vw',
       // border: 'thin solid fuchsia',
@@ -330,6 +328,7 @@ export default () => {
       viewBox='-50 0 100 100'>
       <path d='M 0,0 L 0,100' stroke='darkcyan' strokeWidth={0.1} />
       {timeline.paths}
+      <text fill='white' textAnchor='end' fontSize={2} x={80} y={99}>{timeline.now.win} years</text>
       {/* <path d='M -50,90 L50,90' stroke='cyan' stroke-linecap='round' strokeWidth={1} />   */}
       {/* <path d='M -131487192,0 L131487192,0' stroke='cyan' style={{transform: 'scale(0.1)'}} strokeWidth={1} /> */}
     </svg>
@@ -348,7 +347,7 @@ export default () => {
     They've drilled a hole 600 meters into the salt, and they've been dumping
     radioactive waste down there.`}>
     <div className='slide'>
-      <video className='full' ref={vid} src={desertNight} volume={0} loop />
+      {timeline ? null : <video className='full' ref={vid} src={desertNight} volume={0} loop />}
       <BuildIn>{() => {
         vid.current.currentTime = 0
         vid.current.play()
@@ -356,7 +355,7 @@ export default () => {
       <BuildOut>{() => vid.current.pause()}</BuildOut>
     </div>
   </Slide>
-  <Projector onChange={setProj} style={timeline.projectorStyle}>
+  <Projector onChange={setProj} style={timeline && timeline.projectorStyle}>
     <Slide url='wipp'
       note={`It's a bit more controlled`}>
       <h1>Welcome to the Waste Isolation Pilot Plant!</h1>

@@ -105,7 +105,7 @@ export const Slides = ({of, reduce=replace, onChange=None, children}) => {
     [setIsActive])
 
   return <React.Fragment>
-    {React.cloneElement(children(state[1]), {'data-is-active': isActive || undefined})}
+    {isActive && React.cloneElement(children(state[1]), {'data-is-active': isActive || undefined})}
     <Slide url={initial[0]}
       note={initial[1][note]}
       onBuildIn={onRootBuildIn}
