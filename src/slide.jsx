@@ -70,7 +70,8 @@ export default Slide
 export const note = Symbol('notes in markdown')
 export const use = Symbol('children of the build-slide, including effects')
 
-export const Slides = ({of, reduce=replace, children}) => {
+const None = () => {}
+export const Slides = ({of, reduce=replace, onChange=None, children}) => {
   const states = useMemo(() => {
     const entries = Object.entries(of)
     return entries.reduce(
@@ -89,6 +90,7 @@ export const Slides = ({of, reduce=replace, children}) => {
     currentState.current = state
     raf.current || (raf.current = requestAnimationFrame(
       () => {
+        onChange(...(currentState.current || []))
         setState(currentState.current)
         raf.current = null
       }

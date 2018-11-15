@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import 'babel-polyfill'
 
-import AnimProvider from './anim'
+import {AnimationProvider} from './anim'
 
 const TAG = 'BUILD-SLIDE'
 
@@ -213,7 +213,7 @@ export default ({toc=null, children}) => {
     window.builds = nextRoot
   }, [container.current])
   const path = useHashNavigator(root)
-  return <AnimProvider>
+return <AnimationProvider>
     <div ref={container}>
       {toc && <div style={navigatorStyle}>
         <b>{path}</b>
@@ -221,7 +221,7 @@ export default ({toc=null, children}) => {
       </div>}
       {children}
     </div>
-  </AnimProvider>
+  </AnimationProvider>
 }
 
 const navigatorStyle = {

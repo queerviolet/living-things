@@ -20,4 +20,4 @@ export const AnimationProvider = ({children}) => {
   }</ClockContext.Provider>
 }
 
-export default AnimationProvider
+export default ClockContext.Consumer

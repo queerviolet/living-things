@@ -1,6 +1,9 @@
-import React, {forwardRef, useRef} from 'react'
+import React, {forwardRef, useRef, useState} from 'react'
 
-import Slide, {Slides, note, use, BuildIn, BuildOut} from './slide'
+import Slide, {Slides, note, use, BuildIn, BuildOut, useBuildEffect} from './slide'
+import {MorphPath} from './greensock'
+
+import Anim from './anim'
 
 import {Animation} from './morph-svg'
 
@@ -13,10 +16,105 @@ import warning from './warning.gif'
 import dangerPoison from './danger-poison.png'
 import pyramid from './pyramid-message.png'
 import calendar from './calendar-clip.jpg'
+import { getDefaultLibFilePath } from 'typescript';
+import { PathActions } from 'three';
+
+// Conversion to years
+const day = d => d / 365
+const hour = h => day(h / 24)
+const min = m => hour(m/60)
+
+const PRESENTATION_LENGTH = min(40)
+const timeline = {
+  presentation: {
+    width: PRESENTATION_LENGTH,
+    start: -PRESENTATION_LENGTH / 2,
+    win: hour(1),
+    label: <Anim>{t => new Date().toString()}</Anim>
+  },
+  conference: {
+    width: day(2),
+    start: -day(2) + hour(5),
+    win: day(4),
+    label: '✈️'
+  },
+}
+
+const timelineEntries = Object.entries(timeline)
+
+const None = {}
+
+const getPath = (key, {start, width}, y, win) =>
+  <MorphPath key={key} d={`
+    M ${100 * start / win},${y}
+    L ${100 * (start + width) / win},${y}
+  `} style={{
+    strokeWidth: 1,
+    stroke: 'cyan',
+    strokeLinecap: 'round'
+  }} />
+
+const getLabel = (key, label='', y, win) =>
+  <text key={`${key}-label`}
+    fill='white'
+    fontSize='3'
+    style={{
+      transition: 'transform 1s',
+      transform: `translate(0, ${y - 2}px)`
+    }}
+    x={1} y={0}>{label}</text>
+
+const renderTimeline = proj => {
+  const now = timeline[proj]
+  if (!now) return None
+  let index = timelineEntries.findIndex(([_k, v]) => v === now)
+  const scale = 0.9 * PRESENTATION_LENGTH / now.win
+  const transform = `translateY(${10 * index + 'vh'}) scale(${scale || 1})`  
+
+  const paths = []
+  let y = 90; while (index >= 0 && y > 0) {
+    const key = timelineEntries[index][0]
+    const item = timelineEntries[index][1]
+    paths.unshift(getPath(key, item, y, now.win))
+    paths.unshift(getLabel(key, item.label, y, now.win))
+    --index;
+    y -= 10;
+  }
+
+  return {
+    projectorStyle: {
+      transition: 'transform 1s',
+      transform,
+    },   
+    paths 
+  }
+}
 
 export default () => {
   const vid = useRef()
-  return <Slide url='10k'
+  const [proj, setProj] = useState()
+  const timeline = renderTimeline(proj)
+
+  return <React.Fragment>
+  { timeline === None ? null :
+    <svg style={{
+      // width: '131487192vw',
+      // height: '1314871vw',
+      // border: 'thin solid fuchsia',
+      position: 'absolute',
+      width: '100vw',
+      height: '56.25vw',
+      top: '50%',
+      transform: 'translate(-50%, -50%)',
+    }}
+      viewBox='-50 0 100 100'>
+      <path d='M 0,0 L 0,100' stroke='darkcyan' strokeWidth={0.1} />
+      {timeline.paths}
+      {/* <path d='M -50,90 L50,90' stroke='cyan' stroke-linecap='round' strokeWidth={1} />   */}
+      {/* <path d='M -131487192,0 L131487192,0' stroke='cyan' style={{transform: 'scale(0.1)'}} strokeWidth={1} /> */}
+    </svg>
+  }    
+  <Slide url='10k'
     note={`To look towards that future, let's look at three of
     the longest-term engineering projects in human history.`}>
   <Slide url='the-desert'
@@ -38,7 +136,7 @@ export default () => {
       <BuildOut>{() => vid.current.pause()}</BuildOut>
     </div>
   </Slide>
-  <Projector>
+  <Projector onChange={setProj} style={timeline.projectorStyle}>
     <Slide url='wipp'
       note={`It's a bit more controlled`}>
       <h1>Welcome to the Waste Isolation Pilot Plant!</h1>
@@ -130,21 +228,33 @@ export default () => {
       <h1>How long IS 10,000 years?</h1>
       <img src={calendar} />
     </Slide>
+    <Slide
+      url='presentation'
+      note={'Well, this presentation is 40 minutes. We’re about 15 minutes in.'}>
+      <h1>This presentation: 40 minutes</h1>
+      <h1>Now: <Anim>{t => new Date().toString()}</Anim></h1>
+    </Slide>
+    <Slide
+      url='conference'
+      note={'This conference has lasted two days. Soon, many of you will fly home.'}>
+      <h1>This conference: 2 days</h1>
+    </Slide>
   </Projector>
-  </Slide>
+  </Slide>  
+  </React.Fragment>
 }
 
-const Projector = forwardRef(({children}, ref) => {
+const Projector = forwardRef(({children, onChange, style={}}, ref) => {
   const slides = React.Children.map(children,
     ({props}) => <div className={`projector-slide-content ${props.className || ''}`}>{props.children}</div>)
 
-  return <Slides of={Object.assign(...React.Children.map(children, (slide, index) => ({
+  return <Slides onChange={onChange} of={Object.assign(...React.Children.map(children, (slide, index) => ({
     [slide.props.url]: {
       [note]: slide.props.note,
       index,
     }
   })))}>{({index}) =>
-    <div ref={ref} className='projector'>
+    <div ref={ref} className='projector' style={style}>
       <div className='projector-slide' style={carriageStyle(index, slides.length)}>{
         slides
       }</div>
