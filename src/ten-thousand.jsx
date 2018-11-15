@@ -32,7 +32,7 @@ const timeline = {
     width: PRESENTATION_LENGTH,
     start: -PRESENTATION_LENGTH / 2,
     win: hour(1),
-    label: <Anim>{t => new Date().toString()}</Anim>,
+    label: <Anim>{t => `now: ${new Date().toString()}`}</Anim>,
     note: 'Well, this presentation is 40 minutes. We’re about 15 minutes in.',
     content:
       <React.Fragment>
@@ -44,7 +44,7 @@ const timeline = {
     width: day(2),
     start: -day(2) + hour(5),
     win: day(4),
-    label: '✈️',
+    label: '✈️ codemotion',
     note: 'This conference has lasted two days. Soon, many of you will fly home.',
     content: <h1>This conference: 2 days</h1>
   },
@@ -52,7 +52,7 @@ const timeline = {
     width: month(6),
     start: 0,
     win: year(1),    
-    label: '❄️...🌷',
+    label: '❄️...🌷 winter',
     note: `We’re on the cusp of winter here in the northern hemisphere. In six months,
     rains will fall, flowers will bloom.`
   },
@@ -60,7 +60,7 @@ const timeline = {
     width: 2,
     start: -1,
     win: 5,
-    label: '📱',
+    label: '📱 your phone',
     note: `Our phones last a couple of years, so if you got a phone last year,
     you’ll probably get one in a year.`
   },
@@ -68,43 +68,202 @@ const timeline = {
     width: 14,
     start: -1,
     win: 20,
-    label: '🐶',
+    label: '🐶 fido',
     note: `If you got a dog last year, fido will last about thirteen more years.`,
   },
   fluffy: {
     width: 20,
     start: -1,
     win: 25,
-    label: '😺',
+    label: '😺 fluffy',
     note: `Fluffy maybe makes it nineteen.`,
   },
   carrots: {
     width: 10,
     start: -1,
     win: 25,
-    label: '🐰',
+    label: '🐰 carrots',
     note: `Carrots the rabbit will probably be with you for about ten years.`,
   },
   horses: {
     width: 30,
     start: -1,
     win: 40,
-    label: '🐴',
+    label: '🐴 sea biscuit',
     note: `Horses live about 30 years.`,
   },
   parrot: {
+    label: 'you & polly',
     width: 80,
     start: -30,
     win: 100,
-    label: 'you & polly'
-  }
+    note: `And if you got a parrot on the day you were born, she’ll likely be
+    with you your entire life.
+
+    One lifetime. Okay, let’s keep going.`
+  },
+  modern_building: {
+    width: 60,
+    label: '🏢 shiny building',
+    win: 100,
+    note: `If we built a sleek, modern, glass-curtain building and put a
+    big KEEP OUT sign inside, that structure would, with regular maintenance,
+    last about 60 years.`
+  },
+  masonry_and_lumber: {
+    width: 120,
+    start: 0,
+    label: '🏫 classic building',
+    win: 200,
+    note: `A masonry and lumber warning would last about 120.`
+  },
+  sea_turtles: {
+    width: 120,
+    start: -120,
+    label: '🐢 sea turtle',
+    win: 300,
+    note: `Sea turtles also live about 120 years. A sea turtle who dies
+    today will have seen the invention of flight, telegraph, television,
+    and the internet.`
+  },
+  billboards: {
+    width: 100,
+    label: '🛣 billboard',
+    win: 300,
+    note: `Going with things that might more easily be used to send messages,
+    Billboards have a life expectancy of about 100 years.`
+  },
+  great_wall: {
+    width: 2000,
+    start: -2000,
+    label: 'great wall (oldest)',
+    win: 4500,
+    note: `The oldest bits of the great wall are about 2,000 years old.
+    But it’s been maintained and rebuilt and extended *a lot*.`
+  },
+  great_wall_newer_parts: {
+    width: 600,
+    start: -600,
+    label: 'great wall (most of it)',
+    win: 4500,
+    note: `Most of it is about 600 years old.`
+  },
+  egyptian_pyramid: {
+    width: 4500,
+    start: -4500,
+    label: 'great pyramid of giza',
+    win: 6000,
+    note: `The great pyramid certainly sends quite a message!
+    It's about 4,500 years old. That’s 56 lifetimes.
+    Not bad. But the radiation would outlast them by another 68.`
+  },
+  brazil_pyramids: {
+    width: 5500,
+    start: -5500,
+    label: 'american pyramids',
+    win: 10000,
+    note: `That’s about the age of the oldest pyramids in the world,
+    in Brazil. All the oldest pyramids in the world are in the Americas,
+    actually, though few of them remain. From 1920 to 1960, most of
+    them were destroyed. There are many reasons, and yet there is
+    only one: colonialism.
+    
+    In a sense, we've solved the marking problem at this point.
+
+    The pyramid at Cheops and the pyramids of the Americas—all monumental
+    structures—are still mostly intact after 5,000 years.`
+  },
+  radiation: {
+    width: 10000,
+    start: 0,
+    label: '☢️ danger ☢️',
+    win: 20000,
+    note: `If we took undertook such monumental construction efforts to mark the site,
+    it would proably last, at least if it wasn't raided for parts.
+    
+    There's another engineering project to build something this long-lived that's worth
+    mentioning here`
+  },
+  long_now: {
+    width: 10000,
+    start: 0,
+    label: '⏱?',
+    win: 20000,
+    note: `The clock of the Long Now, also being constructed in the deserts of the southwestern
+    U.S., is a project to build a clock that will run for 10,000 years, chiming once per millennium.
+    
+    They're pulling out some pretty impressive feats of mechanical engineering to make
+    the clock mechanisms work. Precision-machined gears made of stainless steel, stone, and
+    ceramics. Movements sealed in quartz, protected from dust and the elements.
+
+    It's a fascinating project. A testament to optimism. Will it work?
+
+    Maybe. None of the technology in the clock has been tested across
+    the timespans involved. We think it'll work, but we can't know.
+    
+    It would be nice to know. It would be nice to discover even one structure from 10,000 years ago
+    that could carry our message.
+    
+    What about a city? The oldest cities are quite old indeed.`
+  },
+  jericho: {
+    width: 11000,
+    start: -11000,
+    label: 'jericho',
+    win: 20000,
+    note: 'Jericho is 11,000 years old.'
+  },
+  damascus: {
+    width: 8000,
+    start: -8000,
+    label: 'damascus',
+    win: 20000,
+    note: `Damascus is 8,000 or so.
+    
+    Are cities physical things? It’s a bit questionable, isn’t it?
+    They are things, certainly. If we were standing in space,
+    looking down at the earth at night, and you pointed to a
+    blob of light and asked, “what is that thing?” The answer would be:
+    a city. So cities are some kind of thing, and they have bodies,
+    and perhaps that is enough.
+
+    Certinly, we can even imagine sending a message with a city.
+    
+    A settlement with strict rules about which water sources are
+    safe and which ones are forbidden. An order of monks tasked
+    with guarding knowledge of what lies beneath and disseminating
+    the sacred scripture, which says, in the main: do not dig.
+    
+    Would it work? Or would would we eventually grow too curious?
+    When famine hits, would we come to believe that the priests
+    are not guarding death, as they claim, but instead vast stores
+    of food and riches? Would we kill them all, and eagerly crack
+    open the earth to see what’s inside?
+
+    It’s hard to say what will happen in ten thousand years. It’s
+    a time horizon that stretches nearly all our engineering. To
+    send a message to ten thousand years from now is to build a
+    bridge that will span all those millennia, somehow, without
+    support.
+
+    Or the bridge has to be alive. It has to have roots—a support
+    structure strong enough to maintain the message, dynamic and
+    resilient enough to stay anchored across 10,000 years of the
+    shifting landscape of the world’s resources.
+
+    It doesn’t have to be a physical thing.
+
+    It can just be a story.
+
+    Like this:`
+  },
 }
 
 const timelineEntries = Object.entries(timeline)
 
 const None = {}
 
-const getPath = (key, {start, width}, y, win) =>
+const getPath = (key, {start=0, width}, y, win) =>
   <MorphPath key={key} d={
     every(0.1[sec], t => t
       ? `M ${100 * start / win},${y}
@@ -139,7 +298,7 @@ const renderTimeline = proj => {
     paths.unshift(getPath(key, item, y, now.win))
     paths.unshift(getLabel(key, item.label, y, now.win))
     --index;
-    y -= 10;
+    y -= 8;
   }
 
   return {
@@ -292,23 +451,13 @@ export default () => {
     {
       timelineEntries.map(([key, value]) =>
         <Slide
+          key={key}
           url={key}
           note={value.note}>{
           value.content
         }</Slide>
       )
-    }
-    {/* <Slide
-      url='presentation'
-      note={}>
-      <h1>This presentation: 40 minutes</h1>
-      <h1>Now: <Anim>{t => new Date().toString()}</Anim></h1>
-    </Slide>
-    <Slide
-      url='conference'
-      note={'This conference has lasted two days. Soon, many of you will fly home.'}>
-      
-    </Slide> */}
+    }    
   </Projector>
   </Slide>  
   </React.Fragment>
