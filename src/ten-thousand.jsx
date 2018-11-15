@@ -329,8 +329,6 @@ export default () => {
       <path d='M 0,0 L 0,100' stroke='darkcyan' strokeWidth={0.1} />
       {timeline.paths}
       <text fill='white' textAnchor='end' fontSize={2} x={80} y={99}>{timeline.now.win} years</text>
-      {/* <path d='M -50,90 L50,90' stroke='cyan' stroke-linecap='round' strokeWidth={1} />   */}
-      {/* <path d='M -131487192,0 L131487192,0' stroke='cyan' style={{transform: 'scale(0.1)'}} strokeWidth={1} /> */}
     </svg>
   }    
   <Slide url='10k'
