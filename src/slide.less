@@ -10,6 +10,8 @@ html {
   &[data-current-build^="words"] {
     background: white;
   }
+
+  overflow: hidden;
 }
 
 type-writer {
@@ -18,15 +20,23 @@ type-writer {
   text-align: center;
 }
 
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shadow {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.776);
+}
+
 .slide {
   .fade();
   font-size: 72px;
   width: 100vw; height: 100vh;
   position: absolute;
   top: 0; left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .flex-container();
 
   type-writer {
     color: white;
@@ -56,7 +66,7 @@ svg {
   height: 100%;
 }
 
-build-slide { display: block; }
+build-slide { display: block; max-width: 100vw; max-height: 100vh; overflow: hidden; }
 
 path {
   transition: fill 2s, stroke 0.5s;
@@ -71,8 +81,54 @@ path {
   }
 }
 
+.projector {
+  position: absolute;
+  padding: 0;
+  left: 100vw;
+  transition: left 0.2s linear;
+  display: flex;
+  overflow: hidden;
+  width: 0;
+  flex-flow: row nowrap;
+  &[data-is-active] {    
+    left: 0;
+    width: auto;
+  }
+}
+
+.projector-slide-content {
+  width: 120vh;
+  height: 90vh;
+  margin-left: calc((100vw - 120vh) / 2);
+  margin-right: calc((100vw - 120vh) / 2);
+  margin-top: 5vh;
+  background: white;
+  border-radius: 1vw;
+  animation: flicker 0.1s infinite;
+  background: white;
+  box-shadow: inset 0 0 100px black;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 100px;
+  box-sizing: border-box;
+
+  h1 { margin: 20px; }
+  h2 { margin: 20px; }
+
+  &.dark {
+    background: black;
+    color: white;
+  }
+}
+
+.projector-slide-content img {
+  margin: auto;
+}
+
 img {
   transition: transform 1s;
+  max-width: 100%;
 }
 
 .color-cycle-pink {
@@ -133,4 +189,13 @@ img {
   0% { transform: rotate(0) scale(1); }
   50% { transform: rotate(180deg) scale(1.25); }
   100% { transform: rotate(360deg) scale(1.5); }
+}
+
+@keyframes flicker {
+  0% { filter: brightness(99%); }
+  20% { filter: brightness(98%); }
+  40% { filter: brightness(95%); }
+  60% { filter: brightness(96%); }
+  80% { filter: brightness(97%); }
+  100% { filter: brightness(99%); }
 }

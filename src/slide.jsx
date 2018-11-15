@@ -57,7 +57,7 @@ export const Slide = forwardRef(
     const isActive = useIsBuilt(slide)
     return <build-slide ref={setSlideAndRef} data-key={url} data-note={note}>
       <BuildContext.Provider value={slide}>{
-        React.Children.map(children, child => React.cloneElement(child, {
+        React.Children.map(children, child => child && React.cloneElement(child, {
           'data-is-active': isActive || undefined
         }))
       }</BuildContext.Provider>
@@ -68,6 +68,7 @@ export const Slide = forwardRef(
 export default Slide
 
 export const note = Symbol('notes in markdown')
+export const use = Symbol('children of the build-slide, including effects')
 
 export const Slides = ({of, reduce=replace, children}) => {
   const states = useMemo(() => {
@@ -113,9 +114,9 @@ export const Slides = ({of, reduce=replace, children}) => {
           onBuildOut={() => rafState(initial)}
           key={key}
           url={key}
-          note={state[note]} />
+          note={state[note]}>{state[use] ? state[use] : null}</Slide>
       )
-    }</Slide>
+    }{initial[1][use] ? initial[1][use] : null}</Slide>
   </React.Fragment>
 }
 
