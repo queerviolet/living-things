@@ -3,7 +3,7 @@ import React, {forwardRef, useRef, useState} from 'react'
 import Slide, {Slides, note, use, BuildIn, BuildOut, useBuildEffect} from './slide'
 import {MorphPath} from './greensock'
 
-import Anim from './anim'
+import Anim, {every, sec} from './anim'
 
 import {Animation} from './morph-svg'
 
@@ -20,6 +20,8 @@ import { getDefaultLibFilePath } from 'typescript';
 import { PathActions } from 'three';
 
 // Conversion to years
+const year = y => y
+const month = m => day(m * 30)
 const day = d => d / 365
 const hour = h => day(h / 24)
 const min = m => hour(m/60)
@@ -30,14 +32,72 @@ const timeline = {
     width: PRESENTATION_LENGTH,
     start: -PRESENTATION_LENGTH / 2,
     win: hour(1),
-    label: <Anim>{t => new Date().toString()}</Anim>
+    label: <Anim>{t => new Date().toString()}</Anim>,
+    note: 'Well, this presentation is 40 minutes. We’re about 15 minutes in.',
+    content:
+      <React.Fragment>
+        <h1>This presentation: 40 minutes</h1>
+        <h1>Now: <Anim>{t => new Date().toString()}</Anim></h1>
+      </React.Fragment>
   },
   conference: {
     width: day(2),
     start: -day(2) + hour(5),
     win: day(4),
-    label: '✈️'
+    label: '✈️',
+    note: 'This conference has lasted two days. Soon, many of you will fly home.',
+    content: <h1>This conference: 2 days</h1>
   },
+  winter: {
+    width: month(6),
+    start: 0,
+    win: year(1),    
+    label: '❄️...🌷',
+    note: `We’re on the cusp of winter here in the northern hemisphere. In six months,
+    rains will fall, flowers will bloom.`
+  },
+  phone: {
+    width: 2,
+    start: -1,
+    win: 5,
+    label: '📱',
+    note: `Our phones last a couple of years, so if you got a phone last year,
+    you’ll probably get one in a year.`
+  },
+  fido: {
+    width: 14,
+    start: -1,
+    win: 20,
+    label: '🐶',
+    note: `If you got a dog last year, fido will last about thirteen more years.`,
+  },
+  fluffy: {
+    width: 20,
+    start: -1,
+    win: 25,
+    label: '😺',
+    note: `Fluffy maybe makes it nineteen.`,
+  },
+  carrots: {
+    width: 10,
+    start: -1,
+    win: 25,
+    label: '🐰',
+    note: `Carrots the rabbit will probably be with you for about ten years.`,
+  },
+  horses: {
+    width: 30,
+    start: -1,
+    win: 40,
+    label: '🐴',
+    note: `Horses live about 30 years.`,
+  },
+  parrot: {
+    width: 80,
+    start: -30,
+    win: 100,
+    label: 'you & polly'
+  }
 }
 
 const timelineEntries = Object.entries(timeline)
@@ -45,13 +105,14 @@ const timelineEntries = Object.entries(timeline)
 const None = {}
 
 const getPath = (key, {start, width}, y, win) =>
-  <MorphPath key={key} d={`
-    M ${100 * start / win},${y}
-    L ${100 * (start + width) / win},${y}
-  `} style={{
+  <MorphPath key={key} d={
+    every(0.1[sec], t => t
+      ? `M ${100 * start / win},${y}
+         L ${100 * (start + width) / win},${y}`
+      : `M ${100 * start / win},${y}
+         L ${100 * start / win},${y}`)} style={{
     strokeWidth: 1,
     stroke: 'cyan',
-    strokeLinecap: 'round'
   }} />
 
 const getLabel = (key, label='', y, win) =>
@@ -69,7 +130,7 @@ const renderTimeline = proj => {
   if (!now) return None
   let index = timelineEntries.findIndex(([_k, v]) => v === now)
   const scale = 0.9 * PRESENTATION_LENGTH / now.win
-  const transform = `translateY(${10 * index + 'vh'}) scale(${scale || 1})`  
+  const transform = `scale(${scale || 1})`
 
   const paths = []
   let y = 90; while (index >= 0 && y > 0) {
@@ -228,17 +289,26 @@ export default () => {
       <h1>How long IS 10,000 years?</h1>
       <img src={calendar} />
     </Slide>
-    <Slide
+    {
+      timelineEntries.map(([key, value]) =>
+        <Slide
+          url={key}
+          note={value.note}>{
+          value.content
+        }</Slide>
+      )
+    }
+    {/* <Slide
       url='presentation'
-      note={'Well, this presentation is 40 minutes. We’re about 15 minutes in.'}>
+      note={}>
       <h1>This presentation: 40 minutes</h1>
       <h1>Now: <Anim>{t => new Date().toString()}</Anim></h1>
     </Slide>
     <Slide
       url='conference'
       note={'This conference has lasted two days. Soon, many of you will fly home.'}>
-      <h1>This conference: 2 days</h1>
-    </Slide>
+      
+    </Slide> */}
   </Projector>
   </Slide>  
   </React.Fragment>
