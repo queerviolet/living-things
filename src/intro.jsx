@@ -43,6 +43,7 @@ const frames = {
   eyeTeeth,
   eyeTeethShut
 }
+console.log(frames)
 
 import grandPartition from './grand-partition.svg'
 

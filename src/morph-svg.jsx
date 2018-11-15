@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {MorphPath} from './greensock'
+import {useAnimator} from './anim'
 
 const loadSvgPaths = async (src, id=src) => {
   const parser = new DOMParser
@@ -83,7 +84,6 @@ export const Cell = ({className, morph={}, viewBox, paths}) => {
   }</svg>
 }
 
-import circleData from './circle'
 const CIRCLE = {
   d: `M 1920,1080 L1920,1079 L1921,1079 L1921,1081 Z`,
   style: {
@@ -110,11 +110,12 @@ export const Animation = ({srcs, frame, morph={}, className, defaultPath=CIRCLE}
   useEffect(() =>
     loadAnimation(srcs).then(set),
     [srcs])
-  if (!anim) return null
+  if (!anim || !frame) return null
+  const key = useAnimator(frame)
   return <Cell className={className}
     morph={morph}
-    viewBox={anim.frames[frame].viewBox}
-    paths={getPaths(anim, frame, defaultPath)} />
+    viewBox={anim.frames[key].viewBox}
+    paths={getPaths(anim, key, defaultPath)} />
 }
 
 export const loadAnimation = srcs => Promise.all(

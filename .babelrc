@@ -1,4 +1,4 @@
 {
-  "presets": ["env", "react"],
+  "presets": [["env", {"targets": "last 1 Chrome version", "exclude": ["transform-regenerator"]}], "react"],
   "plugins": ["transform-class-properties"]
 }
