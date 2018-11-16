@@ -1,11 +1,11 @@
-import React, {forwardRef, useRef, useState} from 'react'
+import React, {useRef, useState} from 'react'
 
-import Slide, {Slides, note, use, BuildIn, BuildOut, useBuildEffect} from './slide'
+import Slide, {BuildIn, BuildOut} from './slide'
 import {MorphPath} from './greensock'
 
 import Anim, {every, sec} from './anim'
 
-import {Animation} from './morph-svg'
+import {Projector} from './projector'
 
 import desertNight from './new-mexico-night-sky.mp4'
 import safety from './wipp-safety.jpg'
@@ -16,8 +16,6 @@ import warning from './warning.gif'
 import dangerPoison from './danger-poison.png'
 import pyramid from './pyramid-message.png'
 import calendar from './calendar-clip.jpg'
-import { getDefaultLibFilePath } from 'typescript';
-import { PathActions } from 'three';
 
 // Conversion to years
 const year = y => y
@@ -458,32 +456,3 @@ export default () => {
   </Slide>  
   </React.Fragment>
 }
-
-const Projector = forwardRef(({children, onChange, style={}}, ref) => {
-  const slides = React.Children.map(children,
-    ({props}) => <div className={`projector-slide-content ${props.className || ''}`}>{props.children}</div>)
-
-  return <Slides onChange={onChange} of={Object.assign(...React.Children.map(children, (slide, index) => ({
-    [slide.props.url]: {
-      [note]: slide.props.note,
-      index,
-    }
-  })))}>{({index}) =>
-    <div ref={ref} className='projector' style={style}>
-      <div className='projector-slide' style={carriageStyle(index, slides.length)}>{
-        slides
-      }</div>
-    </div>
-  }</Slides>
-})
-
-const carriageStyle = (index, count) => ({
-  width: count * 100 + 'vw', height: '100vh',
-  left: index * -100 + 'vw',
-  transition: 'left 0.2s linear',
-  display: 'flex',
-  flexFlow: 'row nowrap',
-  position: 'relative',
-  top: 0,
-  margin: 0,
-})

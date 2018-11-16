@@ -10,12 +10,14 @@ import Intro from './intro'
 import TenThousandYears from './ten-thousand'
 import Dreamtime from './dreamtime'
 import Entropy from './entropy'
+import Markers from './markers'
 
 render(
   <Player>
     <Intro />
     <TenThousandYears />
     <Dreamtime />
-    <Entropy />    
+    <Entropy />
+    <Markers />
   </Player>
 , main)
