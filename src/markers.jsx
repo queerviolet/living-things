@@ -13,6 +13,7 @@ import thorns from './markers/thorns-1.png'
 import thorns2 from './markers/thorns-2.png'
 import spikes from './markers/spikes-1.png'
 import spikes2 from './markers/spikes-2.png'
+import final from './markers/final.png'
 
 export default () => <Projector>
   <Slide url='markers' note='The WIPP Marker committee made a number of suggestions'>
@@ -59,5 +60,27 @@ export default () => <Projector>
   <Slide url='spikes_2'
     note={`of spikes`}>
     <img src={spikes2} />
+  </Slide>
+  <Slide url='final'
+    note={`The final design has elements of all these,
+    though it’s rather less exotic than any of them.
+
+    41 Granite pillars, 7 meters tall, etched withmessages of warning.
+    36 of these will form a ring around the site.
+    
+    Then there’s an earthen berm, 10 meters tall and 30 meters wide,
+    looping all the way around the center.
+
+    Ceramic and metal discs will be buried throughout the site, with
+    instructions to future peoples who are digging in the earth. Primarily:
+    stop.
+
+    In the center of it all sits a roofless room, with information
+    and warning signs in six languages, and instructions to copy
+    them into a more modern language when they become difficult
+    to read.
+
+    Our own version of an oral tradition, I suppose.`}>
+    <img src={final} style={{ transform: 'scale(0.6)' }}/>
   </Slide>
 </Projector>
