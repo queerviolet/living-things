@@ -21,6 +21,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
+  "browserlist": "last 1 Chrome version",
   "repository": {
     "type": "git",
     "url": "https://github.com/azu/parcel-typescript-example.git"

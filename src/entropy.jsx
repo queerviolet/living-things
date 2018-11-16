@@ -112,10 +112,12 @@ export default () =>
   biologists: {
     [note]: `Biologists generally don’t seem too impressed with England’s work.
     I haven’t found any critiques that say it’s *wrong*, just that there’s a
-    whole lot it doesn’t explain—for example, it’s not exactly clear how
-    replicating structures come to store and process information, which is
-    quite important for the emergence of information. The theory is a bit
-    more rudimentary than that.
+    whole lot it doesn’t explain—for example, it’s doesn't address how
+    replicating structures come to store and process information, which is vital
+    to evolution, and life as we know it. All living things are scientists,
+    in a sense—taking the shape of hypotheses, updating internal models
+    to respond to new data. This theory doesn't explain how that comes
+    about. It's quite a bit more rudimentary.
     
     But I love what it does say. The second law of thermodynamics,
     you may recall, is also why train tracks rust and wood rots. There
