@@ -136,6 +136,94 @@ export default () =>
     I hope as we enter our own time of conflict, the gods of today will be as
     helpful to us.`
   },
+  gods_today: {
+    [note]: `We still have them, of course we do.` 
+  },
+  faceless: {
+    [note]: `Today, many of our gods are faceless.` 
+  },  
+  roots: {
+    [note]: `But they have roots in us just the same.` 
+  },  
+  value: {
+    [note]: `We give them value.` 
+  },  
+  watch_over: {
+    [note]: `They watch over us.` 
+  },  
+  sacrifice_attention: {
+    [note]: `We sacrifice our attention to them.` 
+  },  
+  sacrifice_children: {
+    [note]: `We sacrifice our children to them.
+    
+    We define ourselves in terms of them.
+
+    I’m not saying that these things aren’t real.
+    
+    I’m just saying that they’re fictions.
+    
+    They are stories that define our world.
+    
+    Stories that we define ourselves inside of.
+    
+    We are part of nations that exist because we agree they exist.
+    
+    We are part of families bound together by blood and a belief in its power.
+    
+    We are part of communities bound together by shared belief and shared need.` 
+  },
+  covenants: {
+    [note]: `And we too are covenants. We are 37.2 trillion cells that have
+    agreed to work together to be a human being. Like ships of Theseus,
+    we aren’t any one of our cells, we aren’t even *all* of our cells, we are
+    a *process running on them*. An agreement; a protocol. An idea.`
+  },
+  problems_of_society: {
+    [note]: `In this way, the problems of the body are quite like the
+    problems of society. Our cells are bound by complex chemical treaties.
+    The behavior of our cells is circumscribed by energy gradients from
+    which escape is very difficult, just as our behavior is bounded by
+    our own social, political, institutional, energetic gradients. Our
+    cells form tissues and organs that make up our bodily institutions.
+    They are policed by our immune system. We need resources to fuel us,
+    and our bodies have whole industrial areas dedicated to the task of
+    resource extraction. We need to receive and process information, and
+    we devote enormous resources to the task.`
+  },
+  our_own_cells: {
+    [note]: `I think relatively few of us have ever seen our own cells.
+    It’s easy to not think of them. They are very meaningfully separate
+    objects, but seen from our vantage point, they blend into one: us.`
+  },
+  zooming_out: {
+    [note]: `You can keep zooming out. You can zoom out as much as you like.
+    You can allow to blur the divisions between self and other and between
+    human and not-human.
+    
+    And I think it’s important to do that sometimes.`
+  },
+  gone: {
+    [note]: `Sometimes, when I’m walking around the city, I imagine
+    how it will be after we’re gone.
+
+    The train tracks overgrown. Streets flooded and turned into canals,
+    and then abandoned. Wall Street offices turned into squats, their walls
+    hastily shored up by bioarchitecture, now growing wild, calcified
+    structural vines creeping over crumbling stonework.
+    
+    Here comes the inspirational part again:
+    
+    We are all going to die.
+    
+    You. Me. Everyone we love. Our nations and our civilizations.
+    
+    And that’s a bit sad. Inevitable mortality is kindof a bummer.
+    
+    But it also connects us.
+
+    And it’s also kindof necessary.`
+  }
 }}>{
   () =>
     <div className='dark slide'>
