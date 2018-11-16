@@ -226,7 +226,5 @@ export default () =>
   }
 }}>{
   () =>
-    <div className='dark slide'>
-      <Animation srcs={fire} frame={fireAnimation} morph={{ duration: 1, ease: Linear.easeNone }} />
-    </div>  
+    <Animation srcs={fire} frame={fireAnimation} morph={{ duration: 1, ease: Linear.easeNone }} />
 }</Slides>

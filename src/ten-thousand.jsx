@@ -316,13 +316,12 @@ export default () => {
 
   return <React.Fragment>
   { timeline && <svg style={{
-      // width: '131487192vw',
-      // height: '1314871vw',
-      // border: 'thin solid fuchsia',
       position: 'absolute',
       width: '100vw',
       height: '56.25vw',
       top: '50%',
+      left: '50%',
+      transformStyle: 'preserve-3d',
       transform: 'translate(-50%, -50%)',
     }}
       viewBox='-50 0 100 100'>
