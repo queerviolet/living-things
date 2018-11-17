@@ -292,46 +292,20 @@ export default () => <React.Fragment>
       [note]: `Which of course, I found out about on Twitter, so I’m only
       kindof sure they happened.
 
-      What’s the saying? Falsehood flies, truth comes limping after. It
-      makes sense, really, even in the maths.`, 
-      bgClass: 'black',
-    },
-    hundred_forty_chars: {
-      [note]: `Say you have a string that’s, I dunno, 140 characters long.
-      Ignoring as we do capitalization and punctuation, there are 10^200
-      possible arrangements of twenty-seven symbols—26 letters, one space—within
-      140 characters.`,
-      bgClass: 'black',
-    },
-    far_larger: {
-      [note]: `That’s far, far larger than the number of atoms in the
-      universe. Most of those strings are gibberish, of course.`,
-      bgClass: 'black',
-    },
-    english_words: {
-      [note]: `But within that vast sea of gibberish are strings made of English words.`,
-      bgClass: 'black',
-    },
-    sentences: {
-      [note]: `Within that set are sentences, and finally within *that*`,
-      bgClass: 'black',
-    },
-    sentences: {
-      [note]: `are sentences that are actually true.`,
-      bgClass: 'black',
+      What’s the saying? Falsehood flies, truth comes limping after.
+      It makes sense. There are many, many, many more ways to lie,
+      distort, or produce gibberish than there are ways to accurately
+      reflect the world.`
     },
     infinitesimal: {
-      [note]: `How were infinitesimal grains of truth ever going to win
-      when set against all the beaches of the world, covered
-      in nonsense and lies? I don’t have a proof for this, but
-      based on scale alone, I strongly suspect that finding
+      [note]: `Based on scale alone, you rather suspect that finding
       truth is *extremely* NP-hard.
       
       It’s the kind of very hard problem where to even begin to attack
       it, you run a powerful learning system on dedicated hardware
       and train it over many years. In journalism school.
 
-      It turns out there *was* some reason to get your narratives
+      So it turns out there *was* some reason to get your narratives
       filtered after all, and it’s the same reason you get your
       cigarettes filtered, because otherwise all manner of crap
       gets in. Our bodies have whole networks of complex systems
@@ -359,13 +333,15 @@ export default () => <React.Fragment>
         of our cognitive processes to symbols? That does seem new.`}>
     <Slide url='warm_beach'
         note={`It's quite cool, really. Merely from seeing these words on the screen,
-        you go somewhere quite nice.`}>
+        you go somewhere quite nice. You don't have to do anything. In fact,
+        you can't do anything.`}>
         <div className='white slide'>A warm beach on a sunny day.</div>
     </Slide>
 
     <Slide url='quite_powerful'
-        note={`And the ability is quite powerful! It allows us to operate on
-        the hypotheses using the the tools of physical manipulation.`}>
+        note={`It just happens. And the ability is quite powerful!
+        This allows us to operate on the hypotheses using the the tools of
+        physical manipulation.`}>
         <div className='white slide'>A crackling campfire on an ice cold night.</div>
     </Slide>
 

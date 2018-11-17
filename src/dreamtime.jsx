@@ -7,9 +7,28 @@ import Anim, {every, sec} from './anim'
 import {Animation} from './morph-svg'
 
 import fire from './fire/*.svg'
-import { Linear } from 'gsap/EasePack';
+import faceless from './faceless.svg'
+import roots from './roots.svg'
+import money from './money.svg'
+import assistant from './assistant.svg'
+import facebook from './facebook.svg'
+import phone from './iphone.svg'
+import slack from './slack.svg'
+import flags from './flags.svg'
+
+import { Linear, Power3 } from 'gsap/EasePack';
 const fireKeys = Object.keys(fire)
 
+const animation = Object.assign({}, fire, {
+  faceless,
+  roots,
+  money: {ungrouped: money},
+  facebook,
+  assistant,
+  phone: {ungrouped: phone},
+  slack,
+  flags: {ungrouped: flags},
+})
 const fireAnimation = every(0.3[sec], () =>
   fireKeys[Math.floor(Math.random() * fireKeys.length)])
 
@@ -140,20 +159,40 @@ export default () =>
     [note]: `We still have them, of course we do.` 
   },
   faceless: {
-    [note]: `Today, many of our gods are faceless.` 
+    [note]: `Today, many of our gods are faceless.`,
+    frame: 'faceless',
+    ease: Power3.easeInOut,
   },  
   roots: {
-    [note]: `But they have roots in us just the same.` 
+    [note]: `But they have roots in us just the same.`,
+    frame: 'roots',
+    ease: Power3.easeInOut,
   },  
   value: {
-    [note]: `We give them value.` 
+    [note]: `We give them value.`,
+    frame: 'money',
+    ease: Power3.easeInOut,
   },  
   watch_over: {
-    [note]: `They watch over us.` 
-  },  
+    [note]: `They watch over us.`,
+    frame: 'facebook',
+    ease: Power3.easeInOut,
+  }, 
+  watch_over_assistant: {
+    [note]: `They watch over us.`,
+    frame: 'assistant',
+    ease: Power3.easeInOut,
+  }, 
   sacrifice_attention: {
-    [note]: `We sacrifice our attention to them.` 
-  },  
+    [note]: `We sacrifice our attention to them.`,
+    frame: 'phone',
+    ease: Power3.easeInOut,
+  },
+  sacrifice_attention_slack: {
+    [note]: `We sacrifice our attention to them.`,
+    frame: 'slack',
+    ease: Power3.easeInOut,
+  },
   sacrifice_children: {
     [note]: `We sacrifice our children to them.
     
@@ -171,7 +210,9 @@ export default () =>
     
     We are part of families bound together by blood and a belief in its power.
     
-    We are part of communities bound together by shared belief and shared need.` 
+    We are part of communities bound together by shared belief and shared need.`,
+    frame: 'flags',
+    ease: Power3.easeInOut,
   },
   covenants: {
     [note]: `And we too are covenants. We are 37.2 trillion cells that have
@@ -225,6 +266,6 @@ export default () =>
     And it’s also kindof necessary.`
   }
 }}>{
-  () =>
-    <Animation srcs={fire} frame={fireAnimation} morph={{ duration: 1, ease: Linear.easeNone }} />
+  ({frame=fireAnimation, ease=Linear.easeNone}) =>
+  <Animation srcs={animation} frame={frame} morph={{ duration: 1, ease: Linear.easeNone }} />
 }</Slides>
