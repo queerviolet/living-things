@@ -5,8 +5,10 @@ import {MorphPath} from './greensock'
 
 import Anim, {every, sec} from './anim'
 import {Animation} from './morph-svg'
+import { Linear, Power3 } from 'gsap/EasePack';
 
 import fire from './fire/*.svg'
+const fireKeys = Object.keys(fire)
 import faceless from './faceless.svg'
 import roots from './roots.svg'
 import money from './money.svg'
@@ -15,9 +17,8 @@ import facebook from './facebook.svg'
 import phone from './iphone.svg'
 import slack from './slack.svg'
 import flags from './flags.svg'
-
-import { Linear, Power3 } from 'gsap/EasePack';
-const fireKeys = Object.keys(fire)
+import cell from './cell/*.svg'
+const cellKeys = Object.keys(cell)
 
 const animation = Object.assign({}, fire, {
   faceless,
@@ -28,10 +29,11 @@ const animation = Object.assign({}, fire, {
   phone: {ungrouped: phone},
   slack,
   flags: {ungrouped: flags},
-})
+}, cell)
 const fireAnimation = every(0.3[sec], () =>
   fireKeys[Math.floor(Math.random() * fireKeys.length)])
-
+const cellAnimation = every(0.3[sec], () =>
+  cellKeys[Math.floor(Math.random() * cellKeys.length)])
 export default () =>
 <Slides of={{
   dreamtime: {
@@ -218,7 +220,8 @@ export default () =>
     [note]: `And we too are covenants. We are 37.2 trillion cells that have
     agreed to work together to be a human being. Like ships of Theseus,
     we aren’t any one of our cells, we aren’t even *all* of our cells, we are
-    a *process running on them*. An agreement; a protocol. An idea.`
+    a *process running on them*. An agreement; a protocol. An idea.`,
+    frame: cellAnimation,    
   },
   problems_of_society: {
     [note]: `In this way, the problems of the body are quite like the
@@ -230,19 +233,22 @@ export default () =>
     They are policed by our immune system. We need resources to fuel us,
     and our bodies have whole industrial areas dedicated to the task of
     resource extraction. We need to receive and process information, and
-    we devote enormous resources to the task.`
+    we devote enormous resources to the task.`,
+    frame: cellAnimation,
   },
   our_own_cells: {
     [note]: `I think relatively few of us have ever seen our own cells.
     It’s easy to not think of them. They are very meaningfully separate
-    objects, but seen from our vantage point, they blend into one: us.`
+    objects, but seen from our vantage point, they blend into one: us.`,
+    frame: cellAnimation,    
   },
   zooming_out: {
     [note]: `You can keep zooming out. You can zoom out as much as you like.
     You can allow to blur the divisions between self and other and between
     human and not-human.
     
-    And I think it’s important to do that sometimes.`
+    And I think it’s important to do that sometimes.`,
+    frame: cellAnimation,
   },
   gone: {
     [note]: `Sometimes, when I’m walking around the city, I imagine
@@ -263,7 +269,8 @@ export default () =>
     
     But it also connects us.
 
-    And it’s also kindof necessary.`
+    And it’s also kindof necessary.`,
+    frame: null,
   }
 }}>{
   ({frame=fireAnimation, ease=Linear.easeNone}) =>

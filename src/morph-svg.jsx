@@ -19,6 +19,7 @@ const loadSvgPaths = async (src, id=src) => {
             class: path.getAttribute('class'),
             style: {
               fill: path.getAttribute('fill'),
+              fillOpacity: path.getAttribute('fill-opacity') || 1,
               stroke: path.getAttribute('stroke'),
               strokeWidth: path.getAttribute('strokewidth'),
             }
@@ -38,6 +39,7 @@ const loadUngroupedSvgPaths = async (src, id=src) => {
   const parser = new DOMParser
   const rsp = await fetch(src)
   const svg = parser.parseFromString(await rsp.text(), 'image/svg+xml')
+  // console.log('src=', src)
   const paths = Object.assign(
     ...[...svg.querySelectorAll('path')]
       .map((path, zIndex) => {
@@ -56,7 +58,7 @@ const loadUngroupedSvgPaths = async (src, id=src) => {
           }
         }
       }).filter(_ => _)
-  )
+  )  
 
   return {
     id,
@@ -93,7 +95,7 @@ const CIRCLE = {
 }
 
 const getPaths = (anim, frame, defaultPath) => {
-  const pathsForFrame = anim.frames[frame].paths
+  const pathsForFrame = frame ? frame.paths : []
   const outputPaths = new Array(anim.numTracks)
   let i = anim.numTracks; while (i --> 0) {
     outputPaths[i] = pathsForFrame[i] || defaultPath
@@ -101,21 +103,23 @@ const getPaths = (anim, frame, defaultPath) => {
   return outputPaths
 }
 
-export const Animation = ({srcs, frame, morph={}, className, defaultPath=CIRCLE}) => {
+export const Animation = ({srcs, frame, morph={}, style={}, className, defaultPath=CIRCLE}) => {
   const [anim, setAnim] = useState()
   const set = anim => {
-    console.log(anim)
+    // console.log(anim)
     setAnim(anim)
   }
   useEffect(() =>
     loadAnimation(srcs).then(set),
     [srcs])
-  if (!anim || !frame) return null
+  if (!anim) return null
   const key = useAnimator(frame)
+  const currentFrame = anim.frames[key]
   return <Cell className={className}
+    style={style}
     morph={morph}
-    viewBox={anim.frames[key].viewBox}
-    paths={getPaths(anim, key, defaultPath)} />
+    viewBox={currentFrame ? currentFrame.viewBox : anim.viewBox}
+    paths={getPaths(anim, currentFrame, defaultPath)} />
 }
 
 export const loadAnimation = srcs => Promise.all(
@@ -149,7 +153,7 @@ const toSequence = (anim, frame) => {
     path => {
       if (!path) return Unmatched
       const match = incoming[path.id]
-      // console.log('matching', path.id, 'to', match && match.id)
+      console.log('matching', path.id, 'to', match && match.id)
       if (!match) return Unmatched
       delete incoming[path.id]
       return match
@@ -171,12 +175,13 @@ const toSequence = (anim, frame) => {
     // And then attach any remaining unmatched incoming tracks
     .concat(unmatchedIncoming)
 
-  paths.forEach((p, i) => {
-    console.log(`track ${i}:`, p && p.id)
-  })
+  // paths.forEach((p, i) => {
+    // console.log(`track ${i}:`, p && p.id)
+  // })
   const numTracks = Math.max(anim.numTracks || 0, paths.length)
   return {
     numTracks,
+    viewBox: frame.viewBox,
     frames: Object.assign({},
       anim.frames,
       {

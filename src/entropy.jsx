@@ -1,18 +1,25 @@
 import React, {forwardRef, useRef, useState} from 'react'
 
 import Slide, {Slides, note, use, BuildIn, BuildOut, useBuildEffect} from './slide'
-import {MorphPath} from './greensock'
 
-import Anim, {every, sec} from './anim'
+import {every, sec} from './anim'
 import {Animation} from './morph-svg'
 
-import fire from './fire/*.svg'
-import { Linear } from 'gsap/EasePack';
-const fireKeys = Object.keys(fire)
+import tea from './tea/*.svg'
+import dragon from './dragon/*.svg'
+const dragonKeys = Object.keys(dragon)
 
-const fireAnimation = every(0.3[sec], () =>
-  fireKeys[Math.floor(Math.random() * fireKeys.length)])
+import { Linear, Power2 } from 'gsap/EasePack';
+const teaKeys = Object.keys(tea)
 
+const anim = Object.assign({}, tea, dragon)
+
+const teaAnimation = every(1[sec], i =>
+  teaKeys[i % teaKeys.length])
+
+const dragonAnimation = every(1[sec], i =>
+  dragonKeys[i % dragonKeys.length])
+  
 export default () =>
 <Slides of={{
   entropy: {
@@ -23,9 +30,9 @@ export default () =>
     It’s the bit of physics that says that when you leave a hot cup of tea
     in a cool room for a while, you’ll most likely end up with a tepid cup
     of tea in a slightly less cool room—and not, for example, a boiling cup
-    of tea in a very cold room, or a freezing room with a tiny dragon in it.
-    If I put ice cubes in the tea, they would melt. But we would not expect
-    ice cubes to spontaneously emerge from a steaming hot cup.`
+    of tea in a very cold room, or a freezing room with a tiny dragon in it.    
+    If I put ice cubes in the tea, they would melt. But we would not
+    expect ice cubes to spontaneously emerge from a steaming hot cup.`,
   },
   statistical: {
     [note]: `It’s really a statistical principle. There are a *lot* more ways
@@ -44,7 +51,7 @@ export default () =>
     Will it ever happen? No. It will never happen, not if you left a tea cup in
     a room until the heat death of the universe. At which point, incidentally, you
     will have neither a tea cup, nor a room, nor, in any recognizable sense, a
-    universe. Which is sortof the point.`
+    universe. Which is sortof the point.`,   
   },
   dragon_is_right_out: {
     [note]: `So, if a *slightly warmer cup of tea* is so thoroughly off the table,
@@ -52,13 +59,16 @@ export default () =>
     of a cup of tea spontaneously re-arranging themselves into a tiny creature,
     with hundreds of billions of cells, each one a complex molecular factory, with
     ribosomes and peptide bonds and DNA and all the rest of the bits a living thing
-    needs to operate.`
+    needs to operate.`,
+    ease: Power2.easeInOut,
+    frame: dragonAnimation,
   },
   resillient: {
     [note]: `Bodies are pretty resilient, but the tolerances are still *rather slim*.
     Rearrange a few trillion atoms here, a few trillion there, and you’ll pretty
     certainly be dead, if not an oddly-shaped puddle. There’s a lot more ways to be
-    a cooling cup of tea than there are to be a living dragon.`
+    a cooling cup of tea than there are to be a living dragon.`,
+    frame: dragonAnimation,
   },
   what_about_us: {
     [note]: `But then what does that say about *us*? I mean, we’re a bit more complex
@@ -66,7 +76,8 @@ export default () =>
     counts for something. But we had to get started somewhere. Evolution is selective
     pressure applied to replicators, and so you need that first replicator. Which
     seems... unlikely? Perhaps even as unlikely as a tea cup becoming very slightly
-    warmer.`
+    warmer.`,
+    frame: dragonAnimation,
   },
   big_problem: {
     [note]: `And that’s a big problem! An unlikely thing can still happen once, of
@@ -125,7 +136,7 @@ export default () =>
     cities, and thus, the second laws, ash and dust is what we will all
     become.`
   },
-  not_so_long: {
+  bigger: {
     [note]: `This theory says that very decay is the very same underlying
     process as life. It says living things will emerge again and again, at
     different scales, in different mediums, wherever there is a favorable
@@ -144,11 +155,16 @@ export default () =>
     We are not just the gods we’ve chosen to give ourselves to.
     We are everything.
     We are all life.
-    We are the sea that crawled onto land three billion years ago, and began to explore. A creature of ten trillion eyes.
-    
-    So perhaps ten thousand years isn’t so long.`
-  }
+    We are the sea that crawled onto land three billion years ago, and began to explore.
+    A creature of ten trillion eyes.`
+  },
+  not_so_long: {
+    [note]: `So perhaps ten thousand years isn’t so long.`,
+    style: {transition: 'filter 2s', filter: 'brightness(0)'}
+  },
 }}>{
-  () =>
-    <Animation srcs={fire} frame={fireAnimation} morph={{ duration: 1, ease: Linear.easeNone }} />
+  ({frame=teaAnimation, ease=Linear.easeNone, duration=1, style}) =>
+    <div className='viewport lavender' style={style}>
+      <Animation  srcs={anim} frame={frame} morph={{ duration, ease }} />
+    </div>
 }</Slides>
