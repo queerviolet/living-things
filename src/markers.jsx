@@ -1,6 +1,8 @@
 import React from 'react'
 import Projector from './projector'
-import Slide from './slide'
+import Slide, {Slides} from './slide'
+
+import {Animation} from './morph-svg'
 
 import title from './markers/title.png'
 import hole from './markers/black-hole-1.png'
@@ -15,7 +17,17 @@ import spikes from './markers/spikes-1.png'
 import spikes2 from './markers/spikes-2.png'
 import final from './markers/final.png'
 
-export default () => <Projector>
+import tombstone from './tombstone.svg'
+import after from './after0.svg'
+
+const ending = {tombstone, after}
+
+import {Power3, SteppedEase} from 'gsap/TweenMax'
+
+export default () => <Projector overlay={
+  ({frame, duration=0.8, ease=SteppedEase.config(20)}) =>
+    <Animation srcs={ending} frame={frame} morph={{ duration, ease }} />
+}>
   <Slide url='markers' note='The WIPP Marker committee made a number of suggestions'>
     <img src={title} />
   </Slide>
@@ -80,9 +92,13 @@ export default () => <Projector>
   </Slide>
   <Slide url='death'
     note={`I’ve talked about death quite a lot for an inspirational talk.
-    My intention isn’t to shock or scare you. It’s to draw your attention
-    to what comes after.`}>
-    <img src={final} style={{ transform: 'scale(0.6)' }}/>
+    My intention isn’t to shock or scare you.`}
+    frame='tombstone' duration={0}>
+    {/* <img src={tombstone} style={{ transform: 'scale(2)' }}/> */}
+  </Slide>
+  <Slide url='after'
+    note={`It’s to draw attention to what comes after. To the eons ahead of us.`}
+    frame='after' transition='none'>
   </Slide>
   <Slide url='whalefall'
     note={`When whales die, their bodies bloom. In death, they give rise
@@ -112,17 +128,21 @@ export default () => <Projector>
     We flow downhill along the path of least resistance; we conform to the
     containers we are in.
     
-    Believing you are a good person does not change your incentives.
-    Sincerely wanting to be a good person does not change your incentives.
-    There are no good people; there are no bad people. We are just
-    different points traversing an impossible landscape.
+    Believing we are good people does not change our incentives.
+    Sincerely wanting to be good people does not change the landscape.
+    There are no good people; there are no bad people. Intrinsic
+    character is one of those lies we tell so we can feel good about
+    ourselves. Mostly, we do what's gotten us fed. We do what's gotten
+    us love. We do what the people around us have been doing.
     
     I need you to ask what mountains you are flowing down and what containers
-    you are in and what gods you serve, and if you are proud of the answers.`}>
+    you are in and what gods you serve, and if you are proud of the answers.
+    And if not, how you can you change your context?
+    `}>
     <img src={final} style={{ transform: 'scale(0.6)' }}/>
   </Slide>
   <Slide url='board_of_social_engineering'
-    note={`Systemically, we can’t keep imagining that toothless
+    note={`Appled systemically, this means we can’t keep imagining that toothless
     statements of corporate ethics will help anything—they haven’t,
     and there is no reason to suspect they will. We all have personal
     incentives, but money is a universal one
@@ -131,7 +151,7 @@ export default () => <Projector>
     of our society. This is incredible power. I think it’s something
     that we must do to become whatever it is we’re going to become.
     But it is an experiment. We are, all of us, experimental subjects.
-    So, concretely, we need a Board of Social Engineering. And we need
+    Concretely, minimally, we need a Board of Social Engineering. And we need
     a less ominous name for the organization than the Board of Social
     Engineering. That part, we can workshop.
     
