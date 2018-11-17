@@ -17,10 +17,14 @@ import spikes from './markers/spikes-1.png'
 import spikes2 from './markers/spikes-2.png'
 import final from './markers/final.png'
 
-import tombstone from './tombstone.svg'
-import after from './after0.svg'
+import ending from './ending/*.svg'
+ending['11-wasteland'] = {ungrouped: ending['11-wasteland']}
 
-const ending = {tombstone, after}
+import {every, after, sec} from './anim'
+const play = (...frames) => every(0.7[sec], i=>
+  frames[i % frames.length])
+const liquid = play('05-liquid0', '06-liquid1')
+const light = play('09-light0', '10-light1')
 
 import {Power3, SteppedEase} from 'gsap/TweenMax'
 
@@ -93,20 +97,19 @@ export default () => <Projector overlay={
   <Slide url='death'
     note={`I’ve talked about death quite a lot for an inspirational talk.
     My intention isn’t to shock or scare you.`}
-    frame='tombstone' duration={0}>
-    {/* <img src={tombstone} style={{ transform: 'scale(2)' }}/> */}
-  </Slide>
+    frame='00-tombstone' duration={0} />
   <Slide url='after'
-    note={`It’s to draw attention to what comes after. To the eons ahead of us.`}
-    frame='after' transition='none'>
-  </Slide>
-  <Slide url='whalefall'
-    note={`When whales die, their bodies bloom. In death, they give rise
-    to entire ecosystems. They become another kind of living thing.
-
-    Our bodies too will do this, but it’s not our bodies I’m most concerned about.
+    note={`It’s to draw attention to what comes after. To the eons ahead of us.
     
-    As technologists, the things we work with are often intangible. But
+    When whales die, their bodies bloom. In death, they give rise
+    to entire ecosystems. They become another kind of living thing.
+    `}
+    frame='01-after' transition='none' />
+  <Slide url='another-living-thing'
+    note={`Our bodies too will do this, but it’s not our bodies I’m most
+    concerned about.`} frame='02-tree0' transition='none' />  
+  <Slide url='ecosystem'
+    note={`As technologists, the things we work with are often intangible. But
     we mustn’t mistake that intangibility for ephemerality. The spells we
     cast are bringing countless real creatures into the world. Things not
     biological, but nevertheless living. The things we make fit become part
@@ -119,9 +122,8 @@ export default () => <Projector overlay={
 
     I want us to thrive.
 
-    So there are some things I need you to do.`}>
-    <img src={final} style={{ transform: 'scale(0.6)' }}/>
-  </Slide>
+    So there are some things I need you to do.`}
+    frame={after(1[sec], '03-tree01', '04-tree012')} transition='none' />
   <Slide url='liquid'
     note={`I need you to know in your heart and bones that we are liquid.
 
@@ -138,9 +140,7 @@ export default () => <Projector overlay={
     I need you to ask what mountains you are flowing down and what containers
     you are in and what gods you serve, and if you are proud of the answers.
     And if not, how you can you change your context?
-    `}>
-    <img src={final} style={{ transform: 'scale(0.6)' }}/>
-  </Slide>
+    `} frame={liquid} transition='none' />
   <Slide url='board_of_social_engineering'
     note={`Appled systemically, this means we can’t keep imagining that toothless
     statements of corporate ethics will help anything—they haven’t,
@@ -151,34 +151,46 @@ export default () => <Projector overlay={
     of our society. This is incredible power. I think it’s something
     that we must do to become whatever it is we’re going to become.
     But it is an experiment. We are, all of us, experimental subjects.
-    Concretely, minimally, we need a Board of Social Engineering. And we need
+    
+    We need to measure, understand, and control the impacts of this
+    experimentation
+    
+    We need a Board of Social Engineering. And we need
     a less ominous name for the organization than the Board of Social
-    Engineering. That part, we can workshop.
+    Engineering. We'll workshop that part.
     
     The organization must have teeth, resources, and independence. It
     must be incentivized to consider the impacts of our experimentation
-    on the epistemic fabric of us all.`} />
+    on the epistemic fabric of us all.`} frame='07-bse' transition='none' />
   <Slide url='small'
     note={`I need you to be small. I need you to recognize that your
     experiences, as rich as they are, are only a tiny sliver of the
     experiences of people, and an even tinier sliver of the experiences
     of life. We are each motes of dust on the back of something enormous,
     and every person and every forest has something to teach us. I need
-    you to be constantly curious about what that is.`} />
+    you to be constantly curious about what that is.`}
+    frame='08-small' transition='none'
+    />
   <Slide url='light'
     note={`I need you to see the light at the end of ten thousand year
     tunnel. I need you to do this because sometimes I can’t, and I will
     need you to remind me.
     
-    I need you to do this because there are many futures ahead of us.`} />
+    I need you to do this because there are many futures ahead of us.`}
+    frame={light} transition='none'
+    />
   <Slide url='wasteland'
     note={`Perhaps we will create a wasteland, where the seas are acid,
     and where radioactive waste buried 600 meters underground is the
-    least of our problems.`} />
+    least of our problems.`}
+    frame='11-wasteland' transition='none'
+    />
   <Slide url='prison'
-    note={`Perhaps we will create prisons of glass boxes, each sized to fit,
+    note={`Perhaps we will create a mechanized prison, each cell sized to fit,
     every resource extracted, every whisper observed, every action modeled,
-    planned, and optimized.`} />
+    planned, and optimized.`}
+    frame='12-prison' transition='none'
+    />
   <Slide url='seeds'
     note={`Or, perhaps we will build seeds and plant them in the sea.
     They will send roots deep into the earth, and grow into enormous trees
