@@ -17,7 +17,7 @@ export const MorphPath = props => {
   const pathData = useAnimator(d)
   const initialPath = useRef()
   initialPath.current = initialPath.current || pathData
-  const pathRef = useRef()
+  const pathRef = useRef()  
   useEffect(() => {
     TweenLite.to(pathRef.current,
       duration,

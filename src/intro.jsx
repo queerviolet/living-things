@@ -48,88 +48,30 @@ console.log(frames)
 import grandPartition from './grand-partition.svg'
 
 export default () => <React.Fragment>
-  <Slides
-    of={{
-      intro: {
-        txt: '',
-        [note]: `
-        When the organizers asked me to do this talk, they said,
-        "We’d really like an inspirational talk about your vision!"
-
-        And, let me tell you, that is *exactly* what every speaker
-        wants to hear. Or, at least it's exactly what I want to hear.
-        That is really an excellent pitch, and so I said I would love to.
-
-        And they said they'd love to hear it, and I said I'd talk about
-        life and living systems and it would be very inspirational and
-        everyone was just thrilled.
-
-        So then I sat down to write it.
-
-        And, when I write, I try to just... let it flow.
-        `
-      },
-      we_are_all: {
-        txt: 'We are all',
-        [note]: `And whatever comes out`
-      },
-      going: {
-        txt: 'We are all going',
-        [note]: `...comes...`
-      },
-      to_die: {
-        txt: 'We are all going to die.',
-        [note]: `...out
-        
-        huh.
-        
-        So it's true, which is on brand.
-
-        But it's not really... I just think it's not quite the right direction.
-        
-        I think we can do better.
-        `
-      },
-      do_better: {
-        txt: '',
-        [note]: `Let's revise...`,
-      },
-      you: {
-        txt: 'You',
-      },
-      you_and_everyone: {txt: 'You and everyone you love'},
-      you_die: {
-        txt: 'You and everyone you love are going to die.',
-        [note]: `Well, see, now it's worse.
-
-        Now it's threatening.
-
-        We can't have that.
-        I can't lead with that. I'm from the US. Everyone already thinks we're
-        violent.`     
-      },
-      the_problem: {
-        txt: '',
-        [note]: `I think the problem here—apart from the inevitable mortality
-        of every living thing—is that the world of now keeps bubbling out.
-
-        And the world of now is... well, it's definitely going somewhere, you can
-        say that much. Some very exciting things are happening. It feels like
-        we're really on the cusp of something. But it's not really clear what.
-        Or if we're going to like it. Kindof seems like we might not like it,
-        actually.
-
-        And that's quite stressful.
-
-        So let's step away from all that. And go back.`
-      }
-    }}    
-  >{({ txt }) =>
-    <div className='slide'>
-      <type-writer className='typewriter' text={txt} />
-    </div>
-  }</Slides>
   <Slides of={{
+    intro: {
+      [note]: `Hi, my name is Ashi. And right now, I want you to remember that you are a living thing. We’ve been conferencing for a couple of days, networking and tweeting and thinking about the movement of electrons, and so right now I want you to step back
+
+      Take a deep breath
+      
+      And remember
+      
+      You are alive
+      
+      You are a living thing.
+      
+      Remember your diaphragm, peeling open your lungs to draw in oxygen, so your blood red hemoglobin can let go of CO2 and trap it.
+      
+      Remember that you are a living thing made up of living things.
+      
+      Remember the cells of your body. Remember the fibers of your muscles. Remember your heart, squeezing and squishing that blood around to drive oxidization in your cells. Remember that oxidization is burning, and so inside each of your cells is a tiny fire. Remember the crackling of depolarizing membranes in your brain, neurons strobing with information.
+      
+      Remember that you are a living thing that is a part of living things. That you are a cell within tissues shaped of cities and forests.
+      
+      I want you to remember your ancestors.
+      
+      And I want you to think back and remember about ten years ago.`
+    },
     remember: {
       [note]: `Remember ten years ago?`,        
     },

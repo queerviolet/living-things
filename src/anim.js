@@ -26,9 +26,9 @@ export const useAnimator = anim => {
   const ts = useContext(ClockContext)
   const state = useRef()
   if (typeof anim === 'function') {
-    if(!state.current) console.log('init')
     state.current = state.current || {t0: ts}
-    return anim(ts, state.current)
+    const val = anim(ts, state.current)
+    return val
   }  
   return anim
 }
@@ -40,8 +40,8 @@ export const every = (interval, f=passthrough) =>
     const tick = Math.floor((t - t0) / interval)
     if (lastTick === tick) return lastVal
     state.lastVal = f(tick, t)
-    state.lastTick = tick
-    return lastVal
+    state.lastTick = tick    
+    return state.lastVal
   }
 
 export const after = (delay, before, after) =>

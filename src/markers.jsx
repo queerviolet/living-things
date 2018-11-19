@@ -17,14 +17,23 @@ import spikes from './markers/spikes-1.png'
 import spikes2 from './markers/spikes-2.png'
 import final from './markers/final.png'
 
-import ending from './ending/*.svg'
-ending['11-wasteland'] = {ungrouped: ending['11-wasteland']}
+import ending0 from './ending/*.svg'
+ending0['11-wasteland'] = {ungrouped: ending0['11-wasteland']}
+import seed from './ending/seed/*.svg'
+const ending = Object.assign({}, ending0, seed)
 
 import {every, after, sec} from './anim'
-const play = (...frames) => every(0.7[sec], i=>
+const loop = (...frames) => every(0.7[sec], i =>
   frames[i % frames.length])
-const liquid = play('05-liquid0', '06-liquid1')
-const light = play('09-light0', '10-light1')
+const liquid = loop('05-liquid0', '06-liquid1')
+const light = loop('09-light0', '10-light1')
+
+const play = (...frames) =>
+  every(0.3[sec], i => {
+    const frame = frames[Math.min(i, frames.length - 1)]
+    return frame
+  })
+const plant = play(...Object.keys(seed))
 
 import {Power3, SteppedEase} from 'gsap/TweenMax'
 
@@ -192,16 +201,27 @@ export default () => <Projector overlay={
     frame='12-prison' transition='none'
     />
   <Slide url='seeds'
-    note={`Or, perhaps we will build seeds and plant them in the sea.
-    They will send roots deep into the earth, and grow into enormous trees
-    above the water. Whole cities will grow along their branches, and they
-    will send banyan shoots up into space.
+    note={`Or, perhaps we will build seeds`}
+    frame='seed0' transition='none'/>
+  <Slide url='plant_them'
+    frame={plant}
+    duration={0.3}
+    ease={Linear.easeNone}
+    note={`and plant them in the sea`} transition='none' />
+  <Slide url='roots'
+    frame='seed3'
+    note={`They will send roots deep into the earth, and enormous trees    
+    above the water. Whole cities will grow along their branches, from their
+    canopies, banyan shoots will rise up into space.
 
     And when we climb them, if we find that we are not alone, how will we
     introduce ourselves to the creatures out there? By name? By nation?
     By species?
     
     Or will we remember—I need you to remember—that we are the sea,
-    who so wanted to touch the stars that we became all life so we might
-    someday meet them.`} />
+    a creature of many skins and many feathers and twelve trillion eyes,
+    who so wanted to touch the stars that we became all life
+    so we might someday meet them.`}
+    transition='none'
+    />
 </Projector>
