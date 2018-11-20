@@ -24,12 +24,10 @@ export default ClockContext.Consumer
 
 export const useAnimator = anim => {
   const ts = useContext(ClockContext)
-  const state = useRef()
   if (typeof anim === 'function') {
-    state.current = state.current || {t0: ts}
-    const val = anim(ts, state.current)
-    return val
-  }  
+    anim.state = anim.state || {t0: ts}
+    return anim(ts, anim.state)
+  }
   return anim
 }
 

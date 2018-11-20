@@ -146,3 +146,7 @@ export const BuildOut = ({children}) => {
   useBuildOut(children)
   return null
 }
+export const Effect = ({children}) => {
+  useBuildEffect(children)
+  return null
+}

@@ -140,7 +140,7 @@ const Unmatched = {}
  * @param {{ viewBox, paths: { [id: string]: {id: string, d: string, style: any} } }} frame 
  */
 const toSequence = (anim, frame) => {
-  console.log('---', frame.id, '---')
+  // console.log('---', frame.id, '---')
   const incoming = Object.assign({}, frame.paths)
 
   const frames = Object.values(anim.frames || [])
@@ -153,7 +153,7 @@ const toSequence = (anim, frame) => {
     path => {
       if (!path) return Unmatched
       const match = incoming[path.id]
-      console.log('matching', path.id, 'to', match && match.id)
+      // console.log('matching', path.id, 'to', match && match.id)
       if (!match) return Unmatched
       delete incoming[path.id]
       return match

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef, useState} from 'react'
 import Projector from './projector'
 import Slide, {Slides} from './slide'
 
@@ -29,15 +29,33 @@ const liquid = loop('05-liquid0', '06-liquid1')
 const light = loop('09-light0', '10-light1')
 
 const play = (...frames) =>
-  every(0.3[sec], i => {
-    const frame = frames[Math.min(i, frames.length - 1)]
-    return frame
-  })
-const plant = play(...Object.keys(seed))
+  every(1.5[sec], i => frames[Math.min(i, frames.length - 1)])
+const plant = play(...Object.keys(seed).sort())
+
+const growUp = after(1[sec], '03-tree01', '04-tree012')
 
 import {Power3, SteppedEase} from 'gsap/TweenMax'
+import {TweenLite} from 'gsap/TweenLite'
 
-export default () => <Projector overlay={
+export default () => {
+const fx = useRef({
+  flicker: 5,
+  sepia: 5,
+  saturate: 75,
+  vignette: 1,
+  background: 'black',
+})
+const change = (build, {index}) => {
+  plant.state = null
+  growUp.state = null
+  if (index >= 23) {
+    TweenLite.to(fx.current, 3, {flicker: 0, sepia: 0, saturate: 100, background: 'white', vignette: 0})
+  } else {
+    TweenLite.to(fx.current, 3, {flicker: 5, sepia: 5, saturate: 75, background: 'black', vignette: 1})
+  }
+}
+
+return <Projector onChange={change} fx={fx.current} overlay={
   ({frame, duration=0.8, ease=SteppedEase.config(20)}) =>
     <Animation srcs={ending} frame={frame} morph={{ duration, ease }} />
 }>
@@ -132,7 +150,7 @@ export default () => <Projector overlay={
     I want us to thrive.
 
     So there are some things I need you to do.`}
-    frame={after(1[sec], '03-tree01', '04-tree012')} transition='none' />
+    frame={growUp} transition='none' />
   <Slide url='liquid'
     note={`I need you to know in your heart and bones that we are liquid.
 
@@ -205,7 +223,7 @@ export default () => <Projector overlay={
     frame='seed0' transition='none'/>
   <Slide url='plant_them'
     frame={plant}
-    duration={0.3}
+    duration={1.5}
     ease={Linear.easeNone}
     note={`and plant them in the sea`} transition='none' />
   <Slide url='roots'
@@ -225,3 +243,4 @@ export default () => <Projector overlay={
     transition='none'
     />
 </Projector>
+}

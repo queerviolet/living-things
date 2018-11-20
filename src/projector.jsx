@@ -1,19 +1,41 @@
-import React, {forwardRef} from 'react'
-import {Slides, note} from './slide'
+import React, {forwardRef, useMemo, useEffect, useState} from 'react'
+import {Slides, use, note} from './slide'
 
-export const Projector = forwardRef(({children, onChange, overlay, style={}}, ref) => {
-  const slides = React.Children.map(children,
-    ({props}) => <div className={`projector-slide-content ${props.className || ''}`}>{props.children}<div className='projector-slide-vignette' /></div>)
-
-  const states = Object.assign(...React.Children.map(children, (slide, index) => ({
+export const Projector = forwardRef(({children, onChange, className='', overlay,
+  fx={background: 'black', flicker: 5, vignette: 1, saturate: 75, sepia: 5, vignette: true}, style={}}, ref) => {
+  const slides = useMemo(() => React.Children.map(children,
+    ({props}) =>
+      <div className={`projector-slide-content ${props.className || ''}`}>{
+        props.children
+      }<div className='projector-slide-vignette' /></div>), [children])
+  const [projectorStyle, setProjectorStyle] = useState()
+  const states = useMemo(() => Object.assign(...React.Children.map(children, (slide, index) => ({
     [slide.props.url]: Object.assign({
       [note]: slide.props.note,
       index,
-    }, slide.props)
-  })))
-  const byIndex = Object.values(states)  
+    },
+    slide.props)
+  }))), [children])
+  
+  useEffect(() => {
+    let raf = requestAnimationFrame(animateFlicker)
+    let i = 0
+    return () => cancelAnimationFrame(raf)
+    function animateFlicker(ts) {
+      raf = requestAnimationFrame(animateFlicker)
+      if (i++ % 3 !== 0) return
+      const brightness = Math.round(100 - fx.flicker + Math.random() * fx.flicker)
+      setProjectorStyle(Object.assign({
+        background: fx.background,
+        '--vignette-opacity': fx.vignette,
+        filter: `brightness(${brightness}%) saturate(${fx.saturate}%) sepia(${fx.sepia}%)`
+      }, style))
+    }
+  }, [fx])
+
+  const byIndex = useMemo(() => Object.values(states), [states])
   return <Slides onChange={onChange} of={states}>{({index}) =>
-    <div ref={ref} className='projector' style={style}>
+    <div ref={ref} className={`projector ${className}`} style={projectorStyle}>
       <div className='projector-slide' style={carriageStyle(index, byIndex)}>{
         slides
       }</div>
