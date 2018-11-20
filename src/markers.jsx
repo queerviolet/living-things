@@ -28,10 +28,19 @@ const loop = (...frames) => every(0.7[sec], i =>
 const liquid = loop('05-liquid0', '06-liquid1')
 const light = loop('09-light0', '10-light1')
 
-const play = (...frames) =>
-  every(1.5[sec], i => frames[Math.min(i, frames.length - 1)])
-const plant = play(...Object.keys(seed).sort())
+const play = (frames, rate=1[sec]) =>
+  every(rate, i => frames[Math.min(i, frames.length - 1)])
+const plant = play([0, 1, 2, 3, 4].map(i => `seed0${i}`))
 
+const closingFrames = ['seed05', 'seed06', 'seed07', 'seed08', 'seed09']
+const closingDwell = ['seed10', 'seed10a', 'seed10b']
+const tap = x => (console.log(x), x)
+const closingFrameSec = 3
+const closing = every(closingFrameSec[sec], i => tap(
+  i < closingFrames.length
+    ? closingFrames[i]
+    : closingDwell
+))
 const growUp = after(1[sec], '03-tree01', '04-tree012')
 
 import {Power3, SteppedEase} from 'gsap/TweenMax'
@@ -48,6 +57,7 @@ const fx = useRef({
 const change = (build, {index}) => {
   plant.state = null
   growUp.state = null
+  closing.state = null
   if (index >= 23) {
     TweenLite.to(fx.current, 3, {flicker: 0, sepia: 0, saturate: 100, background: 'white', vignette: 0})
   } else {
@@ -220,17 +230,18 @@ return <Projector onChange={change} fx={fx.current} overlay={
     />
   <Slide url='seeds'
     note={`Or, perhaps we will build seeds`}
-    frame='seed0' transition='none'/>
+    frame='seed00' transition='none'/>
   <Slide url='plant_them'
     frame={plant}
-    duration={1.5}
+    duration={1}
     ease={Linear.easeNone}
     note={`and plant them in the sea`} transition='none' />
   <Slide url='roots'
-    frame='seed3'
-    note={`They will send roots deep into the earth, and enormous trees    
-    above the water. Whole cities will grow along their branches, from their
-    canopies, banyan shoots will rise up into space.
+    frame={closing}
+    duration={closingFrameSec}
+    note={`They will send roots deep into the earth, and grow into enormous
+    mangroves above the water. Whole cities will grow along their branches,
+    from their canopies, banyan shoots will rise up into space.
 
     And when we climb them, if we find that we are not alone, how will we
     introduce ourselves to the creatures out there? By name? By nation?
@@ -241,6 +252,7 @@ return <Projector onChange={change} fx={fx.current} overlay={
     who so wanted to touch the stars that we became all life
     so we might someday meet them.`}
     transition='none'
+    ease={Linear.easeInOut}
     />
 </Projector>
 }

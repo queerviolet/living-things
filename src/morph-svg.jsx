@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useMemo, useEffect} from 'react'
 import {MorphPath} from './greensock'
 import {useAnimator} from './anim'
 
@@ -39,7 +39,6 @@ const loadUngroupedSvgPaths = async (src, id=src) => {
   const parser = new DOMParser
   const rsp = await fetch(src)
   const svg = parser.parseFromString(await rsp.text(), 'image/svg+xml')
-  // console.log('src=', src)
   const paths = Object.assign(
     ...[...svg.querySelectorAll('path')]
       .map((path, zIndex) => {
@@ -78,6 +77,21 @@ export const MorphSVG = ({className, morph={}, src}) => {
 }
 export default MorphSVG
 
+export const Loop = ({loop, className, viewBox, morph}) => {
+  const ordering = useMemo(() => {
+    console.log('computing loop ordering')
+    return zSortEntries(Object.entries(loop[0]))
+  }, [loop])
+  return <svg className={className} viewBox={viewBox}>{
+    ordering.map(([key, path]) =>
+      <MorphPath d={
+        loop.map(frame => frame[key])
+      } className={path.class || undefined} key={key} style={path.style} {...morph} />
+    )
+  }</svg>
+}
+
+
 export const Cell = ({className, morph={}, viewBox, paths}) => {
   return <svg className={className} viewBox={viewBox}>{
     zSortEntries(Object.entries(paths))
@@ -94,7 +108,11 @@ const CIRCLE = {
   }
 }
 
-const getPaths = (anim, frame, defaultPath) => {
+const getPaths = (anim, frameKey, defaultPath) => {
+  if (Array.isArray(frameKey)) {
+    return {loop: frameKey.map(key => getPaths(anim, key, defaultPath))}
+  }
+  const frame = anim.frames[frameKey]
   const pathsForFrame = frame ? frame.paths : []
   const outputPaths = new Array(anim.numTracks)
   let i = anim.numTracks; while (i --> 0) {
@@ -114,12 +132,23 @@ export const Animation = ({srcs, frame, morph={}, style={}, className, defaultPa
     [srcs])
   if (!anim) return null
   const key = useAnimator(frame)
+  console.log('key=', key)
   const currentFrame = anim.frames[key]
+  const paths = useMemo(() => {
+    console.log('computing paths')
+    return getPaths(anim, key, defaultPath)
+  }, [anim, key])
+  if (paths.loop)
+    return <Loop className={className}
+      style={style}
+      morph={morph}
+      viewBox={anim.viewBox}
+      loop={paths.loop} />
   return <Cell className={className}
     style={style}
     morph={morph}
     viewBox={currentFrame ? currentFrame.viewBox : anim.viewBox}
-    paths={getPaths(anim, currentFrame, defaultPath)} />
+    paths={paths} />
 }
 
 export const loadAnimation = srcs => Promise.all(
@@ -131,6 +160,10 @@ export const loadAnimation = srcs => Promise.all(
       )
   )
   .then(frames => frames.reduce(toSequence, {}))
+  .then(f => {
+    console.log('loaded:', f)
+    return f
+  })
 
 
 const Unmatched = {}

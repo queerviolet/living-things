@@ -1,8 +1,8 @@
-import React, {forwardRef, useMemo, useEffect, useState} from 'react'
+import React, {forwardRef, useMemo, useRef, useEffect, useState} from 'react'
 import {Slides, use, note} from './slide'
 
 export const Projector = forwardRef(({children, onChange, className='', overlay,
-  fx={background: 'black', flicker: 5, vignette: 1, saturate: 75, sepia: 5, vignette: true}, style={}}, ref) => {
+  fx={background: 'black', flicker: 5, vignette: 1, saturate: 75, sepia: 5, vignette: true}, style={}}, inputRef) => {
   const slides = useMemo(() => React.Children.map(children,
     ({props}) =>
       <div className={`projector-slide-content ${props.className || ''}`}>{
@@ -17,7 +17,10 @@ export const Projector = forwardRef(({children, onChange, className='', overlay,
     slide.props)
   }))), [children])
   
+  const ref = useRef()
+
   useEffect(() => {
+    if (inputRef) inputRef.current = ref.current
     let raf = requestAnimationFrame(animateFlicker)
     let i = 0
     return () => cancelAnimationFrame(raf)
@@ -25,11 +28,13 @@ export const Projector = forwardRef(({children, onChange, className='', overlay,
       raf = requestAnimationFrame(animateFlicker)
       if (i++ % 3 !== 0) return
       const brightness = Math.round(100 - fx.flicker + Math.random() * fx.flicker)
-      setProjectorStyle(Object.assign({
-        background: fx.background,
-        '--vignette-opacity': fx.vignette,
-        filter: `brightness(${brightness}%) saturate(${fx.saturate}%) sepia(${fx.sepia}%)`
-      }, style))
+      if (ref.current) {
+        Object.assign(ref.current.style, {
+          background: fx.background,
+          filter: `brightness(${brightness}%) saturate(${fx.saturate}%) sepia(${fx.sepia}%)`
+        }, style)
+        ref.current.style.setProperty('--vignette-opacity', fx.vignette)
+      }
     }
   }, [fx])
 

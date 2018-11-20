@@ -1,39 +1,67 @@
-import React, {createContext, useState, useEffect, useRef, useContext} from 'react'
+import React, {createContext, useState, useMemo, useEffect, useRef, useContext} from 'react'
 import {runAnimatorStep} from './when'
 
-export const ClockContext = createContext()
+export const AnimationContext = createContext()
 
 export const AnimationProvider = ({children}) => {
-  const [time, setTime] = useState()
+  const animators = useRef([])
   useEffect(() => {
     let raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
 
     function tick(ts) {
       raf = requestAnimationFrame(tick)
-      setTime(ts)
       runAnimatorStep(ts)
+      let i = animators.current.length; while (i --> 0) {
+        const a = animators.current[i]
+        if (!a.output) continue
+        a.state = a.state || {t0: ts}
+        const value = a(ts, a.state)
+        if (a.state.value !== value) {
+          console.log('emitting', value, a.state.value, a.state)
+          a.output(value)
+          a.state.value = value
+        }
+      }
     }
   }, [])
-  return <ClockContext.Provider value={time}>{
+  const animate = useMemo(() => (animator, output) => {
+    console.log('attaching', animator, output)
+    animator.output = output
+    animators.current.push(animator)
+    return () => {
+      animator.output = null
+      const idx = animators.current.indexOf(animator)
+      if (idx !== -1) animators.current.splice(idx, 1)
+    }
+  }, [])
+  return <AnimationContext.Provider value={animate}>{
     children
-  }</ClockContext.Provider>
+  }</AnimationContext.Provider>
 }
 
-export default ClockContext.Consumer
+export default AnimationContext.Consumer
 
 export const useAnimator = anim => {
-  const ts = useContext(ClockContext)
-  if (typeof anim === 'function') {
-    anim.state = anim.state || {t0: ts}
-    return anim(ts, anim.state)
-  }
-  return anim
+  const animate = useContext(AnimationContext)
+  const [value, setValue] = useState(typeof anim === 'function' ? anim() : anim)
+  const set = useMemo(() => val => {
+    console.log('setting animator value', val)
+    setValue(val)
+  }, [])
+  useEffect(() => {
+    console.log('anim=', anim)
+    return typeof anim === 'function'
+      ? animate(anim, set)
+      : set(anim)
+  }, [animate, anim])
+  return value
 }
 
 const passthrough = _ => _
 export const every = (interval, f=passthrough) =>
   (t, state) => {
+    if (!state) return 0
     const {t0, lastTick, lastVal} = state
     const tick = Math.floor((t - t0) / interval)
     if (lastTick === tick) return lastVal
