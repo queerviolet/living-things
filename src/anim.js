@@ -18,7 +18,7 @@ export const AnimationProvider = ({children}) => {
         a.state = a.state || {t0: ts}
         const value = a(ts, a.state)
         if (a.state.value !== value) {
-          console.log('emitting', value, a.state.value, a.state)
+          // console.log('emitting', value, a.state.value, a.state)
           a.output(value)
           a.state.value = value
         }

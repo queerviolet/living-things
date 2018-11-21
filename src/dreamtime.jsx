@@ -20,6 +20,15 @@ import flags from './flags.svg'
 import cell from './cell/*.svg'
 const cellKeys = Object.keys(cell)
 
+import slackSound from './knock_brush.ogg'
+import iphoneSound from './iphone_sound.mp3'
+const slackAudio = document.createElement('audio')
+slackAudio.src = slackSound
+const iphoneAudio = document.createElement('audio')
+iphoneAudio.src = iphoneSound
+window.iph = iphoneAudio
+window.slk = slackAudio
+
 const animation = Object.assign({}, fire, {
   faceless,
   roots,
@@ -193,12 +202,20 @@ export default () =>
     ease: Power3.easeInOut,
   }, 
   sacrifice_attention: {
-    [note]: `We sacrifice our attention`,
+    [note]: `We sacrifice our attention to them`,
     frame: 'phone',
+    [use]: <BuildIn>{() => {
+      iphoneAudio.currentTime = 1.2
+      iphoneAudio.play()
+    }}</BuildIn>,
     ease: Power3.easeInOut,
   },
   sacrifice_attention_slack: {
-    [note]: `to them`,
+    [note]: ``,
+    [use]: <BuildIn>{() => {
+      slackAudio.currentTime = 0
+      slackAudio.play()
+    }}</BuildIn>,
     frame: 'slack',
     ease: Power3.easeInOut,
   },
@@ -266,7 +283,7 @@ export default () =>
     hastily shored up by bioarchitecture, now growing wild, calcified
     structural vines creeping over crumbling stonework.
     
-    Here comes the inspirational part again:
+    Here comes the inspirational part of the talk:
     
     We are all going to die.
     
@@ -274,9 +291,7 @@ export default () =>
     
     And that’s a bit sad. Inevitable mortality is kindof a bummer.
     
-    But it also connects us.
-
-    And it’s also kindof necessary.`,
+    But it turns out to be somewhat necessary.`,
     frame: null,
   }
 }}>{

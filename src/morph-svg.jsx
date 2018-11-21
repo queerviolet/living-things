@@ -53,7 +53,7 @@ const loadUngroupedSvgPaths = async (src, id=src) => {
               fill: path.getAttribute('fill'),
               'fill-opacity': path.getAttribute('fill-opacity') || 1,
               stroke: path.getAttribute('stroke'),
-              'stroke-width': path.getAttribute('strokewidth'),
+              'stroke-width': path.getAttribute('strokewidth') || 0,
             }
           }
         }
@@ -80,7 +80,6 @@ export default MorphSVG
 
 export const Loop = ({loop, className, viewBox, morph}) => {
   const ordering = useMemo(() => {
-    console.log('computing loop ordering')
     return zSortEntries(Object.entries(loop[0]))
   }, [loop])
   return <svg className={className} viewBox={viewBox}>{
@@ -135,10 +134,8 @@ export const Animation = ({srcs, frame, morph={}, style={}, className, defaultPa
   let key = useAnimator(frame)
   if (typeof frame !== 'function')
     key = frame
-  console.log('frame=', frame, 'key=', key)
   const currentFrame = anim.frames[key]
   const paths = useMemo(() => {
-    console.log('computing paths')
     return getPaths(anim, key, defaultPath)
   }, [anim, key])
   if (paths.loop)

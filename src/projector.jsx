@@ -2,7 +2,7 @@ import React, {forwardRef, useMemo, useRef, useEffect, useState} from 'react'
 import {Slides, use, note} from './slide'
 
 export const Projector = forwardRef(({children, onChange, className='', overlay,
-  fx={background: 'black', flicker: 5, vignette: 1, saturate: 75, sepia: 5, vignette: true}, style={}}, inputRef) => {
+  fx={background: 'rgba(0, 0, 0, 0)', flicker: 5, vignette: 1, saturate: 75, sepia: 5, vignette: true}, style={}}, inputRef) => {
   const slides = useMemo(() => React.Children.map(children,
     ({props}) =>
       <div className={`projector-slide-content ${props.className || ''}`}>{

@@ -1,3 +1,5 @@
+import marked from 'marked'
+
 class BuildNote extends HTMLElement {
   static update(note) {
     const e = findOrCreateById('build-note', note.id)
@@ -33,10 +35,10 @@ class BuildNote extends HTMLElement {
     this.timer.textContent = time && tformat(time)
   }
 
-  update({innerHTML, order, id}) {
+  update({markdown, order, id}) {
     this.id = id
     this.title.textContent = id
-    this.content.innerHTML = innerHTML.trim()
+    this.content.innerHTML = marked(markdown.replace(/\n\s+/g, '\n'))
     // this.style.order = order
   }
 }

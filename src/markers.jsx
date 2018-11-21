@@ -156,7 +156,7 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
     note={`As technologists, the things we work with are often intangible. But
     we mustn’t mistake that intangibility for ephemerality. The spells we
     cast are bringing countless real creatures into the world. Things not
-    biological, but nevertheless living. The things we make fit become part
+    biological, but nevertheless living. The things we make become part
     of a system that includes us, and our thoughts, and our gods, and every
     living thing.
     
@@ -166,26 +166,24 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
 
     I want us to thrive.
 
-    So there are some things I need you to do.`}
+    So there are some things we need to do.`}
     frame={growUp} transition='none' />
   <Slide url='liquid'
-    note={`I need you to know in your heart and bones that we are liquid.
+    note={`We need to remember that we are liquid.
 
     We flow downhill along the path of least resistance; we conform to the
     containers we are in.
-    
-    Believing we are good people does not change our incentives.
-    Sincerely wanting to be good people does not change the landscape.
-    There are no good people; there are no bad people. Intrinsic
+
+    We are not good people. We are not bad people. Intrinsic
     character is one of those lies we tell so we can feel good about
     ourselves. Mostly, we do what's gotten us fed. We do what's gotten
     us love. We do what the people around us have been doing.
     
-    I need you to ask what mountains you are flowing down and what containers
-    you are in and what gods you serve, and if you are proud of the answers.
-    And if not, how you can you change your context?
+    We need to keep asking what mountains we are flowing down and what containers
+    we are held in and what gods we serve, and if we are proud of the answers.
+    And if not, how we can you change our context?
     `} frame={liquid} transition='none' />
-  <Slide url='board_of_social_engineering'
+  <Slide url='systemically'
     note={`Appled systemically, this means we can’t keep imagining that toothless
     statements of corporate ethics will help anything—they haven’t,
     and there is no reason to suspect they will. We all have personal
@@ -197,9 +195,11 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
     But it is an experiment. We are, all of us, experimental subjects.
     
     We need to measure, understand, and control the impacts of this
-    experimentation
-    
-    We need a Board of Social Engineering. And we need
+    experimentation. This next part I do not love myself, but I see
+    no way around it.
+    `} frame={liquid} transition='none' />    
+  <Slide url='board_of_social_engineering'
+    note={`We need a Board of Social Engineering. And we need
     a less ominous name for the organization than the Board of Social
     Engineering. We'll workshop that part.
     
@@ -207,20 +207,19 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
     must be incentivized to consider the impacts of our experimentation
     on the epistemic fabric of us all.`} frame='07-bse' transition='none' />
   <Slide url='small'
-    note={`I need you to be small. I need you to recognize that your
+    note={`We need to be small. We need to recognize that our
     experiences, as rich as they are, are only a tiny sliver of the
     experiences of people, and an even tinier sliver of the experiences
     of life. We are each motes of dust on the back of something enormous,
-    and every person and every forest has something to teach us. I need
-    you to be constantly curious about what that is.`}
+    and every person and every forest has something to teach us. We need
+    to be constantly curious about what that is.`}
     frame='08-small' transition='none'
     />
   <Slide url='light'
-    note={`I need you to see the light at the end of ten thousand year
-    tunnel. I need you to do this because sometimes I can’t, and I will
-    need you to remind me.
-    
-    I need you to do this because there are many futures ahead of us.`}
+    note={`We need to see the light at the end of ten thousand year
+    tunnel. We need to remind each other of the light. When the world
+    looks dark, we need to remember that
+    there are many futures still ahead of us.`}
     frame={light} transition='none'
     />
   <Slide url='wasteland'
@@ -246,15 +245,17 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
   <Slide url='roots'
     frame={closing}
     duration={closingFrameSec}
-    note={`They will send roots deep into the earth, and grow into enormous
-    mangroves above the water. Whole cities will grow along their branches,
-    from their canopies, banyan shoots will rise up into space.
+    note={`They will send roots deep, deep down, mining the earth.
+    Above the surface, they will grow into tremendous
+    mangroves. They will raise up islands up beneath them, whole cities will grow
+    along their branches. Fron their canopies, they will sprout long shoots, growing
+    into space to drink up the sun.
 
-    And when we climb them, if we find that we are not alone, how will we
-    introduce ourselves to the creatures out there? By name? By nation?
+    And when we climb them those tethers, if we find that we are not alone,
+    how will we introduce ourselves to the creatures out there? By name? By nation?
     By species?
     
-    Or will we remember—I need you to remember—that we are the sea,
+    Or will we remember—we need to remember—that we are the sea,
     a creature of many skins and many feathers and twelve trillion eyes,
     who so wanted to touch the stars that we became all life
     so we might someday meet them.`}

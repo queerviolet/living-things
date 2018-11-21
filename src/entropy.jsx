@@ -39,26 +39,21 @@ export default () =>
     hot cup.`,
   },
   statistical: {
-    [note]: `It’s really a statistical principle. There are a *lot* more ways
-    for the energy in your tea cup to be in the room than there are for it
-    remain in your tea cup. You can kindof see how that would be intuitively,
-    but if you would rather see proofs, the Wikipedia page for Statistical
+    [note]: `It’s a statistical principle, really.
+    
+    Entropy is essentially a count of how many different ways we can arrange
+    the atoms in something while keeping it looking the same.
+    
+    There are a *lot* more ways for the energy in your tea cup to be out in the world
+    than there are for it remain in your tea cup. I think that makes
+    intuitive sense, but if you want proof, the Wikipedia page for Statistical
     Mechanics has many soothing blue links and terrifying arrangements of
     greek letters.`
   },
-  unentropic_tea: {
-    [note]: `Think of what would have to happen for the tea cup to heat up,
-    even for a millisecond. All of the tea molecules simultaneously failing
-    to radiate, failing to convect, and meanwhile getting warmed by the room.
-    Is it possible? Yes, it has a non-zero probability.
-    
-    Will it ever happen? No. It will never happen, not if you left a tea cup in
-    a room until the heat death of the universe. At which point, incidentally, you
-    will have neither a tea cup, nor a room, nor, in any recognizable sense, a
-    universe. Which is sortof the point.`,   
-  },
   dragon_is_right_out: {
-    [note]: `So, if a *slightly warmer cup of tea* is so thoroughly off the table,
+    [note]: `So, your tea will never warm itself.
+    
+    And if a *slightly warmer cup of tea* is so thoroughly off the table,
     the dragon seems right out. I mean, what’s the probability of that? The molecules
     of a cup of tea spontaneously re-arranging themselves into a tiny creature,
     with hundreds of billions of cells, each one a complex molecular factory, with
@@ -71,12 +66,16 @@ export default () =>
     [note]: `Bodies are pretty resilient, but the tolerances are still *rather slim*.
     Rearrange a few trillion atoms here, a few trillion there, and you’ll pretty
     certainly be dead, if not an oddly-shaped puddle. There’s a lot more ways to be
-    a cooling cup of tea than there are to be a living dragon.`,
+    a cooling cup of tea than there are to be a living dragon.
+    
+    This seems true even if you give the tea an energy source, like a small hot plate,
+    or an enormous fusion furnace turning six billion kilos of mass into pure energy
+    every second. We heat up tea all the time; dragons do not emerge.`,
     frame: dragonAnimation,
   },
   what_about_us: {
     [note]: `But then what does that say about *us*? I mean, we’re a bit more complex
-    than tiny dragons. Okay, we’ve had billions of years of evolution, and that surely
+    than tiny dragons. Yes, we’ve had billions of years of evolution, and that surely
     counts for something. But we had to get started somewhere. Evolution is selective
     pressure applied to replicators, and so you need that first replicator. Which
     seems... unlikely? Perhaps even as unlikely as a tea cup becoming very slightly
@@ -99,22 +98,25 @@ export default () =>
     self-organization of molecules into structures in order to use energy. This
     is what England’s lab has been modeling, and in simulations, they’ve found
     that random assortments of idealized chemicals will tend to form structures
-    tuned to dissipate energy more effectively.`
+    tuned to dissipate energy more effectively.`,
+    frame: dragonAnimation,
   },
   chemicals: {
     [note]: `So if some chemicals react energetically when they’re near each other,
     this simulated soup of chemicals tends to form structures to bring those
     reactants and catalysts near each other to use the energy produced by their
-    reaction.`
+    reaction.`,
+    frame: dragonAnimation,
   },
   for_what: {
-    [note]: `“Use it for what,” you might ask. Bah! For what do we visit Luna?
+    [note]: `“Use it for what,” you might ask. Bah! Why do we visit Luna?
     For what do we climb Sagarmatha? Because they're *there*.
     
     But perhaps a better comparison is coffee, which we drink in order to vibrate
     quite a lot faster. And that’s basically it: these tiny, primordial dissipative
     structures are thermodynamically favored because they harness available energy
-    and turn it into heat.`
+    and turn it into heat.`,
+    frame: dragonAnimation,
   },
   for_the_sake_of_it: {
     [note]: `We burn fuel for the sake of burning it, because it must be burned.
@@ -122,7 +124,8 @@ export default () =>
     I know there are many reasons that we might find fire entrancing, but I like
     to think at least one of them is game recognize game: fire does very quickly
     what we do more slowly, and perhaps this is why it is so easy to think of
-    it as alive.`
+    it as alive.`,
+    frame: dragonAnimation,
   },
   biologists: {
     [note]: `Biologists generally don’t seem too impressed with England’s work.
@@ -134,23 +137,32 @@ export default () =>
     to respond to new data. This theory doesn't explain how that comes
     about. It's quite a bit more rudimentary.
     
-    But I love what it does say. The second law of thermodynamics,
-    you may recall, is also why train tracks rust and wood rots. There
-    are many more ways to be ash and dust than there are to be people or
-    cities, and thus, the second laws, ash and dust is what we will all
-    become.`
+    But I love what it does say. The second law of thermodynamics
+    is also why train tracks rust and wood rots. It is why things fall
+    apart; why the center, over time, cannot hold.
+
+    There are more ways to lie than there are to tell the truth,
+    and so the second law tells us that lies will flutter around
+    the world before while the truth is still lacing up its boots.
+    
+    There are many more ways to be ash and dust than there are to be people or
+    cities, and thus, ash and dust is what we will all, eventually, become.`,
+    frame: dragonAnimation,
   },
   bigger: {
-    [note]: `This theory says that very decay is the very same underlying
-    process as life. It says living things will emerge again and again, at
+    [note]: `This theory tells us that decay is the same underlying
+    process as life. It says living things emerge—the *must* emerge—again and again, at
     different scales, in different mediums, wherever there is a favorable
-    energy gradient, wherever there are resources.
+    energy gradient. Wherever there are resources, structures will emerge
+    to burn them.
 
     Life arises because the universe so wants to die, it will come alive to do it.
     
     This entropic process underlies everything. It *is* everything, the borders
     we recognize between us and our creations and our systems and every other
     living thing? Those are conveniences. Approximations.
+
+    Forget them for a moment.
     
     Let yourself become bigger.
     
@@ -160,10 +172,11 @@ export default () =>
     We are everything.
     We are all life.
     We are the sea that crawled onto land three billion years ago, and began to explore.
-    A creature of ten trillion eyes.`
+    A creature of ten trillion eyes.`,
+    frame: dragonAnimation,
   },
   not_so_long: {
-    [note]: `So perhaps ten thousand years isn’t so long.`,
+    [note]: `So perhaps ten thousand years isn’t so long after all.`,
     style: {transition: 'filter 2s', filter: 'brightness(0)'}
   },
 }}>{

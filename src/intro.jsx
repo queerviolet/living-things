@@ -54,20 +54,31 @@ import grandPartition from './grand-partition.svg'
 export default () => <React.Fragment>
   <Slides of={{
     intro: {
-      [note]: `Hi, my name is Ashi. And right now, I want you to take a deep breath and
-      remember that you are alive.
+      [note]: `Hi everyone. Has everyone had a good time at Codemotion?
       
-      We’ve been conferencing for a couple of days, networking and tweeting
-      and thinking about code and software, all these vaporous things,
-      incarnated in the movement of electrons, and so let's take a step back
-      back and think of the movement of different electrons.
-     
-      Remember your diaphragm, peeling open your lungs to draw in oxygen,
-      so your blood red hemoglobin can let go of CO2 and trap it.
+      Good.
       
-      You are a living thing. You are made up of living things.
+      It's been an eventful couple of days of conferencing! I'm sure you've
+      been networking and tweeting  and thinking about code and software. Living
+      in this kind of vaporous world that we work in.
+
+      I'm Ashi. And I'm here to share with you some observations about living things.
+
+      So first, I want us to remember that we are living things.
+      
+      Take a deep breath.`,
+      frame: 'title',
+    },
+    body: {
+      [note]: `Remember that you have a body.
+      
+      Remember your lungs, peeling open to draw in air
+      so the hemoglobin inside them can let go of CO2 and trap oxygen.
+      
+      Remember that you are a living thing, so you are made up of living things.
       
       Remember the cells of your body. Remember the fibers of your muscles.
+
       Remember your heart, squeezing and squishing that blood around to drive
       oxidization in your cells.
       
@@ -77,13 +88,14 @@ export default () => <React.Fragment>
       Remember the crackling of depolarizing membranes in your brain, neurons
       strobing with information.
       
-      You are a living thing. You are a part of living things. You are a cell
-      within tissues shaped like cities and nations.
+      You are a living thing, and so you are a part of living things. You are a cell
+      within tissues shaped like cities and families.
 
-      You are a living thing that came from living things. Remember
-      your ancestors. Remember your past
-      
-      And remember... ten years ago.`,
+      You are a living thing, and so you hvae come from living things.
+      Remember your ancestors. Remember the story that has brought you here.
+      Remember your past.
+
+      Remember... about ten years ago.`,
       frame: 'title',
     },
     remember: {
@@ -117,13 +129,14 @@ export default () => <React.Fragment>
       each one spinning and slanting. No, we would just get the truth.
       The truth would win.
       
-      Even at the time, there were people—journalists, primarily—saying,
+      Of course, there were nay sayers. Negative nancies.
+      "Journalists", "researchers", asking...
       okay, well, how? How, exactly? How do you know people are who they
       say they are? How can you trust these faceless barely-people,
       veiled by layers of cable and protocol?
 
       And our response—my response, certainly, the one I said on the
-      inside—was that it’ll... work out... somehow. Something something
+      inside—was that it's...probably... fine.e Something something
       web of trust. Wisdom of crowds. 
       `,
       frame: 'sociallyNetworked'
@@ -165,7 +178,7 @@ export default () => <React.Fragment>
       of a place without nations and borders, a place where
       authoritarians fear to tread.`,
       frame: 'fist2',
-      duration: 30,
+      duration: 45,
       ease: Linear.easeNone,
     },
     punch_only_masks: {
@@ -177,7 +190,7 @@ export default () => <React.Fragment>
       frame: 'anonymous',
       bgClass: 'transition-bg-30 black',
       // className: 'zoom-30',
-      duration: 10,
+      duration: 20,
       ease: Linear.easeNone,
     },
     racism: {
@@ -185,7 +198,7 @@ export default () => <React.Fragment>
       your footprints can follow you forever. A place where you can
       be yourself and so can anyone else; a place where everyone can
       find their people and dance in 14/88 time;`,
-      duration: 30,
+      duration: 15,
       frame: 'kekistan',
       bgClass: 'black',
     },
@@ -231,28 +244,25 @@ export default () => <React.Fragment>
       bgClass: 'black',
     },
     this_last_week: {
-      [note]: `Just in this last week, California is on fire again, the worst
-      fires in the recorded history of the state. Seems to be rather hot and dry
-      there, for some reason.
-      
-      Israeli forces are bombing Gaza again, the worst violence there since 2014.
+      [note]: `At least, it seems that way sometimes.
+      I believe in us. But goodness, we don't make it easy.
 
-      And of course, mass shootings, always popular in the U.S., are now basically
-      happening every day.
-      
-      Those were fill-in-the-blank traumas, by the way. I knew when I wrote
-      this talk that three terrible things would have happened in the week
-      before I gave it, and so I just left some space for fresh horrors.`,
+      California is on fire again. Gaza is on fire again.
+      Facebook is apologizing again.
+
+      And of course, mass shootings, always popular in the U.S., are now
+      happening on the daily.`,
       bgClass: 'black',
     },
     on_twitter: {
-      [note]: `Which of course, I found out about on Twitter, so I’m only
-      kindof sure they happened.
+      [note]: `Of course, I found out about all this stuff on Twitter, so
+      I’m only kindof sure it happened.
 
       What’s the saying? Falsehood flies, truth comes limping after.
-      It makes sense. There are many, many, many more ways to lie,
-      distort, or produce gibberish than there are ways to accurately
-      reflect the world.`,
+      And this makes sense! We should expect this.
+      
+      There are many, many, many more ways to lie,
+      distort, or produce gibberish than there are ways to tell the truth.`,
       bgClass: 'black',
     },
     infinitesimal: {
@@ -263,7 +273,7 @@ export default () => <React.Fragment>
       it, you run a powerful learning system on dedicated hardware
       and train it over many years. In journalism school.
 
-      So it turns out there *was* some reason to get your narratives
+      Turns out there *is* some reason to get your narratives
       filtered after all, and it’s the same reason you get your
       cigarettes filtered, because otherwise all manner of crap
       gets in. Our bodies have whole networks of complex systems
@@ -298,15 +308,15 @@ export default () => <React.Fragment>
     </Slide>
 
     <Slide url='quite_powerful'
-        note={`It just happens. And the ability is quite powerful!
-        This allows us to operate on the hypotheses using the the tools of
+        note={`It just happens. This little cognitive superpower allows us to
+        operate on the hypotheses using the the tools of
         physical manipulation.`}>
         <div className='white slide'>A crackling campfire on an ice cold night.</div>
     </Slide>
 
     <Slide url='as_creators'
         note={`As creators, and particularly as coders, I think we develop
-        an intuitive grasp of this. All of us, I think, have physicalized inner
+        an intuitive grasp of this. We have physicalized inner
         worlds that represent the abstract things we work with every day.
 
         I see this, the triangle pops into my head`}>
@@ -316,14 +326,16 @@ export default () => <React.Fragment>
     <Slide url='reducer'
         note={`And this conjurs a machine, something almost like a ribosome
         walking along a chain of RNA, assembling the state of a protein from
-        a sequence of instructions`}>
-        <div className='white slide'>{`<S, A>(state: S, action: A) => S`}</div>
+        a sequence of instructions
+        
+        This faculty is a kind of magic, operating
+        on the space of cognitive experiences. This is the incredible power of
+        language:`}>
+        <div className='white slide'><pre>{`<S, A>(state: S, action: A) => S`}</pre></div>
     </Slide>
 
     <Slide url='speculative_exec'
-        note={`This faculty is incredibly powerful. A kind of magic, operating
-        on the space of cognitive experiences. This is the incredible power of
-        language: I can make you conjure anything, merely by speaking of it.`}>          
+        note={`I can make you conjure anything, merely by speaking of it.`}>          
         <div className='white slide'>A city grown from a tree.</div>
     </Slide>
 
@@ -331,14 +343,14 @@ export default () => <React.Fragment>
       <div className='white slide'>Bugs, bugs everywhere.</div>
     </Slide>
 
-    <Slide url='parents_having_sex' note='ANYTHING'>
-      <div className='white slide'>Your parents having sex.</div>
-    </Slide>          
-    <Slide url='security_flaw'
-        note={`So, uh, there's a bit of a security flaw here. A couple of quirks.
-        Language introduces a kind of speculative execution. We can process
+    <Slide url='parents_having_sex' note={`ANYTHING.
+        
+        Small problem! Little security flaw here. Bit of a quirk.
+        See, language introduces a kind of speculative execution. We can process
         linguistic input incredibly fast, but in order to do that, we have
-        to execute it.`} />
+        to execute it.`}>
+      <div className='white slide'>Your parents having sex.</div>
+    </Slide>
     <Slide url='structure'
       note={`In part, this is because there are sentences that cannot
       be parsed without an understanding of their meaning. We have to load
@@ -354,15 +366,18 @@ export default () => <React.Fragment>
     <Slide
       url='partition'
       note={
-        `So, here's a foreign language that you might kindof know.
-                
-        When I look at this, I do not immediately understand it. But I recognize that
-        I could, if I decided to. Every sentence could be like that, our
-        understanding measured out in gradations, our brains carefully
+        `Like this.
+
+        Maybe you speak better Math than I do, but when I look at this,
+        I do not immediately understand it.
+        
+        But I recognize that
+        I could understand it, if I decided to. Every sentence could be like that,
+        our understanding measured out in gradations, our brains carefully
         unpacking successive layers of meaning.
         
         That would be nice as a protective measure against inflammatory
-        rhetoric— an interesting turn of phrase, incidentally, words provoking
+        rhetoric——an interesting turn of phrase, incidentally, words provoking
         an immune response.`
       }>
       <div className='white slide'>
@@ -392,14 +407,14 @@ export default () => <React.Fragment>
     <Slide url='not_people'
       note={`It is important to understand this rhetoric as technology.
       The discovery of a exploit that leverages forced speculative execution
-      and our disgust subsystems to create associations.
+      and our disgust subsystems to write associations into us.
 
       Of course, a single utterance is not enough. The message will be repeated,
       again and again.`}>
       <div className='white slide'>
         “They don’t care about crime and want illegal immigrants,
         no matter how bad they may be, to pour into and infest our Country.” — Donald Trump
-      </div>    
+      </div>
     </Slide>
     <Slide url='bolsonaro'
       note={`It must replicate itself. It must come alive.
@@ -419,19 +434,20 @@ export default () => <React.Fragment>
     <Slide url='fascist_structures'
       note={`The organic structures of fascism have learned how to tap into
       the power of distributed communication systems in precisely the way
-      that we on some deep level believed that they couldn’t.
+      that on some deep level, we believed that they couldn’t.
 
-      That’s what all the optimism earlier was, after all: Faith. Faith that
-      if we were more connected, then we would be more loving. Faith that
+      We had faith. That’s what all the optimism earlier was, after all:
+      Faith. Faith that if we were more connected, then we would be more loving. Faith that
       if everyone just *understood us*, they would be *with us*. Faith
       that if we knew the truth, we’d do the right thing.`} />
     <Slide url='the_faith'
       note={`I still have that faith. It’s in a different shape now. Been blasted
       and cleaved, and now it shines in other hues.
       
-      I do tend to get drawn into the cynical. Can you tell?
+      It's easy these days to get drawn into fear and shadows. It's as easy for me
+      as anyone.
       
-      But truly, I think we can pull through our current struggles.
+      But I believe in us.
       
       I think every living thing has an awkward phase as it grows, and
       I think that we are growing—us, the thing that is all of us, the

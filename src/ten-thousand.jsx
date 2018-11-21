@@ -1,9 +1,9 @@
 import React, {useRef, useEffect, useState} from 'react'
 
-import Slide, {BuildIn, BuildOut, useBuildEffect} from './slide'
+import Slide, {BuildIn, BuildOut} from './slide'
 import {MorphPath} from './greensock'
 
-import Anim, {every, sec} from './anim'
+import Anim from './anim'
 
 import {Projector} from './projector'
 
@@ -178,17 +178,28 @@ const timeline = {
     win: 20000,
     note: `If we took undertook such monumental construction efforts to mark the site,
     it would proably last, at least if it wasn't raided for parts.
+
+    It's kind of a brute force approach. If you want to make something that lasts,
+    just make something really big, and some of it will probably stick around.
+
+    Could we be more clever, though? We have all kinds of fascinating and novel
+    materials, and intricate engineering techniques. Maybe we could leverage some
+    of those?
     
-    There's another engineering project to build something this long-lived that's worth
-    mentioning here`
+    And indeed, there's another very ong term engineering project that's trying to
+    do that.`
   },
   long_now: {
     width: 10000,
     start: 0,
     label: '⏱?',
     win: 20000,
-    note: `The clock of the Long Now, also being constructed in the deserts of the southwestern
-    U.S., is a project to build a clock that will run for 10,000 years, chiming once per millennium.
+    note: `The clock of the Long Now is a project to build a clock that will run for 10,000 years,
+    chiming a unique chime whenever someone is there to hear it.
+    
+    It's also being constructed in the deserts of the southwestern U.S.
+    The desert is dry and still, so it turns out to be quite a good place to build
+    long-lived things.
     
     They're pulling out some pretty impressive feats of mechanical engineering to make
     the clock mechanisms work. Precision-machined gears made of stainless steel, stone, and
@@ -197,9 +208,11 @@ const timeline = {
     It's a fascinating project. A testament to optimism. Will it work?
 
     Maybe. None of the technology in the clock has been tested across
-    the timespans involved. We think it'll work, but we can't know.
+    the timespans involved. We think it'll work, but it obviously never has.
     
-    It would be nice to know. It would be nice to discover even one structure from 10,000 years ago
+    And it would be nice to know that this task is even possible.
+    
+    It would be nice to discover even one structure from 10,000 years ago
     that could carry our message.
     
     What about a city? The oldest cities are quite old indeed.`
@@ -218,7 +231,7 @@ const timeline = {
     win: 20000,
     note: `Damascus is 8,000 or so.
     
-    Are cities physical things? It’s a bit questionable, isn’t it?
+    Are cities physical things? Sortof questionable, isn’t it?
     They are things, certainly. If we were standing in space,
     looking down at the earth at night, and you pointed to a
     blob of light and asked, “what is that thing?” The answer would be:
@@ -345,11 +358,10 @@ export default () => {
     </svg>
   }    
   <Slide url='10k'
-    note={`To look towards that future, let's look at three of
-    the longest-term engineering projects in human history.`}>
-  <Slide url='the-desert'
-    note={`The first is here, in the New Mexico desert, 40 miles outside
-    of Carlsbad.
+    note={`Let's start by looking at one of the longest-term engineering projects
+    in history.
+    
+    It's here, in the New Mexico desert, 40 miles outside of Carlsbad.
   
     In a pit of radioactive waste.
     
@@ -357,15 +369,20 @@ export default () => {
     
     They've drilled a hole 600 meters into the salt, and they've been dumping
     radioactive waste down there.`}>
-    <div className='slide'>
-      {timeline ? null : <video className='full' ref={vid} src={desertNight} volume={0} loop />}
-      <BuildIn>{() => {
-        vid.current.currentTime = 0
-        vid.current.play()
-      }}</BuildIn>
-      <BuildOut>{() => vid.current.pause()}</BuildOut>
-    </div>
-  </Slide>
+  <div className='slide'>
+    {timeline ? (console.log('no video'), 'video') : <video className='full' ref={vid} src={desertNight} volume={0} loop />}
+    <BuildIn>{() => {
+      console.log('playing')
+      vid.current.style.opacity = 1
+      vid.current.currentTime = 0
+      vid.current.play()
+    }}</BuildIn>
+    <BuildOut>{() => {
+      console.log('building out')
+      vid.current.style.opacity = 0
+      vid.current.pause()
+    }}</BuildOut>
+  </div>
   <Projector onChange={setProj} style={timeline && timeline.projectorStyle}>
     <Slide url='wipp'
       note={`It's a bit more controlled`}>

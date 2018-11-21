@@ -87,7 +87,7 @@ class Build {
       url: this.pathname,
       nextBuildId: this.next && this.next.pathname,
       prevBuildId: this.prev && this.prev.pathname,
-      innerHTML: this.element.dataset.note || '',
+      markdown: this.element.dataset.note || '',
     }
   }
 }
