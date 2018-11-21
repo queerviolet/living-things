@@ -6,6 +6,9 @@ import {Animation} from './morph-svg'
 
 import { Linear, Power3 } from 'gsap/TweenLite';
 import { Elastic, Back } from 'gsap/TweenMax';
+
+import title from './title.svg'
+import white from './white.svg'
 import news0 from './news0.svg'
 import news1 from './news1.svg'
 import distributed from './distributed.svg'
@@ -25,6 +28,8 @@ import eyeTeeth from './eye-teeth.svg'
 import eyeTeethShut from './eye-teeth-shut.svg'
 
 const frames = {
+  title,
+  white,
   news0,
   news1,
   distributed,
@@ -43,40 +48,50 @@ const frames = {
   eyeTeeth,
   eyeTeethShut
 }
-console.log(frames)
 
 import grandPartition from './grand-partition.svg'
 
 export default () => <React.Fragment>
   <Slides of={{
     intro: {
-      [note]: `Hi, my name is Ashi. And right now, I want you to remember that you are a living thing. We’ve been conferencing for a couple of days, networking and tweeting and thinking about the movement of electrons, and so right now I want you to step back
+      [note]: `Hi, my name is Ashi. And right now, I want you to take a deep breath and
+      remember that you are alive.
+      
+      We’ve been conferencing for a couple of days, networking and tweeting
+      and thinking about code and software, all these vaporous things,
+      incarnated in the movement of electrons, and so let's take a step back
+      back and think of the movement of different electrons.
+     
+      Remember your diaphragm, peeling open your lungs to draw in oxygen,
+      so your blood red hemoglobin can let go of CO2 and trap it.
+      
+      You are a living thing. You are made up of living things.
+      
+      Remember the cells of your body. Remember the fibers of your muscles.
+      Remember your heart, squeezing and squishing that blood around to drive
+      oxidization in your cells.
+      
+      Remember that oxidization is burning, and so inside of you are thirty seven
+      trillion tiny fires.
+      
+      Remember the crackling of depolarizing membranes in your brain, neurons
+      strobing with information.
+      
+      You are a living thing. You are a part of living things. You are a cell
+      within tissues shaped like cities and nations.
 
-      Take a deep breath
+      You are a living thing that came from living things. Remember
+      your ancestors. Remember your past
       
-      And remember
-      
-      You are alive
-      
-      You are a living thing.
-      
-      Remember your diaphragm, peeling open your lungs to draw in oxygen, so your blood red hemoglobin can let go of CO2 and trap it.
-      
-      Remember that you are a living thing made up of living things.
-      
-      Remember the cells of your body. Remember the fibers of your muscles. Remember your heart, squeezing and squishing that blood around to drive oxidization in your cells. Remember that oxidization is burning, and so inside each of your cells is a tiny fire. Remember the crackling of depolarizing membranes in your brain, neurons strobing with information.
-      
-      Remember that you are a living thing that is a part of living things. That you are a cell within tissues shaped of cities and forests.
-      
-      I want you to remember your ancestors.
-      
-      And I want you to think back and remember about ten years ago.`
+      And remember... ten years ago.`,
+      frame: 'title',
     },
     remember: {
-      [note]: `Remember ten years ago?`,        
+      [note]: `Remember ten years ago?`,
+      frame: 'white',
     },
     we_were_creating: {
-      [note]: `We were creating`,
+      [note]: `Ten years agom we were creating`,
       frame: 'news0',
     },
     talking: {
@@ -237,7 +252,8 @@ export default () => <React.Fragment>
       What’s the saying? Falsehood flies, truth comes limping after.
       It makes sense. There are many, many, many more ways to lie,
       distort, or produce gibberish than there are ways to accurately
-      reflect the world.`
+      reflect the world.`,
+      bgClass: 'black',
     },
     infinitesimal: {
       [note]: `Based on scale alone, you rather suspect that finding
@@ -257,6 +273,7 @@ export default () => <React.Fragment>
       brain. These mechanisms have evolved over billions of years,
       a program running on the most powerful parallel computer on
       Earth—namely, the Earth.`,
+      bgClass: 'black',
     },
   }}>{
     ({bgClass='white', className, frame, duration=1, ease=Power3.easeInOut}) =>

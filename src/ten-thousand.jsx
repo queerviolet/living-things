@@ -1,6 +1,6 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useEffect, useState} from 'react'
 
-import Slide, {BuildIn, BuildOut} from './slide'
+import Slide, {BuildIn, BuildOut, useBuildEffect} from './slide'
 import {MorphPath} from './greensock'
 
 import Anim, {every, sec} from './anim'
@@ -259,16 +259,32 @@ const timeline = {
 
 const timelineEntries = Object.entries(timeline)
 
+const MorphFromTo = ({ dFrom, dTo, style, sec=0.1 }) => {
+  const [d, setD] = useState(dFrom)
+  useEffect(() => {
+    if (d === dFrom) {
+      if (d !== dFrom) setD(dFrom)
+      const timer = setTimeout(() => setD(dTo), sec * 1000)
+      return () => clearTimeout(timer)
+    }
+    setD(dTo)
+  }, [dFrom, dTo])
+  return <MorphPath d={d} style={style}  />
+}
+
 const getPath = (key, {start=0, width}, y, win) =>
-  <MorphPath key={key} d={
-    every(0.1[sec], t => t
-      ? `M ${100 * start / win},${y}
-         L ${100 * (start + width) / win},${y}`
-      : `M ${100 * start / win},${y}
-         L ${100 * start / win},${y}`)} style={{
-    strokeWidth: 1,
-    stroke: 'cyan',
-  }} />
+  <MorphFromTo key={key} style={{
+      strokeWidth: 1,
+      stroke: 'cyan',
+    }}
+    dTo={`
+      M ${100 * start / win},${y}
+      L ${100 * (start + width) / win},${y}`
+    }
+    dFrom={`
+      M ${100 * start / win},${y}
+      L ${100 * start / win},${y}
+    `} />
 
 const getLabel = (key, label='', y, win) =>
   <text key={`${key}-label`}

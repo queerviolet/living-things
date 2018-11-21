@@ -38,27 +38,11 @@ export const MorphPath = props => {
   
   const pathRef = useRef()
   useEffect(() => {
-    if (Array.isArray(pathData)) {
-      console.log('creating timeline', pathData)
-      const t = new TimelineMax
-      const count = pathData.length
-      for (let i = 0; i !== count; ++i) {
-        t.to(pathRef.current,
-          duration,
-          {morphSVG: pathData[i].d, ease})
-      }
-      t.yoyo(true).repeat(-1)
-      t.play()
-      return () => { console.log('destroying timeline') }
-    }
     TweenLite.to(pathRef.current,
       duration,
-      {morphSVG: pathData, ease})
-    return () => {
-      console.log('destroying effect')
-    }
+      Object.assign({morphSVG: pathData, ease}, style))
   }, [pathData])
   return <path
     ref={pathRef} d={initialPath.current}
-    className={className} style={style} />
+    className={className} />
 }

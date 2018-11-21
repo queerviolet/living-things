@@ -21,7 +21,7 @@ const loadSvgPaths = async (src, id=src) => {
               fill: path.getAttribute('fill'),
               fillOpacity: path.getAttribute('fill-opacity') || 1,
               stroke: path.getAttribute('stroke'),
-              strokeWidth: path.getAttribute('stroke-width'),
+              strokeWidth: path.getAttribute('stroke-width') || 0,
             }
           }
         }
