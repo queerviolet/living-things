@@ -136,7 +136,7 @@ export default () => <React.Fragment>
       veiled by layers of cable and protocol?
 
       And our response—my response, certainly, the one I said on the
-      inside—was that it's...probably... fine.e Something something
+      inside—was that it's... fine... probably. Something something
       web of trust. Wisdom of crowds. 
       `,
       frame: 'sociallyNetworked'
@@ -156,14 +156,14 @@ export default () => <React.Fragment>
       ease: Elastic.easeOut,
     },
     obamas: {
-      [note]: `Barack Hussein Obama has just been elected because of us.
+      [note]: `In the US, Barack Hussein Obama has just been elected because of us.
       Global warming: definitely happening, very bad,
       but we’re *going to fix it*. See, we are powerful.`,
       frame: 'obamas'
     },
     a_new_culture: {
       [note]: `We have been weaving ourselves a new culture.
-      Connecting ourselves in a new way.`,
+      Connecting in a new way.`,
       frame: 'fist',
     },
     without_nations_and_borders: {

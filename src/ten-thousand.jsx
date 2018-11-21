@@ -369,7 +369,7 @@ export default () => {
     They've drilled a hole 600 meters into the salt, and they've been dumping
     radioactive waste down there.`}>
   <div className='slide'>
-    {timeline ? (console.log('no video'), 'video') : <video className='full' ref={vid} src={desertNight} volume={0} loop />}
+    {timeline ? null : <video className='full' ref={vid} src={desertNight} volume={0} loop />}
     <BuildIn>{() => {
       console.log('playing')
       vid.current.style.opacity = 1
