@@ -46,18 +46,17 @@ const cellAnimation = every(0.3[sec], () =>
 export default () =>
 <Slides of={{
   dreamtime: {
-    [note]: `Many years ago, this land beneath greater Melbourne extended
+    [note]: `Many years ago, the land beneath greater Melbourne extended
     right out to the sea. It was a large grassy plain, and what’s now
-    the Yarra river flowed out across it into the sea. The Boon Wurrung,
-    the aboriginal people of the land, knew the river as Birrarung,
-    the river of mists.
+    the Yarra river flowed out across it into the sea. the aboriginal people of the land—
+    the Boon Wurrung people—called the river Birrarung, the river of mists.
     
-    This is a story of their people.
+    This is their story.
 
     It has been told around communal fires again and again,
     passing between generations.
     
-    Its shape is famliar, and it goes like this.`
+    Its shape is famliar, and it goes like this:`
   },
   many_years_ago: {
     [note]: `Many, many years ago, there was a time of peace and harmony.
@@ -108,10 +107,10 @@ export default () =>
   stopped_rising: {
     [note]: `The sea stopped rising. But the waters never fell.
     
-    The sea washed away much of the woodlands of the Boon Wurrung and
-    most of their country was reduced to a narrow strip of coastline.
+    The sea had washed away much of the woodlands. Their country was
+    reduced to a narrow strip of coastline.
     
-    The new waters created a large bay known to the Boon Wurrung as Nairm.
+    The new waters created a large bay. They called it Nairm.
     Colonizers would later name it Port Phillip Bay.
 
     Today, Birrarung river of mist, still flows beneath the bay.`
@@ -120,7 +119,7 @@ export default () =>
     [note]: `And today, we can look at the land beneath the bay, and the stones all
     around it, and we find that they whisper pieces of this story as well.
     The geological evidence is pretty clear: Ten thousand years ago, the bay
-    was a grassy plain. Then it flooded. It would have happened quite quickly.
+    was a grassland. Then it flooded. It would have happened quite quickly.
     This was the end of the last glacial period. A time of tremendous
     climactic change. Shifting coastlines. Warming temperatures.
     Rising waters. And all those things shift resources. They uproot
@@ -129,7 +128,7 @@ export default () =>
     They create war.`
   },
   when_it_was_over: {
-    [note]: `And when it was over and there was peace, the Boon Wurrung
+    [note]: `And when it was over and there was peace, the people
     remembered. They gathered around the fire, and they told stories, and they
     healed from what was surely a traumatic time.`
   },
@@ -144,10 +143,10 @@ export default () =>
     made us swear on the laws. And that's why we follow the laws.
     
     What an incredibly robust technology, to carry a message across such
-    distance.`
+    temporal distance.`
   },
   honor: {
-    [note]: `Oral storytelling: the practice, the technology, this is how
+    [note]: `Oral storytelling: is how
     the Boon Wurrung honor their gods. It is how their gods *live*.
 
     Gods are not physical things, but I think they are living things.
@@ -177,7 +176,7 @@ export default () =>
     [note]: `We still have them, of course we do.` 
   },
   faceless: {
-    [note]: `Today, many of our gods are faceless.`,
+    [note]: `Today, many of our gods are faceless. Some don't identify as gods.`,
     frame: 'faceless',
     ease: Power3.easeInOut,
   },  
@@ -192,12 +191,12 @@ export default () =>
     ease: Power3.easeInOut,
   },  
   watch_over: {
-    [note]: `They watch`,
+    [note]: `They watch over us`,
     frame: 'facebook',
     ease: Power3.easeInOut,
   }, 
   watch_over_assistant: {
-    [note]: `over us`,
+    [note]: `...`,
     frame: 'assistant',
     ease: Power3.easeInOut,
   }, 
@@ -211,7 +210,7 @@ export default () =>
     ease: Power3.easeInOut,
   },
   sacrifice_attention_slack: {
-    [note]: ``,
+    [note]: `...`,
     [use]: <BuildIn>{() => {
       slackAudio.currentTime = 0
       slackAudio.play()

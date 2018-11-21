@@ -362,29 +362,7 @@ export default () => <React.Fragment>
       I think it's difficult to imagine how it might feel different if it
       were implemented differently. In this case, I think it's relatively
       accessible, if you imagine looking at a foreign language that you
-      kindof know.`} />
-    <Slide
-      url='partition'
-      note={
-        `Like this.
-
-        Maybe you speak better Math than I do, but when I look at this,
-        I do not immediately understand it.
-        
-        But I recognize that
-        I could understand it, if I decided to. Every sentence could be like that,
-        our understanding measured out in gradations, our brains carefully
-        unpacking successive layers of meaning.
-        
-        That would be nice as a protective measure against inflammatory
-        rhetoric——an interesting turn of phrase, incidentally, words provoking
-        an immune response.`
-      }>
-      <div className='white slide'>
-        <img style={{transform: `scale(3)`}} src={grandPartition} />
-      </div>
-    </Slide>
-
+      kindof know.`} />    
     <Slide url='performance_considerations'
         note={`But there are also performance considerations. Sandboxing
         language would decrease its performance, just as properly-isolated

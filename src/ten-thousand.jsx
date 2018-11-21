@@ -151,7 +151,7 @@ const timeline = {
     start: -4500,
     label: 'great pyramid of giza',
     win: 6000,
-    note: `The great pyramid certainly sends quite a message!
+    note: `The great pyramid of Giza certainly sends quite a message!
     It's about 4,500 years old. That’s 56 lifetimes.
     Not bad. But the radiation would outlast them by another 68.`
   },
@@ -163,27 +163,27 @@ const timeline = {
     note: `That’s about the age of the oldest pyramids in the world,
     in Brazil. All the oldest pyramids in the world are in the Americas,
     actually, though few of them remain. From 1920 to 1960, most of
-    them were destroyed. There are many reasons, and yet there is
-    only one: colonialism.
+    them were destroyed. There's a lot of reasons for this, and yet there is
+    really just one: colonialism.
     
-    In a sense, we've solved the marking problem at this point.
+    So in a sense, we've solved the marking problem at this point.
 
-    The pyramid at Cheops and the pyramids of the Americas—all monumental
-    structures—are still mostly intact after 5,000 years.`
+    The great pyramid is still mostly intact, as are the American pyramids
+    that haven't been intentionally destroyed.`
   },
   radiation: {
     width: 10000,
     start: 0,
     label: '☢️ danger ☢️',
     win: 20000,
-    note: `If we took undertook such monumental construction efforts to mark the site,
+    note: `If we undertook such monumental construction efforts to mark the site,
     it would proably last, at least if it wasn't raided for parts.
 
     It's kind of a brute force approach. If you want to make something that lasts,
     just make something really big, and some of it will probably stick around.
 
-    Could we be more clever, though? We have all kinds of fascinating and novel
-    materials, and intricate engineering techniques. Maybe we could leverage some
+    Could we be more clever, though? We have all these novel
+    materials and intricate engineering techniques. Maybe we could leverage some
     of those?
     
     And indeed, there's another very ong term engineering project that's trying to
@@ -210,7 +210,7 @@ const timeline = {
     Maybe. None of the technology in the clock has been tested across
     the timespans involved. We think it'll work, but it obviously never has.
     
-    And it would be nice to know that this task is even possible.
+    It would be nice to know that this task is even possible.
     
     It would be nice to discover even one structure from 10,000 years ago
     that could carry our message.
@@ -262,7 +262,7 @@ const timeline = {
     resilient enough to stay anchored across 10,000 years of the
     shifting landscape of the world’s resources.
 
-    It doesn’t have to be a physical thing.
+    It doesn’t have to be a structure.
 
     It can just be a story.
 

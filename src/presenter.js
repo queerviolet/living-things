@@ -38,7 +38,9 @@ class BuildNote extends HTMLElement {
   update({markdown, order, id}) {
     this.id = id
     this.title.textContent = id
-    this.content.innerHTML = marked(markdown.replace(/\n\s+/g, '\n'))
+    const md = markdown.replace(/\n +/g, '\n')
+    console.log(md)
+    this.content.innerHTML = marked(md)
     // this.style.order = order
   }
 }
