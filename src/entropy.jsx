@@ -27,12 +27,14 @@ export default () =>
   },
   second_law: {
     [note]: `You’re familiar, perhaps, with the second law of thermodynamics.
-    It’s the bit of physics that says that when you leave a hot cup of tea
-    in a cool room for a while, you’ll most likely end up with a tepid cup
-    of tea in a slightly less cool room—and not, for example, a boiling cup
-    of tea in a very cold room, or a freezing room with a tiny dragon in it.    
-    If I put ice cubes in the tea, they would melt. But we would not
-    expect ice cubes to spontaneously emerge from a steaming hot cup.`,
+    It’s the bit of physics that says that emtropy always increases.
+    
+    OR: when you leave a hot cup of tea in a cool room for a while, you’ll most
+    likely end up with a tepid cup of tea in a slightly less cool room—and not,
+    for example, a boiling cup of tea in a very cold room, or a freezing room
+    with a tiny dragon in it. If I put ice cubes in the tea, they would melt.
+    But we would not expect ice cubes to spontaneously emerge from a steaming
+    hot cup.`,
   },
   statistical: {
     [note]: `It’s really a statistical principle. There are a *lot* more ways

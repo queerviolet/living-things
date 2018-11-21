@@ -37,37 +37,36 @@ const cellAnimation = every(0.3[sec], () =>
 export default () =>
 <Slides of={{
   dreamtime: {
-    [note]: `This is a story of the Boon Wurrung people.
-    It was been told around the communal fire, passing between generations.`
+    [note]: `Many years ago, this land beneath greater Melbourne extended
+    right out to the sea. It was a large grassy plain, and what’s now
+    the Yarra river flowed out across it into the sea. The Boon Wurrung,
+    the aboriginal people of the land, knew the river as Birrarung,
+    the river of mists.
+    
+    This is a story of their people.
+
+    It has been told around communal fires again and again,
+    passing between generations.
+    
+    Its shape is famliar, and it goes like this.`
   },
   many_years_ago: {
-    [note]: `Many years ago, the land beneath greater Melbourne extended
-    right out to the sea. The water now called Port Phillip Bay
-    was then a large flat plain. What’s now the Yarra river flowed out
-    across it into the sea. The Boon Wurrung people knew it as Birrarung,
-    the river of mists.`
-  },
-  covered: {
-    [note]: `The plain was covered in grass and woodlands on which the
-    Boon Wurrung men hunted kangaroo and emu. They cultivated murnong tubers,
-    collected food from the river and the sea and harvested
-    the eels that migrated through every year.`
-  },
-  custodians: {
-    [note]: `The Boon Wurrung were the custodians of the woodlands but
-    traded with and welcomed people from other parts of the Kulin Nation.
-    They obeyed the laws of their creator Bundjil, who travelled as an eagle,
-    and Waang who protects the waterways and travelled as a crow.`
+    [note]: `Many, many years ago, there was a time of peace and harmony.
+    The Boon Wurrung tended the woodlands, they hunted and fished and
+    cultivated yam daisies. They welcomed people from across the Kulin nation, and they
+    obeyed the laws of their creator Bunjil, who traveled as an eagle.`
   },
   one_day: {
-    [note]: `One day – many, many years ago – there came a time of chaos
-    and crisis. The Boon Wurrung and the other Kulin nations were in conflict.
-    They argued and fought. They neglected the woodlands. They neglected the
-    murnong. The animals were over killed and not always eaten. Fish were
-    caught during their spawning season. They didn’t harvest the eels.`
-  },
-  the_sea_began_to_rise: {
-    [note]: `As this chaos grew the sea became angry and began to rise.
+    [note]: `But one day there came a time of chaos and crisis.
+    The Boon Wurrung and the other Kulin argued and fought and killed.
+        
+    They neglected the woodlands. They neglected the
+    yam daisy. They overhunted and overfished.
+    
+    And all this violence angered the sea.
+    
+    And the sea began to rise.
+    
     The river became flooded and eventually the whole flat plain was covered
     in water. It threatened to flood their whole country.`
   },
@@ -76,33 +75,37 @@ export default () =>
     and spiritual leader. They asked Bundjil to stop the sea from rising.`
   },
   angry_bundjil: {
-    [note]: `Bundjil was angry with his people, and he told them that they
-    would have to change their ways if they wanted to save their land.
+    [note]: `Like the sea, Bundjil too was angry with his people.
+    
+    He told them that they would have to change their ways if they
+    wanted to save their land.
 
-    The people thought about what they had been doing.
-
-    They promised to follow him.
-
-    Bundjil walked out to the sea, raised his spear and directed the sea
-    to stop rising. Bundjil then made the Boon Wurrung promise
-    that they would respect the laws:
+    Bundjil he made them promise to respect the laws:
 
     They would learn from their mistakes.
-    They would take care of the woodlands.
-    They would take care of Bundjil’s children.
+    They would care for the woodlands.
+    They would care for Bundjil’s other children, all the creatures of the earth.
+    They would accept visitors.
     They would sort their differences without war.
-    And most importantly, the Boon Wurrung would always welcome visitors,
-    and they would make all visitors promise to obey the laws of Bundjil,
-    and neither hurt his woodlands, nor harm his children.`
+
+    The people thought about what they had been doing.
+    They thought of the rising sea.
+    They thought of floods and war.
+    And they promised to follow him.
+
+    Bundjil walked out to the sea, raised his spear and directed the sea
+    to stop rising.`
   },
   stopped_rising: {
-    [note]: `The water stopped rising, but never subsided. The sea stayed,
-    creating a large bay known to the Boon Wurrung as Nairm. Colonizers
-    would later name it Port Phillip Bay. The sea washed away much of the
-    woodlands of the Boon Wurrung and much of their country was reduced to
-    a narrow strip of coastline.
+    [note]: `The sea stopped rising. But the waters never fell.
+    
+    The sea washed away much of the woodlands of the Boon Wurrung and
+    most of their country was reduced to a narrow strip of coastline.
+    
+    The new waters created a large bay known to the Boon Wurrung as Nairm.
+    Colonizers would later name it Port Phillip Bay.
 
-    Today, Birrarung, river of mist, still flows beneath Nairm.`
+    Today, Birrarung river of mist, still flows beneath the bay.`
   },
   today: {
     [note]: `And today, we can look at the land beneath the bay, and the stones all
@@ -126,19 +129,23 @@ export default () =>
     human stories whose origins we can place. And this is how they were
     brought here, through oral storytelling, a bridge that has taken the
     story from lips to ears to lips to ears over four hundred generations.
+
+    The story itself participates. Its structure is familiar, comforting.
+    Once, there was peace. Then, we broke it. The gods fixed it, but they
+    made us swear on the laws. And that's why we follow the laws.
     
     What an incredibly robust technology, to carry a message across such
     distance.`
   },
   honor: {
     [note]: `Oral storytelling: the practice, the technology, this is how
-    they honor their gods. It is how their gods *live*.
+    the Boon Wurrung honor their gods. It is how their gods *live*.
 
     Gods are not physical things, but I think they are living things.
     Certainly, they have duration, physical extent, and material power.
     Gods that last maintain a kind of conceptual homeostasis within their
     spheres of influence, the membranes of a their non-physical bodies gated
-    by shibboleths and initiation ceremonies.    
+    by shibboleths and ritual.
     
     Gods command resources-through us, just as we command resources through
     our muscles.
@@ -176,22 +183,22 @@ export default () =>
     ease: Power3.easeInOut,
   },  
   watch_over: {
-    [note]: `They watch over us.`,
+    [note]: `They watch`,
     frame: 'facebook',
     ease: Power3.easeInOut,
   }, 
   watch_over_assistant: {
-    [note]: `They watch over us.`,
+    [note]: `over us`,
     frame: 'assistant',
     ease: Power3.easeInOut,
   }, 
   sacrifice_attention: {
-    [note]: `We sacrifice our attention to them.`,
+    [note]: `We sacrifice our attention`,
     frame: 'phone',
     ease: Power3.easeInOut,
   },
   sacrifice_attention_slack: {
-    [note]: `We sacrifice our attention to them.`,
+    [note]: `to them`,
     frame: 'slack',
     ease: Power3.easeInOut,
   },
