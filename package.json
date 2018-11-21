@@ -55,6 +55,7 @@
     "manyline": "0.0.1",
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
+    "react-transition-group": "^2.5.0",
     "selector-observer": "^2.1.3"
   }
 }

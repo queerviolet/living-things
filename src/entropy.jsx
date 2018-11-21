@@ -2,6 +2,8 @@ import React, {forwardRef, useRef, useState} from 'react'
 
 import Slide, {Slides, note, use, BuildIn, BuildOut, useBuildEffect} from './slide'
 
+import {CSSTransition} from 'react-transition-group'
+
 import {every, sec} from './anim'
 import {Animation} from './morph-svg'
 
@@ -166,7 +168,7 @@ export default () =>
   },
 }}>{
   ({frame=teaAnimation, ease=Linear.easeNone, duration=1, style}) =>
-    <div className='viewport lavender' style={style}>
+    <div className='viewport' style={style}>
       <Animation  srcs={anim} frame={frame} morph={{ duration, ease }} />
     </div>
 }</Slides>

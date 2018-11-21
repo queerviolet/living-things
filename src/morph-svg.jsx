@@ -19,9 +19,9 @@ const loadSvgPaths = async (src, id=src) => {
             class: path.getAttribute('class'),
             style: {
               fill: path.getAttribute('fill'),
-              fillOpacity: path.getAttribute('fill-opacity') || 1,
+              'fill-opacity': path.getAttribute('fill-opacity') || 1,
               stroke: path.getAttribute('stroke'),
-              strokeWidth: path.getAttribute('stroke-width') || 0,
+              'stroke-width': path.getAttribute('stroke-width') || 0,
             }
           }
         }
@@ -51,8 +51,9 @@ const loadUngroupedSvgPaths = async (src, id=src) => {
             class: path.getAttribute('class'),
             style: {
               fill: path.getAttribute('fill'),
+              'fill-opacity': path.getAttribute('fill-opacity') || 1,
               stroke: path.getAttribute('stroke'),
-              strokeWidth: path.getAttribute('strokewidth'),
+              'stroke-width': path.getAttribute('strokewidth'),
             }
           }
         }
