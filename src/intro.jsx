@@ -59,27 +59,27 @@ export default () => <React.Fragment>
       Good.
       
       It's been an eventful couple of days of conferencing! I'm sure you've
-      been networking and tweeting  and thinking about code and software. Living
+      been networking and tweeting and thinking about code and software. Inhabiting
       in this kind of vaporous world that we work in.
 
-      I'm Ashi. And I'm here to share with you some observations about living things.
+      I'm Ashi. And I'm here to share some observations about living things.
 
       So first, I want us to remember that we are living things.
       
-      Take a deep breath.`,
+      So take a deep breath.`,
       frame: 'title',
     },
     body: {
       [note]: `Remember that you have a body.
       
       Remember your lungs, peeling open to draw in air
-      so the hemoglobin inside them can let go of CO2 and trap oxygen.
+      so the hemoglobin inside them can release CO2 and trap oxygen.
       
-      Remember that you are a living thing, so you are made up of living things.
+      You are alive, so you are made up of living things.
       
       Remember the cells of your body. Remember the fibers of your muscles.
 
-      Remember your heart, squeezing and squishing that blood around to drive
+      Remember your heart, squeezing and squishing your blood around to drive
       oxidization in your cells.
       
       Remember that oxidization is burning, and so inside of you are thirty seven
@@ -88,10 +88,10 @@ export default () => <React.Fragment>
       Remember the crackling of depolarizing membranes in your brain, neurons
       strobing with information.
       
-      You are a living thing, and so you are a part of living things. You are a cell
-      within tissues shaped like cities and families.
+      You are alive, so you are a part of living things. You are a cell
+      within tissues shaped like cities and families and nations.
 
-      You are a living thing, and so you hvae come from living things.
+      You are alive, so you hvae come from living things.
       Remember your ancestors. Remember the story that has brought you here.
       Remember your past.
 
@@ -103,7 +103,7 @@ export default () => <React.Fragment>
       frame: 'white',
     },
     we_were_creating: {
-      [note]: `Ten years agom we were creating`,
+      [note]: `Ten years ago we were creating`,
       frame: 'news0',
     },
     talking: {

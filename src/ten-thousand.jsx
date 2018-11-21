@@ -136,7 +136,7 @@ const timeline = {
     start: -2000,
     label: 'great wall (oldest)',
     win: 4500,
-    note: `The oldest bits of the great wall are about 2,000 years old.
+    note: `The oldest bits of the great wall of china are about 2,000 years old.
     But it’s been maintained and rebuilt and extended *a lot*.`
   },
   great_wall_newer_parts: {
@@ -161,10 +161,9 @@ const timeline = {
     label: 'american pyramids',
     win: 10000,
     note: `That’s about the age of the oldest pyramids in the world,
-    in Brazil. All the oldest pyramids in the world are in the Americas,
+    in Brazil. *All* the oldest pyramids in the world are in the Americas,
     actually, though few of them remain. From 1920 to 1960, most of
-    them were destroyed. There's a lot of reasons for this, and yet there is
-    really just one: colonialism.
+    them were destroyed because that is what colonialism does.
     
     So in a sense, we've solved the marking problem at this point.
 
@@ -440,8 +439,9 @@ export default () => {
     <Slide url='issues' note={`The first problem, of course, is
     that people are curious and resourceful, and destructive.
     If we mark a place, people are going to poke around, which we
-    don't want. If we make the marker scary or expensive, people
-    may decide this is where we've buried the treasure`}>
+    don't want. If we make the marker scary, people
+    may decide this is where we've buried the treasure. If we make
+    the marker expensive, people will walk off with it.`}>
       <h1>
         We decided against simple “Keep Out” messages with scary faces.
         Museums and private collections abound with such guardian figures
@@ -454,6 +454,8 @@ export default () => {
       speak our language, to people who may not understand the danger,
       without convincing them that we're trying to trick them or hide
       something.
+
+      So that's all a bit hard.
     `}>
       <h1><i>This place is a message.. and part of a
       system of messages.. pay attention to it!

@@ -186,17 +186,18 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
   <Slide url='systemically'
     note={`Appled systemically, this means we can’t keep imagining that toothless
     statements of corporate ethics will help anything—they haven’t,
-    and there is no reason to suspect they will. We all have personal
-    incentives, but money is a universal one
+    and there is no reason to suspect they will. The incentives aren't
+    there to be careful. The incentives are there to move fast and break
+    things. Things like democracy.
     
     We are creating systems that can remake the informational pathways
-    of our society. This is incredible power. I think it’s something
-    that we must do to become whatever it is we’re going to become.
-    But it is an experiment. We are, all of us, experimental subjects.
+    of our society. This is incredible power. And it's a good thing!
+    It’s something that we must do to become whatever it is we’re going to become.
+    But it's an experiment. So we are all now experimental subjects.
     
-    We need to measure, understand, and control the impacts of this
-    experimentation. This next part I do not love myself, but I see
-    no way around it.
+    As with any live subject trials, we need to be ethical and careful
+    in that experimentation. We need to measure, understand, and control
+    the impacts of it.
     `} frame={liquid} transition='none' />    
   <Slide url='board_of_social_engineering'
     note={`We need a Board of Social Engineering. And we need
@@ -218,8 +219,8 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
   <Slide url='light'
     note={`We need to see the light at the end of ten thousand year
     tunnel. We need to remind each other of the light. When the world
-    looks dark, we need to remember that
-    there are many futures still ahead of us.`}
+    looks dark, we need to remember that there are many futures still
+    ahead of us:`}
     frame={light} transition='none'
     />
   <Slide url='wasteland'
@@ -247,11 +248,11 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
     duration={closingFrameSec}
     note={`They will send roots deep, deep down, mining the earth.
     Above the surface, they will grow into tremendous
-    mangroves. They will raise up islands up beneath them, whole cities will grow
-    along their branches. Fron their canopies, they will sprout long shoots, growing
+    mangroves. They will raise up islands up beneath them, whole cities fruiting
+    along their branches. From their canopies, they will sprout long shoots, growing
     into space to drink up the sun.
 
-    And when we climb them those tethers, if we find that we are not alone,
+    And when we climb them those beanstalks, if we find that we are not alone,
     how will we introduce ourselves to the creatures out there? By name? By nation?
     By species?
     

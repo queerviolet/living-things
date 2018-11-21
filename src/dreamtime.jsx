@@ -140,10 +140,8 @@ export default () =>
 
     The story itself participates. Its structure is familiar, comforting.
     Once, there was peace. Then, we broke it. The gods fixed it, but they
-    made us swear on the laws. And that's why we follow the laws.
-    
-    What an incredibly robust technology, to carry a message across such
-    temporal distance.`
+    made us swear on the laws. And that's why we follow the laws. These
+    structures hook into us like velcro.`
   },
   honor: {
     [note]: `Oral storytelling: is how
@@ -161,12 +159,13 @@ export default () =>
     They are even made of replicating pieces. Not biological pieces, but
     pieces of a process. What's a piece of a process? Let's call it a shard.
 
-    Oral storytelling is how the shards of Bundjil reproduce. Moving from person
-    to person. Becoming distributed dreams, concepts given tenancy on the
-    infrastructure of many minds.`
+    The replication process is crucial. It's shards of Bundjil reproduce.
+    Moving from person to person. Becoming distributed dreams, concepts
+    given tenancy on the infrastructure of many minds. Maintained and evolving
+    across a shifting social landscape.`
   },
   carried_the_story: {
-    [note]: `And with their gods, the Boon Wurrung have carried a historical
+    [note]: `With their gods, the Boon Wurrung have carried a historical
     record, essentially intact, for ten thousand years.
 
     I hope as we enter our own time of conflict, the gods of today will be as
