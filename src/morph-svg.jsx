@@ -131,8 +131,10 @@ export const Animation = ({srcs, frame, morph={}, style={}, className, defaultPa
     loadAnimation(srcs).then(set),
     [srcs])
   if (!anim) return null
-  const key = useAnimator(frame)
-  console.log('key=', key)
+  let key = useAnimator(frame)
+  if (typeof frame !== 'function')
+    key = frame
+  console.log('frame=', frame, 'key=', key)
   const currentFrame = anim.frames[key]
   const paths = useMemo(() => {
     console.log('computing paths')

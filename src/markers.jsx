@@ -20,7 +20,8 @@ import final from './markers/final.png'
 import ending0 from './ending/*.svg'
 ending0['11-wasteland'] = {ungrouped: ending0['11-wasteland']}
 import seed from './ending/seed/*.svg'
-const ending = Object.assign({}, ending0, seed)
+import titleCard from './title.svg'
+const ending = Object.assign({}, ending0, seed, {titleCard})
 
 import {every, after, sec} from './anim'
 const loop = (...frames) => every(0.7[sec], i =>
@@ -32,15 +33,21 @@ const play = (frames, rate=1[sec]) =>
   every(rate, i => frames[Math.min(i, frames.length - 1)])
 const plant = play([0, 1, 2, 3, 4].map(i => `seed0${i}`))
 
-const closingFrames = ['seed05', 'seed06', 'seed07', 'seed08', 'seed09']
-const closingDwell = ['seed10', 'seed10a', 'seed10b']
-const tap = x => (console.log(x), x)
+const closingFrames = ['seed05', 'seed06', 'seed07', 'seed08', 'seed09',
+'seed10', 'seed10a']
+// const closingDwell = ['seed10', 'seed10a', 'seed10b']
+// const tap = x => (console.log(x), x)
 const closingFrameSec = 3
-const closing = every(closingFrameSec[sec], i => tap(
-  i < closingFrames.length
-    ? closingFrames[i]
-    : closingDwell
-))
+// const closing = every(closingFrameSec[sec], i => tap(
+//   i < closingFrames.length
+//     ? closingFrames[i]
+//     :
+//   i === closingFrames.length
+//     ? closingFrames[closingFrames.length - 1]
+//     :
+//     closingDwell
+// ))
+const closing = play(closingFrames, closingFrameSec[sec])
 const growUp = after(1[sec], '03-tree01', '04-tree012')
 
 import {Power3, SteppedEase} from 'gsap/TweenMax'
@@ -65,7 +72,7 @@ const change = (build, {index}) => {
   }
 }
 
-return <Projector onChange={change} fx={fx.current} overlay={
+return <Projector className='floatey' onChange={change} fx={fx.current} overlay={
   ({frame, duration=0.8, ease=SteppedEase.config(20)}) =>
     <Animation srcs={ending} frame={frame} morph={{ duration, ease }} />
 }>
@@ -252,7 +259,19 @@ return <Projector onChange={change} fx={fx.current} overlay={
     who so wanted to touch the stars that we became all life
     so we might someday meet them.`}
     transition='none'
-    ease={Linear.easeInOut}
+    ease={Linear.easeNone}
     />
+  <Slide url='end'
+    frame='seed11'
+    duration={3}
+    ease={Power3.easeInOut}
+    transition='none'
+    note={`Thank you.`} />
+  <Slide url='end_card'
+    frame='titleCard'
+    duration={3}
+    ease={Power3.easeInOut}
+    transition='none'
+    note={`I'm ashi, and this has been Living Things.`} />
 </Projector>
 }

@@ -4,6 +4,23 @@ import MorphSVG from './gsap-plugins/MorphSVGPlugin'
 import {Power3, Power2} from 'gsap/TweenLite';
 console.log('Loaded', MorphSVG)
 
+const useRafEffect = (effect, deps) => {
+  const rafRef = useRef()
+  const destructor = useRef()
+  useEffect(() => {
+    rafRef.current = requestAnimationFrame(performEffect)
+    return () => {
+      cancelAnimationFrame(rafRef.current)
+      if (destructor.current) destructor.current()
+    }
+    function performEffect() {
+      if (destructor.current) { destructor.current() }
+      destructor.current = effect()
+      rafRef.current = null
+    }  
+  }, deps)
+}
+
 export const MorphPath = props => {
   const {
     d,
@@ -30,7 +47,7 @@ export const MorphPath = props => {
           duration,
           {morphSVG: pathData[i].d, ease})
       }
-      t.repeat(-1)
+      t.yoyo(true).repeat(-1)
       t.play()
       return () => { console.log('destroying timeline') }
     }

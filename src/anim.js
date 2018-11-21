@@ -44,11 +44,11 @@ export default AnimationContext.Consumer
 
 export const useAnimator = anim => {
   const animate = useContext(AnimationContext)
-  const [value, setValue] = useState(typeof anim === 'function' ? anim() : anim)
-  const set = useMemo(() => val => {
-    console.log('setting animator value', val)
-    setValue(val)
-  }, [])
+  const [value, setValue] = useState()
+  const set = value => {
+    console.log('setting state to', value)
+    setValue(value)
+  }
   useEffect(() => {
     console.log('anim=', anim)
     return typeof anim === 'function'
