@@ -83,33 +83,16 @@ export default () =>
     warmer.`,
     frame: dragonAnimation,
   },
-  big_problem: {
-    [note]: `And that’s a big problem! An unlikely thing can still happen once, of
-    course, and perhaps that’s what we are—a statistical miracle, or perhaps an actual
-    one. The problem is, if structure arising from less-structure is unlikely, a single
-    miracle doesn’t quite solve the problem. Life appears to have grown in complexity
-    quite a bit over the last three billion years. Some of these shifts can perhaps be
-    explained as thermodynamically favorable, but all of them?`
-  },
   yes_all_of_them: {
-    [note]: `Yes, says Jeremey England, introduced five minutes ago and just now
-    piping up! All of them.
-    
-    All of them! Including the first. Actually, especially the first. That first
-    self-organization of molecules into structures in order to use energy. This
-    is what England’s lab has been modeling, and in simulations, they’ve found
-    that random assortments of idealized chemicals will tend to form structures
-    tuned to dissipate energy more effectively.`,
+    [note]: `England's lab an answer: given a source of energy, matter tends to
+    form structures to *use* that energy. They've built quite elegant statistical
+    theories and verified them with models, and their work appears to be checking out.
+
+    If you attach a tea cup to a source of energy for long enough, structures
+    will begin to form within it, tuned to use that energy more effectively.`,
     frame: dragonAnimation,
   },
-  chemicals: {
-    [note]: `So if some chemicals react energetically when they’re near each other,
-    this simulated soup of chemicals tends to form structures to bring those
-    reactants and catalysts near each other to use the energy produced by their
-    reaction.`,
-    frame: dragonAnimation,
-  },
-  for_what: {
+for_what: {
     [note]: `“Use it for what,” you might ask. Bah! Why do we visit Luna?
     For what do we climb Sagarmatha? Because they're *there*.
     

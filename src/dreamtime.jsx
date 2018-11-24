@@ -79,8 +79,8 @@ export default () =>
     in water. It threatened to flood the entire country.`
   },
   frightened: {
-    [note]: `The people became frightened and went to Bundjil, their creator
-    and spiritual leader. They asked Bundjil to stop the sea from rising.`
+    [note]: `The people became frightened and went to their creator Bundjil.
+    They asked him to stop the sea from rising.`
   },
   angry_bundjil: {
     [note]: `Like the sea, Bundjil was also angry with his people.
@@ -106,9 +106,9 @@ export default () =>
     to stop rising.`
   },
   stopped_rising: {
-    [note]: `The sea stopped rising. But the waters never subsided.
+    [note]: `The sea stopped. But the waters never subsided.
     
-    The sea washed away much of the woodlands. Their country was
+    They washed away much of the woodlands, and the country was
     reduced to a narrow strip of coastline.
     
     The new waters created a large bay, which they named Nairm.
@@ -281,17 +281,41 @@ export default () =>
     and then abandoned. Wall Street offices turned into squats, their walls
     hastily shored up by bioarchitecture, now growing wild, calcified
     structural vines creeping over crumbling stonework.
+
+    Furniture factories printing millions upon millions of cabinets,
+    overflowing the warehouse and piling up in the sea.
+
+    Self-driving, self-repairing vehicles, roaming
+    the streets, charging at unkempt thickets of solar fields, moving
+    themselves from one part of the city to another, preparing for
+    demand that never comes.
     
-    Here comes the inspirational part of the talk:
+    Here comes the most inspirational part of the talk:
     
     We are all going to die.
+
+    And that's a bit sad. Inevitable mortality is a bit of a bummer.`,
+    frame: cellAnimation,
+  },
+  bigger: {
+    [note]: `But everything we create takes on a life of its own. We
+    are a part of a living system that has lasted for billions of years,
+    and will continue to last, must continue to last, long after our bodies
+    have turned to ash.
     
-    You. Me. Everyone we love. Our nations and our civilizations.
+    If you step back and allow the borders of yourself to blur, you
+    become something enormous and immortal.
     
-    And that’s a bit sad. Inevitable mortality is kindof a bummer.
+    We are not just our bodies.
+    We are not just our families.
+    We are not just our nations.
+    We are not just the gods we’ve chosen to give ourselves to.
+    We are everything.
+    We are all life.
+    We are the sea that crawled onto land three billion years ago, and began to explore.
+    A creature of ten trillion eyes.
     
-    But it turns out to be somewhat necessary.`,
-    frame: null,
+    So perhaps ten thousand years isn't so long after all.`
   }
 }}>{
   ({frame=fireAnimation, ease=Linear.easeNone}) =>

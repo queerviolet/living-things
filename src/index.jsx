@@ -17,7 +17,7 @@ render(
     <Intro />
     <TenThousandYears />
     <Dreamtime />
-    <Entropy />
+    {/* <Entropy /> */}
     <Markers />
   </Player>
 , main)

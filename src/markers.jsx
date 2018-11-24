@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react'
 import Projector from './projector'
-import Slide, {Slides} from './slide'
+import Slide from './slide'
 
 import {Animation} from './morph-svg'
 
@@ -125,14 +125,11 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
 
     Granite pillars, 7 meters tall, etched with messages of warning.
     
-    An earthen berm, 10 meters tall and 30 meters wide,
-    looping all the way around, marking the center
-
     Ceramic and metal discs will be buried throughout the site, with
     instructions to future peoples who are digging in the earth. The message is:
     stop.
 
-    And in the center of it all: a roofless room, with information
+    In the center of it all: a roofless room, with information
     and warning signs in six languages, and instructions to copy
     them into a more modern language when they become difficult
     to read. A physical living story.`}>
