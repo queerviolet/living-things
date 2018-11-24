@@ -162,6 +162,8 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
     
     I think it’s very likely that we will be here in ten thousand years.
 
+    We are tenacious. Life will survive.
+
     But I want us to do more than survive.
 
     I want us to thrive.
@@ -195,7 +197,7 @@ return <Projector className='floatey' onChange={change} fx={fx.current} overlay=
     It’s something that we must do to become whatever it is we’re going to become.
     But it's an experiment. So we are all now experimental subjects.
     
-    As with any live subject trials, we need to be ethical and careful
+    As with any live subject trial, we need to be ethical and careful
     in that experimentation. We need to measure, understand, and control
     the impacts of it.
     `} frame={liquid} transition='none' />    

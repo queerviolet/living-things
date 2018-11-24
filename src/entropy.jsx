@@ -25,7 +25,8 @@ const dragonAnimation = every(1[sec], i =>
 export default () =>
 <Slides of={{
   entropy: {
-    [note]: `Jeremey England is a physicist at MIT, and he has a theory about life.`
+    [note]: `Jeremey England is a physicist at MIT, and he has a theory about life.`,
+    frame: null,
   },
   second_law: {
     [note]: `You’re familiar, perhaps, with the second law of thermodynamics.

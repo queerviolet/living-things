@@ -48,8 +48,8 @@ export default () =>
   dreamtime: {
     [note]: `Many years ago, the land beneath greater Melbourne extended
     right out to the sea. It was a large grassy plain, and what’s now
-    the Yarra river flowed out across it into the sea. the aboriginal people of the land—
-    the Boon Wurrung people—called the river Birrarung, the river of mists.
+    the Yarra river flowed out across it into the sea. The aboriginal people who lived
+    there—the Boon Wurrung people—called the river Birrarung. The river of mists.
     
     This is their story.
 
@@ -66,57 +66,58 @@ export default () =>
   },
   one_day: {
     [note]: `But one day there came a time of chaos and crisis.
-    The Boon Wurrung and the other Kulin argued and fought and killed.
+    The Boon Wurrung and other people of the Kulin nation argued and fought
+    and killed each other.
         
-    They neglected the woodlands. They neglected the
-    yam daisy. They overhunted and overfished.
+    They neglected the lands. They overhunted and overfished.
     
     And all this violence angered the sea.
     
     And the sea began to rise.
     
-    The river became flooded and eventually the whole flat plain was covered
-    in water. It threatened to flood their whole country.`
+    The river became flooded and eventually the whole plain was covered
+    in water. It threatened to flood the entire country.`
   },
   frightened: {
     [note]: `The people became frightened and went to Bundjil, their creator
     and spiritual leader. They asked Bundjil to stop the sea from rising.`
   },
   angry_bundjil: {
-    [note]: `Like the sea, Bundjil too was angry with his people.
+    [note]: `Like the sea, Bundjil was also angry with his people.
     
     He told them that they would have to change their ways if they
     wanted to save their land.
 
-    Bundjil he made them promise to respect the laws:
+    He made them promise to respect the laws:
 
     They would learn from their mistakes.
     They would care for the woodlands.
-    They would care for Bundjil’s other children, all the creatures of the earth.
+    They would care for his other children—all the creatures of the earth.
     They would accept visitors.
     They would sort their differences without war.
 
     The people thought about what they had been doing.
     They thought of the rising sea.
-    They thought of floods and war.
+    They thought of floods
+    They thought of war.
     And they promised to follow him.
 
-    Bundjil walked out to the sea, raised his spear and directed the sea
+    The great eagle walked out to the sea, raised his spear and directed the waters
     to stop rising.`
   },
   stopped_rising: {
-    [note]: `The sea stopped rising. But the waters never fell.
+    [note]: `The sea stopped rising. But the waters never subsided.
     
-    The sea had washed away much of the woodlands. Their country was
+    The sea washed away much of the woodlands. Their country was
     reduced to a narrow strip of coastline.
     
-    The new waters created a large bay. They called it Nairm.
+    The new waters created a large bay, which they named Nairm.
     Colonizers would later name it Port Phillip Bay.
 
-    Today, Birrarung river of mist, still flows beneath the bay.`
+    Today, the river of mists still flows beneath the bay.`
   },
   today: {
-    [note]: `And today, we can look at the land beneath the bay, and the stones all
+    [note]: `Also today, we can look at the land beneath the bay, and the stones all
     around it, and we find that they whisper pieces of this story as well.
     The geological evidence is pretty clear: Ten thousand years ago, the bay
     was a grassland. Then it flooded. It would have happened quite quickly.
@@ -144,7 +145,7 @@ export default () =>
     structures hook into us like velcro.`
   },
   honor: {
-    [note]: `Oral storytelling: is how
+    [note]: `Oral storytelling is how
     the Boon Wurrung honor their gods. It is how their gods *live*.
 
     Gods are not physical things, but I think they are living things.
@@ -159,7 +160,7 @@ export default () =>
     They are even made of replicating pieces. Not biological pieces, but
     pieces of a process. What's a piece of a process? Let's call it a shard.
 
-    The replication process is crucial. It's shards of Bundjil reproduce.
+    The replication process is crucial. It's how the shards of Bundjil reproduce.
     Moving from person to person. Becoming distributed dreams, concepts
     given tenancy on the infrastructure of many minds. Maintained and evolving
     across a shifting social landscape.`

@@ -153,17 +153,17 @@ const timeline = {
     win: 6000,
     note: `The great pyramid of Giza certainly sends quite a message!
     It's about 4,500 years old. That’s 56 lifetimes.
-    Not bad. But the radiation would outlast them by another 68.`
+    Not bad. But the radiation would last another 68.`
   },
   brazil_pyramids: {
     width: 5500,
     start: -5500,
     label: 'american pyramids',
     win: 10000,
-    note: `That’s about the age of the oldest pyramids in the world,
+    note: `68 lifetimes is about the age of the oldest pyramids in the world,
     in Brazil. *All* the oldest pyramids in the world are in the Americas,
-    actually, though few of them remain. From 1920 to 1960, most of
-    them were destroyed because that is what colonialism does.
+    actually, though few of them remain. Most of
+    them have been destroyed, because that is what colonialism does.
     
     So in a sense, we've solved the marking problem at this point.
 
@@ -181,33 +181,7 @@ const timeline = {
     It's kind of a brute force approach. If you want to make something that lasts,
     just make something really big, and some of it will probably stick around.
 
-    Could we be more clever, though? We have all these novel
-    materials and intricate engineering techniques. Maybe we could leverage some
-    of those?
-    
-    And indeed, there's another very ong term engineering project that's trying to
-    do that.`
-  },
-  long_now: {
-    width: 10000,
-    start: 0,
-    label: '⏱?',
-    win: 20000,
-    note: `The clock of the Long Now is a project to build a clock that will run for 10,000 years,
-    chiming a unique chime whenever someone is there to hear it.
-    
-    It's also being constructed in the deserts of the southwestern U.S.
-    The desert is dry and still, so it turns out to be quite a good place to build
-    long-lived things.
-    
-    They're pulling out some pretty impressive feats of mechanical engineering to make
-    the clock mechanisms work. Precision-machined gears made of stainless steel, stone, and
-    ceramics. Movements sealed in quartz, protected from dust and the elements.
-
-    It's a fascinating project. A testament to optimism. Will it work?
-
-    Maybe. None of the technology in the clock has been tested across
-    the timespans involved. We think it'll work, but it obviously never has.
+    Probably. We think it'll work, but it obviously hasn't yet.
     
     It would be nice to know that this task is even possible.
     
@@ -215,7 +189,7 @@ const timeline = {
     that could carry our message.
     
     What about a city? The oldest cities are quite old indeed.`
-  },
+  },  
   jericho: {
     width: 11000,
     start: -11000,
@@ -230,16 +204,9 @@ const timeline = {
     win: 20000,
     note: `Damascus is 8,000 or so.
     
-    Are cities physical things? Sortof questionable, isn’t it?
-    They are things, certainly. If we were standing in space,
-    looking down at the earth at night, and you pointed to a
-    blob of light and asked, “what is that thing?” The answer would be:
-    a city. So cities are some kind of thing, and they have bodies,
-    and perhaps that is enough.
-
-    Certinly, we can even imagine sending a message with a city.
+    Could we use a city to send a message? I think so.
     
-    A settlement with strict rules about which water sources are
+    Imagine: a settlement with strict rules about which water sources are
     safe and which ones are forbidden. An order of monks tasked
     with guarding knowledge of what lies beneath and disseminating
     the sacred scripture, which says, in the main: do not dig.
