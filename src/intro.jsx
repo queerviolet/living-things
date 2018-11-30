@@ -54,17 +54,17 @@ import grandPartition from './grand-partition.svg'
 export default () => <React.Fragment>
   <Slides of={{
     intro: {
-      [note]: `Hi everyone. Has everyone had a good time at Codemotion?
+      [note]: `Hi everyone. Has everyone been having a good time here at Codemotion?
       
       Good.
       
-      It's been an eventful couple of days of conferencing! I'm sure you've
+      Yesterday was an eventful day. Today will be as well. I'm sure you've
       been networking and tweeting and thinking about code and software. Inhabiting
       in this kind of vaporous world that we work in.
 
       I'm Ashi. And I'm here to share some observations about living things.
 
-      So first, I want us to remember that we are living things.
+      Before we begin, I want us to remember that we are living things.
       
       So take a deep breath.`,
       frame: 'title',

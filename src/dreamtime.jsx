@@ -246,19 +246,19 @@ export default () =>
     a *process running on them*. An agreement; a protocol. An idea.`,
     frame: cellAnimation,    
   },
-  problems_of_society: {
-    [note]: `In this way, the problems of the body are quite like the
-    problems of society. Our cells are bound by complex chemical treaties.
-    The behavior of our cells is circumscribed by energy gradients from
-    which escape is very difficult, just as our behavior is bounded by
-    our own social, political, institutional, energetic gradients. Our
-    cells form tissues and organs that make up our bodily institutions.
-    They are policed by our immune system. We need resources to fuel us,
-    and our bodies have whole industrial areas dedicated to the task of
-    resource extraction. We need to receive and process information, and
-    we devote enormous resources to the task.`,
-    frame: cellAnimation,
-  },
+  // problems_of_society: {
+  //   [note]: `In this way, the problems of the body are quite like the
+  //   problems of society. Our cells are bound by complex chemical treaties.
+  //   The behavior of our cells is circumscribed by energy gradients from
+  //   which escape is very difficult, just as our behavior is bounded by
+  //   our own social, political, institutional, energetic gradients. Our
+  //   cells form tissues and organs that make up our bodily institutions.
+  //   They are policed by our immune system. We need resources to fuel us,
+  //   and our bodies have whole industrial areas dedicated to the task of
+  //   resource extraction. We need to receive and process information, and
+  //   we devote enormous resources to the task.`,
+  //   frame: cellAnimation,
+  // },
   our_own_cells: {
     [note]: `I think relatively few of us have ever seen our own cells.
     It’s easy to not think of them. They are very meaningfully separate
@@ -281,14 +281,6 @@ export default () =>
     and then abandoned. Wall Street offices turned into squats, their walls
     hastily shored up by bioarchitecture, now growing wild, calcified
     structural vines creeping over crumbling stonework.
-
-    Furniture factories printing millions upon millions of cabinets,
-    overflowing the warehouse and piling up in the sea.
-
-    Self-driving, self-repairing vehicles, roaming
-    the streets, charging at unkempt thickets of solar fields, moving
-    themselves from one part of the city to another, preparing for
-    demand that never comes.
     
     Here comes the most inspirational part of the talk:
     

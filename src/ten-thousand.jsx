@@ -40,10 +40,10 @@ const timeline = {
   },
   conference: {
     width: day(2),
-    start: -day(2) + hour(5),
+    start: -day(1),
     win: day(4),
     label: '✈️ codemotion',
-    note: 'This conference has lasted two days. Soon, many of you will fly home.',
+    note: 'This conference has lasted for one day. In about a day, many of you will fly home.',
     content: <h1>This conference: 2 days</h1>
   },
   winter: {
@@ -124,36 +124,175 @@ const timeline = {
     today will have seen the invention of flight, telegraph, television,
     and the internet.`
   },
-  billboards: {
-    width: 100,
-    label: '🛣 billboard',
+  sea_turtle_future: {
+    width: 120,
+    label: '🐢 sea turtle 2: the future',
     win: 300,
-    note: `Going with things that might more easily be used to send messages,
-    Billboards have a life expectancy of about 100 years.`
+    note: `A sea turtle born today will see different wonders. Probably,
+    she will see the birth of the first genetically engineered children.`
+  },
+  engineered_children: {
+    width: 10,
+    start: -1,
+    win: 300,
+    label: 'CRISPR 🧒🏻 ?',
+    stroke: 'fuchsia',
+    note: `Unless that's already happened.`
+  },
+  replacement_organs: {
+    width: 10,
+    start: 20,
+    win: 300,
+    label: 'replacement organs 🍆',
+    stroke: 'fuchsia',
+    note: 'Probably, she will see us learn to grow whole replacement organs...'
+  },
+  protein_engineering: {
+    width: 10,
+    start: 60,
+    win: 300,
+    label: 'protein compilers',
+    stroke: 'fuchsia',
+    note: `...and develop the first protein compilers, opening up a whole subfield of
+    nanoengineering. Once you can design proteins, you can design protein antennas...`
+  },
+  brain_interface: {
+    width: 40,
+    start: 70,
+    win: 300,
+    label: 'brain IO',
+    stroke: 'fuchsia',
+    note: `...and once you can design protein antennas, you can start to really get
+    through fundamental problem of brain interfaces, which is that we have skulls, and
+    they are thick. I think we'll solve that problem sometime in the next 120 years.`
+  },
+  sea_rise_4cm: {
+    width: 120,
+    win: 300,
+    label: '+4cm 🌊',
+    stroke: 'fuchsia',
+    note: `Meanwhile, the seas will rise by four centimeters—perhaps more. Areas that
+    were once beaches and cities will become flood planes. Areas that were once arable
+    and temperate will become deserts.`
+  },
+  no_insects: {
+    width: 120,
+    win: 300,
+    label: '☠️🐞',
+    stroke: 'fuchsia',
+    note: `Also in the next hundred and twenty years, if current trends hold, the global
+    insect population will drop to about 1% of what it is today. And we really have no idea
+    what that will do to the ecosystem.
+    
+    And that's just over the next century or so. What about two centuries? Five, ten, twenty?`
   },
   great_wall: {
-    width: 2000,
-    start: -2000,
-    label: 'great wall (oldest)',
+    width: 2700,
+    start: -2700,
+    label: 'great wall',
     win: 4500,
-    note: `The oldest bits of the great wall of china are about 2,000 years old.
-    But it’s been maintained and rebuilt and extended *a lot*.`
+    note: `Twenty-seven centuries ago, the first stones of the great wall were being
+    set down. The stones of the great wall were quarried and laid by human hands. 
+    They probably had a bit of help—machines providing mechanical advantage. If we were
+    to build the great wall now, we would build it in much the same way. Our machines would
+    be more powerful, but not, I think, categorically different.`
   },
-  great_wall_newer_parts: {
-    width: 600,
-    start: -600,
-    label: 'great wall (most of it)',
-    win: 4500,
-    note: `Most of it is about 600 years old.`
+  next_3000_years: {
+    width: 3000,    
+    label: '???',
+    win: 6000,
+    note: `And what will the next 3,000 years hold?  
+    
+    Truthfully, it's difficult to imagine.`
+  },
+  sea_2m: {
+    win: 6000,
+    width: 2000,
+    label: '+200cm 🌊',
+    stroke: 'fuchsia',
+    note: `In the next 2000 years, the seas will rise about two meters,
+    and we will discover many things.`
+  },
+  megastructures: {
+    win: 6000,
+    width: 100,
+    start: 100,
+    label: 'biostructure engineering',
+    stroke: 'fuchsia',
+    note: `As a species, as a biome, we are going to face enormous pressures,
+    and I think we will leverage a new understanding of life to respond to them.
+    
+    Near the end of our bodies lifetimes, I think we will begin to see bioengineered
+    megastructures. Buildings that have been grown, rather than made.
+    Sea walls built from seeds.`
+  },
+  ai: {
+    win: 6000,
+    width: 100,
+    start: 80,
+    label: 'independent ai',
+    stroke: 'fuchsia',
+    note: `Before that, I think we'll start to the growth of AIs that can set their
+    own goals and run their own research programmes.`
+  },
+  vr: {
+    win: 6000,
+    width: 100,
+    start: 100,
+    label: 'virtual realities',
+    stroke: 'fuchsia',
+    note: `And subsequently, an understanding and simulation of the signals within
+    our brains that makes possible and commonplace realities that are not this one.
+
+    That's all quite soon, if it happens at all. Perhaps I'm a century off. But look.
+    Look at the great gulf of time we have to fill.
+    
+    I was just in Athens. There, I stood at the base of the Acropolis,
+    It's 2500 years old.`
+  },
+  acropolis: {
+    win: 6000,
+    width: 2500,
+    start: -2500,
+    label: 'acropolis',
+    note: `There, I thought of what it would be to come up on this place
+    in the ancient times, having seen nothing like it.
+    
+    It is still impressive today. It is still beautiful. It would still be a
+    significant endeavour to build such a site. Our buildings are taller now,
+    yes, but also much more fragile, as though we do not truly believe in a future.
+    
+    We are building such incredible things. Things of glass and mind and vapor.
+    
+    We are also consuming an incredible amount of the world, inhaling the chaotic
+    diversity of the natural world and exhaling clean homogeneity.`
+  },
+  extinction: {
+    win: 6000,
+    width: 3000,
+    label: '☠️☠️☠️',
+    note: `If trends
+    continue, in three thousand years, every animal species that we do not farm
+    will be extinct.
+    
+    Of course, the thing about life is that it is plastic and adaptive and trends do
+    not tend to continue. Not in a linear fashion. It may seem as though we have
+    many years, but suddenly an ecosystem collapses and the region becomes unlivable.
+    
+    Or, it may seem as though doom is on the horizon, but unforseen resonances grow
+    and we the living adapt and shore up the structure that supports us.
+      
+    Life adapts, and surely Earth's biome will too. Will we be a part of it?`
   },
   egyptian_pyramid: {
     width: 4500,
     start: -4500,
     label: 'great pyramid of giza',
     win: 6000,
-    note: `The great pyramid of Giza certainly sends quite a message!
-    It's about 4,500 years old. That’s 56 lifetimes.
-    Not bad. But the radiation would last another 68.`
+    note: `4500 years ago, we built the pyramids.
+    That’s 56 lifetimes. Not bad.
+    
+    But the radiation would last another 68.`
   },
   brazil_pyramids: {
     width: 5500,
@@ -165,7 +304,7 @@ const timeline = {
     actually, though few of them remain. Most of
     them have been destroyed, because that is what colonialism does.
     
-    So in a sense, we've solved the marking problem at this point.
+    As the marker study points out, we've solved the signage problem at this point.
 
     The great pyramid is still mostly intact, as are the American pyramids
     that haven't been intentionally destroyed.`
@@ -176,47 +315,10 @@ const timeline = {
     label: '☢️ danger ☢️',
     win: 20000,
     note: `If we undertook such monumental construction efforts to mark the site,
-    it would proably last, at least if it wasn't raided for parts.
+    it would proably last, at least if it wasn't raided for parts.    
 
-    It's kind of a brute force approach. If you want to make something that lasts,
-    just make something really big, and some of it will probably stick around.
-
-    Probably. We think it'll work, but it obviously hasn't yet.
+    Would it work for sure? It's hard to say.
     
-    It would be nice to know that this task is even possible.
-    
-    It would be nice to discover even one structure from 10,000 years ago
-    that could carry our message.
-    
-    What about a city? The oldest cities are quite old indeed.`
-  },  
-  jericho: {
-    width: 11000,
-    start: -11000,
-    label: 'jericho',
-    win: 20000,
-    note: 'Jericho is 11,000 years old.'
-  },
-  damascus: {
-    width: 8000,
-    start: -8000,
-    label: 'damascus',
-    win: 20000,
-    note: `Damascus is 8,000 or so.
-    
-    Could we use a city to send a message? I think so.
-    
-    Imagine: a settlement with strict rules about which water sources are
-    safe and which ones are forbidden. An order of monks tasked
-    with guarding knowledge of what lies beneath and disseminating
-    the sacred scripture, which says, in the main: do not dig.
-    
-    Would it work? Or would would we eventually grow too curious?
-    When famine hits, would we come to believe that the priests
-    are not guarding death, as they claim, but instead vast stores
-    of food and riches? Would we kill them all, and eagerly crack
-    open the earth to see what’s inside?
-
     It’s hard to say what will happen in ten thousand years. It’s
     a time horizon that stretches nearly all our engineering. To
     send a message to ten thousand years from now is to build a
@@ -233,7 +335,62 @@ const timeline = {
     It can just be a story.
 
     Like this:`
-  },
+    // It's kind of a brute force approach. If you want to make something that lasts,
+    // just make something really big, and some of it will probably stick around.
+
+    // Probably. We think it'll work, but it obviously hasn't yet.
+    
+    // It would be nice to know that this task is even possible.
+    
+    // It would be nice to discover even one structure from 10,000 years ago
+    // that could carry our message.
+    
+    // What about a city? The oldest cities are quite old indeed.`
+  },  
+  // jericho: {
+  //   width: 11000,
+  //   start: -11000,
+  //   label: 'jericho',
+  //   win: 20000,
+  //   note: 'Jericho is 11,000 years old.'
+  // },
+  // damascus: {
+  //   width: 8000,
+  //   start: -8000,
+  //   label: 'damascus',
+  //   win: 20000,
+  //   note: `Damascus is 8,000 or so.
+    
+  //   Could we use a city to send a message? I think so.
+    
+  //   Imagine: a settlement with strict rules about which water sources are
+  //   safe and which ones are forbidden. An order of monks tasked
+  //   with guarding knowledge of what lies beneath and disseminating
+  //   the sacred scripture, which says, in the main: do not dig.
+    
+  //   Would it work? Or would would we eventually grow too curious?
+  //   When famine hits, would we come to believe that the priests
+  //   are not guarding death, as they claim, but instead vast stores
+  //   of food and riches? Would we kill them all, and eagerly crack
+  //   open the earth to see what’s inside?
+
+  //   It’s hard to say what will happen in ten thousand years. It’s
+  //   a time horizon that stretches nearly all our engineering. To
+  //   send a message to ten thousand years from now is to build a
+  //   bridge that will span all those millennia, somehow, without
+  //   support.
+
+  //   Or the bridge has to be alive. It has to have roots—a support
+  //   structure strong enough to maintain the message, dynamic and
+  //   resilient enough to stay anchored across 10,000 years of the
+  //   shifting landscape of the world’s resources.
+
+  //   It doesn’t have to be a structure.
+
+  //   It can just be a story.
+
+  //   Like this:`
+  // },
 }
 
 const timelineEntries = Object.entries(timeline)
@@ -251,10 +408,10 @@ const MorphFromTo = ({ dFrom, dTo, style, sec=0.1 }) => {
   return <MorphPath d={d} style={style}  />
 }
 
-const getPath = (key, {start=0, width}, y, win) =>
+const getPath = (key, {start=0, width, stroke='cyan'}, y, win) =>
   <MorphFromTo key={key} style={{
       strokeWidth: 1,
-      stroke: 'cyan',
+      stroke,
     }}
     dTo={`
       M ${100 * start / win},${y}
